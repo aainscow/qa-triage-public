@@ -67,7 +67,8 @@ whatever agents you choose, from the command line of a coding agent to a local m
 
 You need Python 3.9 or later, git, and ssh access to a host that has the teuthology
 archive (`trial200` by default), which needs the sepia VPN. This repository is private:
-ask its owner to add you as a collaborator.
+ask its owner to add you as a collaborator. A read-only snapshot of it is public, to
+read: [aainscow/qa-triage-public](https://github.com/aainscow/qa-triage-public).
 
 Until ceph/ceph#73070 is merged, the commands in the [quick start](#quick-start) take
 its script from the pull request. They leave your ceph clone's branch as it is, with
@@ -204,3 +205,7 @@ prints an answer: see [Providers](docs/guide.md#providers) and
 As Ceph is: the code, and the library, under the LGPL, version 2.1 or 3
 ([COPYING-LGPL2.1](COPYING-LGPL2.1), [COPYING-LGPL3](COPYING-LGPL3)), and the
 documentation under CC-BY-SA-3.0. [COPYING](COPYING) says which is which.
+
+The repository is private, and its snapshot is published, under the same license, at
+[aainscow/qa-triage-public](https://github.com/aainscow/qa-triage-public): an archived, read-only copy of
+it, without its history, brought up to date from time to time.

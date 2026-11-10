@@ -534,7 +534,9 @@ that directory is fetched, and what is learned is pushed to that branch, code or
 not: those who may push to it are trusted with what runs on everyone's machine.
 
 This repository is private: its owner adds people as collaborators, who may then
-read it and push to it.
+read it and push to it. A read-only snapshot of it, without its history, is published
+under the same license at [aainscow/qa-triage-public](https://github.com/aainscow/qa-triage-public), archived:
+no one pushes to it, and it takes no issues or pull requests.
 
 Since many people's runs change the library, a change is made to what everyone has,
 and with the person's say:

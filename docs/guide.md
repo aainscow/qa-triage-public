@@ -24,7 +24,8 @@ $ src/script/qa_triage/qa_triage.sh https://pulpito.ceph.com/<run>/
 The first time, it clones this repository into `src/script/qa_triage/qa-triage/`,
 which git ignores, and makes its own Python environment; each time after, it brings
 that clone up to date before it runs. This repository is private: ask its owner to
-add you as a collaborator first. It clones over ssh, with your GitHub key. Where
+add you as a collaborator first (a read-only snapshot of it is public, to read:
+[aainscow/qa-triage-public](https://github.com/aainscow/qa-triage-public)). It clones over ssh, with your GitHub key. Where
 that fails, as on a host whose ssh key for GitHub is a deploy key, which no other
 repository takes, it clones over https with [gh](https://cli.github.com)'s sign-in, if
 gh is signed in (`gh auth login`), for its own git commands only;
