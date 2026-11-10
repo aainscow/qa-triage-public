@@ -3,9 +3,9 @@ Name: qa_triage
 Source: https://github.com/aainscow/qa-triage
 
 Files: *
-Copyright: (c) 2026 the qa_triage contributors
+Copyright: (c) 2026 IBM Corp.
 License: LGPL-2.1 or LGPL-3 (see COPYING-LGPL2.1 and COPYING-LGPL3)
 
 Files: docs/* README.md AGENTS.md CONTRIBUTING.md
-Copyright: (c) 2026 the qa_triage contributors
+Copyright: (c) 2026 IBM Corp.
 License: Creative Commons Attribution Share Alike 3.0 (CC-BY-SA-3.0)
