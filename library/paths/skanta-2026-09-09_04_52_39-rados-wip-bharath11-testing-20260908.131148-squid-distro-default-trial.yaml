@@ -1,0 +1,11 @@
+run: skanta-2026-09-09_04:52:39-rados-wip-bharath11-testing-20260908.131148-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '545077':
+    tree: workunit/standalone
+    facts:
+      workunit: osd/osd-bluefs-volume-ops.sh
+      task: workunit
+      test: TEST_bluestore_expand_with_allocmap_recovery
+      check: osd-bluefs-volume-ops.sh:504
+      script: osd/osd-bluefs-volume-ops.sh

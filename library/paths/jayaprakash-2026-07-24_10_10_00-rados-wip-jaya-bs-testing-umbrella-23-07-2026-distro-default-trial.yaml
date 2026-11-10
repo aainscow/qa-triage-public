@@ -1,0 +1,20 @@
+run: jayaprakash-2026-07-24_10:10:00-rados-wip-jaya-bs-testing-umbrella-23-07-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '396304':
+    tree: workunit/unexplained/ganesha-nfsv3-tcp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+  '396316':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '396332':
+    tree: hung/command/ceph-daemon-config-set-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: sudo TESTDIR=/home/ubuntu/cephtest bash -c 'for f in 0 1 2 3 ; do sudo ceph daemon osd.$f config set osd_recovery_sleep 0 ; sudo ceph daemon osd.$f config set osd_recovery_max_active 20 ; done'

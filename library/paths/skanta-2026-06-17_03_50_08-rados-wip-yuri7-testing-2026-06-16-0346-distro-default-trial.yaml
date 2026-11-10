@@ -1,0 +1,43 @@
+run: skanta-2026-06-17_03:50:08-rados-wip-yuri7-testing-2026-06-16-0346-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '296694':
+    tree: workunit/unexplained/cephtool-hang/bad-caps-key-left-behind
+    facts:
+      workunit: cephtool/test.sh
+      task: workunit
+      script: cephtool/test.sh
+  '296696':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_prometheus.TestPrometheus.test_file_sd_command
+      error: 'teuthology.exceptions.CommandFailedError: Command failed on trial124 with status 22: ''sudo adjust-ulimits ceph-coverage /home/ubuntu/cephtest/archive/coverage timeout 120 ceph --cluster ceph prometheu...'
+  '296698':
+    tree: workunit/unexplained
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+  '296701':
+    tree: workunit/unexplained
+    facts:
+      workunit: rados/test.sh
+      task: workunit
+      script: rados/test.sh
+  '296702':
+    tree: test/unexplained
+    facts:
+      task: cephfs_test_runner
+  '296715':
+    tree: workunit/unexplained/test-localpool-unrecognized-config-option
+    facts:
+      workunit: mgr/test_localpool.sh
+      task: workunit
+      script: mgr/test_localpool.sh
+  '296725':
+    tree: hung/command/dispatch-delay-queued-for-pg
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph --admin-daemon /var/run/ceph/ceph-osd.4.asok dump_historic_ops

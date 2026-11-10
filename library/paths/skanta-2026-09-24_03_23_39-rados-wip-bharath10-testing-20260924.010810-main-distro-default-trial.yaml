@@ -1,0 +1,34 @@
+run: skanta-2026-09-24_03:23:39-rados-wip-bharath10-testing-20260924.010810-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '577244':
+    tree: infra/other/ansible-disk-check-trial114
+    facts:
+      task: ansible.cephlab
+      host: trial114
+  '577254':
+    tree: infra/other/kernel-version-mismatch
+    facts:
+      task: kernel
+      host: trial195
+  '577422':
+    tree: command/not-found
+    facts:
+      task: exec
+      command: grep -E (defer backfill|defer recovery) /var/log/ceph/ceph-osd.*.log
+      status: '1'
+      host: trial118
+  '577494':
+    tree: cluster-log/message/out-of-order-full
+    facts:
+      task: ''
+      level: ERR
+      message: '[ERR] OSD_OUT_OF_ORDER_FULL: full ratio(s) out of order'
+      reporter: mon.a
+  '577552':
+    tree: valgrind/Leak_StillReachable/rocksdb-compact-thread-bgitem/rocksdb-queue-unsuppressed
+    facts:
+      task: mon_recovery
+      kind: Leak_StillReachable
+      frames: operator new[](unsigned long) allocate allocate
+      daemons: ''

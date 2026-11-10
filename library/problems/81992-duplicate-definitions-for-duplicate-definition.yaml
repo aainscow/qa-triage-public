@@ -1,0 +1,50 @@
+id: "81992"
+tracker: https://tracker.ceph.com/issues/81992
+title: "Duplicate definitions for duplicate definition for yes-i-really-really-meant-it in ceph-bluestore-tool"
+kind: product
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/72991
+    branch: squid
+    fixed_in: v19.2.7-113-g84d170d279
+tree: command/error
+facts:
+  task: '^cephadm$'
+  command: 'cephadm .* ceph-volume '
+  error: '^RuntimeError: Failed command'
+match:
+  reason: 'ceph-volume .* lvm zap '
+confirm:
+  - file: teuthology.log
+    pattern: "option '--yes-i-really-really-mean-it' is ambiguous and matches different versions"
+  - file: teuthology.log
+    pattern: 'ceph-bluestore-tool zap-device --dev /dev/\S+'
+notes: |
+  The cephadm task zaps each OSD device with
+  `cephadm --image <release image> ceph-volume -- lvm zap /dev/...`
+  (qa/tasks/cephadm.py). Inside the container ceph-volume's zap_bluestore runs
+  `ceph-bluestore-tool zap-device --dev <dev> --yes-i-really-really-mean-it`, and the
+  squid build of the tool answers
+  "option '--yes-i-really-really-mean-it' is ambiguous and matches different versions of
+  '--yes-i-really-really-mean-it'": the option is declared twice in
+  src/os/bluestore/bluestore_tool.cc, so boost::program_options refuses to parse it.
+  zap-device exits 1, ceph-volume's process.run raises
+  "RuntimeError: command returned non-zero exit status: 1", cephadm's call_throws turns
+  that into "RuntimeError: Failed command: /usr/bin/docker run ...", and the task fails
+  with CommandFailedError. The tree gets no further than that outermost RuntimeError,
+  so the two confirm checks are what tell this failure from other `lvm zap` failures:
+  the ambiguous-option line is the cause, the zap-device line the command it came from.
+  The duplicate reached squid with the backport PR #71850 (trim / zap-device); PR #72991
+  removed it, fixed in v19.2.7-113-g84d170d279. The fix is on the squid branch only, so
+  a job fails this way whenever the squid *container image* it pulls is older than that
+  build - typically a rados/upgrade job, which starts its cluster on the old release
+  image: the faulty binary is in that image, not in the build under test, so this is
+  never the doing of the PRs being tested, whatever version the branch under test has.
+  A different problem with the same symptom: #76991, where ceph-volume's device scan
+  raises "/dev/mapper/ceph--... not found." (tree command/error/zap-device-missing).
+examples:
+  - yuriw-2026-10-20_19:35:34-rados-wip-yuri13-testing-20261020.164521-umbrella-distro-default-trial/662682
+also:
+  - 82088
+learned:
+- "2026-11-09 reviewer, from yuriw-2026-10-20_19:35:34-rados-wip-yuri13-testing-20261020.164521-umbrella-distro-default-trial/662682"
+- "2026-11-09 Claude (haiku), from yuriw-2026-10-20_19:35:34-rados-wip-yuri13-testing-20261020.164521-umbrella-distro-default-trial/662682, as a reviewer said"

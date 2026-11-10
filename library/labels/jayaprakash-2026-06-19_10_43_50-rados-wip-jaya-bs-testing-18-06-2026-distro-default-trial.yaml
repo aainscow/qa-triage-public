@@ -1,0 +1,10 @@
+run: jayaprakash-2026-06-19_10:43:50-rados-wip-jaya-bs-testing-18-06-2026-distro-default-trial
+jobs:
+  '300531':
+    problem: '75216'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: People placed 3 jobs that the tool placed in no known problem in 75216, this one among them.
+    summary: wait_for_clean in test_map_discontinuity timed out because PG 3.d stayed down+remapped after the thrasher killed osd.11 while osd.6 and osd.9 were out; the tree stopped as unexplained instead of reaching 75216.
+    status: fail
+    description: rados/thrash-erasure-code-isa/{arch/x86_64 ceph clusters/{fixed-4} ec_optimizations/ec_optimizations_on mon_election/connectivity msgr-failures/osd-dispatch-delay objectstore/{bluestore/{alloc$/{stupid} base mem$/{low} onode-segment$/{512K} write$/{random/{compr$/{no$/{no}} random}}}} rados recovery-overrides/{more-async-recovery} supported-random-distro/{rocky_10} thrashers/mapgap thrashosds-health workloads/ec-rados-plugin=isa-k=6-m=3}
+    reason: 'The WatchDog barked due to Thrasher OSDThrasher threw exception wait_for_clean: failed before timeout expired'

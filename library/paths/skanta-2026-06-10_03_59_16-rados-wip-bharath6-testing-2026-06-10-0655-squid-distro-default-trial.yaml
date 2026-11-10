@@ -1,0 +1,16 @@
+run: skanta-2026-06-10_03:59:16-rados-wip-bharath6-testing-2026-06-10-0655-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '282199':
+    tree: test/unittest/health-history-timeout
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_insights.TestInsights.test_health_history
+      error: 'AssertionError: datetime.datetime(2026, 6, 10, 5, 58, 1, 561963) not greater than datetime.datetime(2026, 6, 10, 5, 58, 29, 612616)'
+  '282280':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial176:y (4927), after 302.828 seconds
+      reporter: mds.c

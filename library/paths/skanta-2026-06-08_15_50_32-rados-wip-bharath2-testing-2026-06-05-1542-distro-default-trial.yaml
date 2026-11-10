@@ -1,0 +1,17 @@
+run: skanta-2026-06-08_15:50:32-rados-wip-bharath2-testing-2026-06-05-1542-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '278156':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial175:z (4645), after 302.439 seconds
+      reporter: mds.c
+  '278203':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial099:y (4612), after 300.669 seconds
+      reporter: mds.c

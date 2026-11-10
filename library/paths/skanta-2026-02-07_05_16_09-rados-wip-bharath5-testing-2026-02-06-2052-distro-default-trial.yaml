@@ -1,0 +1,10 @@
+run: skanta-2026-02-07_05:16:09-rados-wip-bharath5-testing-2026-02-06-2052-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '39330':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 'osd.2(0) found snap mapper error on pg 3.36s0 oid 3:6cc032a5:::trial18728466-404:30 snaps missing in mapper, should be: {1e, 23} ...repaired'
+      reporter: osd.2

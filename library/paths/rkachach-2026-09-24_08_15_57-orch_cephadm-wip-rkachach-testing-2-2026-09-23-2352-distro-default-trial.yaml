@@ -1,0 +1,10 @@
+run: rkachach-2026-09-24_08:15:57-orch:cephadm-wip-rkachach-testing-2-2026-09-23-2352-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '579039':
+    tree: workunit/gtest/shard-bounced-direct-read
+    facts:
+      workunit: rados/test.sh
+      task: workunit
+      test: LibRadosIoECPPParamCombination/LibRadosIoECPP.ZeroAndTruncateSameRequest/3,
+      script: rados/test.sh

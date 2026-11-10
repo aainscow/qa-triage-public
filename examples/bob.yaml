@@ -1,0 +1,4 @@
+# Bob Shell for both roles: export BOB_API_KEY, or give a file with the key in
+# qa_triage setup.
+judge: bob
+analyst: bob

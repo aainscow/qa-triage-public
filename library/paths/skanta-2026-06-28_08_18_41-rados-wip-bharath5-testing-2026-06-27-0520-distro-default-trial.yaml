@@ -1,0 +1,34 @@
+run: skanta-2026-06-28_08:18:41-rados-wip-bharath5-testing-2026-06-27-0520-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '321920':
+    tree: hung/test/rados-api-tests-valgrind-slowdown
+    facts:
+      task: ''
+      test: api_misc_pp
+      hung_task: workunit
+  '321921':
+    tree: hung/command/ceph-daemon-config-set-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: sudo TESTDIR=/home/ubuntu/cephtest bash -c 'for f in 0 1 2 3 ; do sudo ceph daemon osd.$f config set osd_recovery_sleep 0 ; sudo ceph daemon osd.$f config set osd_recovery_max_active 20 ; done'
+  '321923':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '321924':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: WRN
+      check: MGR_INFLUX_DB_LIST_FAILED
+      message: 'Health check failed: Failed to list/create InfluxDB database (MGR_INFLUX_DB_LIST_FAILED)'
+      reporter: mon.a
+  '321935':
+    tree: workunit/unexplained/test-repos-release-file-missing
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh

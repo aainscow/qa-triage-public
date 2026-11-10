@@ -1,0 +1,38 @@
+id: "70320"
+tracker: https://tracker.ceph.com/issues/70320
+title: "test_osd_came_back fails when test does not detect that osd.0 is back in"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/67659
+    branch: main
+    fixed_in: v20.3.0-5954-g90a21b540f
+tree: test/unittest
+facts:
+  test: '^tasks\.mgr\.test_progress\.TestProgress\.test_osd_came_back$'
+  error: '^IndexError: list index out of range'
+match:
+  reason: 'test_osd_came_back'
+confirm:
+  - file: teuthology.log
+    pattern: "new_event = self\\._get_osd_in_out_events\\('in'\\)\\[0\\]"
+  - file: teuthology.log
+    pattern: "IndexError: list index out of range"
+notes: |
+  In tasks.mgr.test_progress.TestProgress.test_osd_came_back, the test simulates an OSD
+  being marked out and then marked back in. During _simulate_back_in, the test calls
+  `self._get_osd_in_out_events('in')[0]`. Due to a race condition where progress events
+  could complete and disappear between checking event counts and fetching the event,
+  `_get_osd_in_out_events('in')` returns an empty list, raising `IndexError: list index out of range`.
+  Fixed in PR #67659 by refactoring to atomically capture events during the wait condition check.
+examples:
+  - nmordech-2026-02-23_13:38:59-rados:mgr-wip-rocky10-branch-of-the-day-2026-02-23-1771833711-distro-default-trial/66521
+  - skanta-2026-04-14_02:25:39-rados-wip-bharath1-testing-2026-04-14-0415-tentacle-distro-default-trial/150209
+  - skanta-2026-05-05_10:12:40-rados-wip-bharath13-testing-2026-05-05-1001-tentacle-distro-default-trial/193634
+  - skanta-2026-08-24_10:34:23-rados-wip-vallari2-testing-20260819.130432-tentacle-distro-default-trial/509414
+  - sseshasa-2026-02-26_14:56:45-rados-wip-sseshasa-testing-2026-02-26-1772100687-distro-default-trial/72432
+  - yuriw-2026-02-04_23:08:40-rados-wip-yuri3-testing-2026-02-04-1948-tentacle-distro-default-trial/35449
+also:
+  - "75461"
+  - "80056"
+learned:
+- "2026-10-30 bob-analyst, from nmordech-2026-02-23_13:38:59-rados:mgr-wip-rocky10-branch-of-the-day-2026-02-23-1771833711-distro-default-trial/66521, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

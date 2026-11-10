@@ -1,0 +1,10 @@
+run: yaarit-2026-02-10_23:44:29-rados:cephadm-wip-rocky10-branch-of-the-day-2026-02-09-1770676549-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '44125':
+    tree: workunit/set-e
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+      command: set -e

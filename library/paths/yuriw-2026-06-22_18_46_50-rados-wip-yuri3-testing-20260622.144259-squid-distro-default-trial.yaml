@@ -1,0 +1,18 @@
+run: yuriw-2026-06-22_18:46:50-rados-wip-yuri3-testing-20260622.144259-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '306736':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN Degraded data redundancy: 13262/288392 objects degraded (4.599%), 2 pgs degraded'
+      reporter: mon.a
+  '306932':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/mon-cluster-log.sh
+      task: workunit
+      test: TEST_journald_cluster_log_level
+      check: mon-cluster-log.sh:206
+      script: mon/mon-cluster-log.sh

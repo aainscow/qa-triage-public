@@ -1,0 +1,11 @@
+run: skanta-2026-10-13_09:18:31-rados-wip-bharath10-testing-20261012.232418-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '633359':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/mon-stretch-mode-5-mons-8-osds.sh
+      task: workunit
+      script: mon/mon-stretch-mode-5-mons-8-osds.sh
+      command: ceph mon enable_stretch_mode e stretch_rule datacenter
+      error: 'Error EINVAL: stretch mode is already engaged'

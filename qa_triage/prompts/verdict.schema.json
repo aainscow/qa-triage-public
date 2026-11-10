@@ -1,0 +1,60 @@
+{
+  "type": "object",
+  "properties": {
+    "verdict": {"enum": ["duplicate", "new", "unsure"]},
+    "problem": {"type": ["string", "null"]},
+    "pr": {"type": ["string", "null"]},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {"type": "string"},
+          "text": {"type": "string"},
+          "shows": {"type": "string"}
+        },
+        "required": ["file", "text", "shows"]
+      }
+    },
+    "explanation": {"type": "string"},
+    "walkthrough": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "do": {"type": "string"},
+          "finds": {"type": "string"},
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "file": {"type": "string"},
+                "text": {"type": "string"},
+                "shows": {"type": "string"}
+              },
+              "required": ["file", "text", "shows"]
+            }
+          }
+        },
+        "required": ["title", "do", "finds", "evidence"]
+      }
+    },
+    "summary": {"type": "string"},
+    "needs": {"type": "array", "items": {"type": "string"}},
+    "searches": {"type": "array", "items": {"type": "string"}},
+    "suggested_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {"type": "string"},
+          "pattern": {"type": "string"}
+        },
+        "required": ["file", "pattern"]
+      }
+    }
+  },
+  "required": ["verdict", "problem", "explanation", "walkthrough", "summary"]
+}

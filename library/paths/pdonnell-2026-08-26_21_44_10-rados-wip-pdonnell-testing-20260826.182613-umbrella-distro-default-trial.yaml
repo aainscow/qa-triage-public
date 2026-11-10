@@ -1,0 +1,20 @@
+run: pdonnell-2026-08-26_21:44:10-rados-wip-pdonnell-testing-20260826.182613-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '517073':
+    tree: command/error/runc-mountpoint-moved
+    facts:
+      task: cephadm
+      error: 'docker: Error response from daemon: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during cont...'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:e704632a29404c3d6503a35d1c09861d38dbfc67 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '125'
+      host: trial186
+      target: /etc/ceph/ceph.conf
+  '517317':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:288
+      script: mon/misc.sh

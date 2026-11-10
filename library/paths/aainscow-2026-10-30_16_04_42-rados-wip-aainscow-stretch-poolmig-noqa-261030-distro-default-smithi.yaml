@@ -1,0 +1,25 @@
+run: aainscow-2026-10-30_16:04:42-rados-wip-aainscow-stretch-poolmig-noqa-261030-distro-default-smithi
+code: afbb20a06ddc
+jobs:
+  '696072':
+    tree: crash/signal/backtrace
+    facts:
+      task: workunit
+      signal: Aborted
+      frames: ceph::HeartbeatMap::_check(ceph::heartbeat_handle_d const*, char const*, std::chrono::time_point<ceph::coarse_mono_clock, std::chrono::duration<long, std::ratio<1l, 1000000000l> > >) < ceph::HeartbeatMap::reset_timeout(ceph::heartbeat_handle_d*, std::chrono::duration<unsigned long, std::ratio<1l, 1000000000l> >, std::chrono::duration<unsigned long, std::ratio<1l, 1000000000l> >) < ShardedThreadPool::shardedthreadpool_worker(unsigned int, unsigned int)
+      daemon: osd.15
+      daemon_type: osd
+      host: smithi195
+  '696295':
+    tree: workunit/standalone/rebuild-onset-not-inherited
+    facts:
+      workunit: osd/osd-recovery-stats.sh
+      task: workunit
+      test: TEST_rebuild_perf_active_rebuild_handover
+      check: osd-recovery-stats.sh:3118
+      script: osd/osd-recovery-stats.sh
+  '696296':
+    tree: timeout/slow-ops
+    facts:
+      task: rados
+      wait: snap_trimming

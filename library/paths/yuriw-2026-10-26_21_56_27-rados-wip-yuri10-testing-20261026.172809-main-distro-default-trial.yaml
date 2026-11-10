@@ -1,0 +1,9 @@
+run: yuriw-2026-10-26_21:56:27-rados-wip-yuri10-testing-20261026.172809-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '678005':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'

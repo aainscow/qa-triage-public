@@ -1,0 +1,15 @@
+run: yuriw-2026-10-23_17:09:01-rados-umbrella-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '671302':
+    tree: workunit/standalone
+    facts:
+      workunit: osd/pg-subcommands.sh
+      task: workunit
+      test: TEST_b_crimson_save_and_compare
+      check: pg-subcommands.sh:164
+      script: osd/pg-subcommands.sh
+  '671548':
+    tree: infra/build
+    facts:
+      task: install

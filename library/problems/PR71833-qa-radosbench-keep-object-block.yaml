@@ -1,0 +1,36 @@
+id: "PR71833"
+pr: https://github.com/ceph/ceph/pull/71833
+title: "qa/radosbench: keep object/block size on the populate run, and add a max_objects guardrail"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/71833
+    branch: main
+    fixed_in: v21.3.0-3519-g2be4923358
+tree: cluster-log/message/radosbench-populate-failsafe-full
+facts:
+  message: '^full status failsafe engaged, dropping updates'
+  reporter: '^osd\.'
+confirm:
+  - file: teuthology.log
+    pattern: 'Maintaining \d+ concurrent writes of 4194304 bytes to objects of size 4194304 for up to 60 seconds or 0 objects'
+notes: |
+  Same cause as tracker 80415. Before PR 71833, qa/tasks/radosbench.py passed
+  --object-size/--block-size only for write runs. For a seq/rand run it first did a populate run
+  'rados ... bench --concurrent-ios=16 60 write --no-cleanup' with no object size and no cap, so
+  rados bench wrote default 4 MB objects for 60 s (29097 writes in job 506400) and ignored the
+  job's objectsize: 1048576. The small test cluster fills: the mon raises OSD_NEARFULL, then
+  OSD_BACKFILLFULL, then OSD_FULL, and an OSD logs '[ERR] full status failsafe engaged,
+  dropping updates, now 95% full'. In the 80415 jobs an OSD that is failsafe-full then receives a
+  recovery push or pull response and aborts in ReplicatedBackend ('Out of space (failsafe)');
+  that path is record 80415. In this job (rados/singleton thrash-eio) osd.5 hit the failsafe
+  ratio at 01:23:17 and left it at 01:28:18 without receiving a push in that state, so it never
+  aborted and only the [ERR] cluster-log line failed the job at teardown. The tree node
+  cluster-log/message/radosbench-populate-failsafe-full finds the failsafe message together with
+  the uncapped populate run in teuthology.log. Fixed by PR 71833, merged at
+  v21.3.0-3519-g2be4923358, backported to tentacle through tracker 80415.
+examples:
+  - skanta-2026-08-22_23:37:38-rados-wip-bharath8-testing-20260822.101926-tentacle-distro-default-trial/506400
+also:
+  - "80415"
+learned:
+- "2026-10-30 bob-analyst, from skanta-2026-08-22_23:37:38-rados-wip-bharath8-testing-20260822.101926-tentacle-distro-default-trial/506400, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

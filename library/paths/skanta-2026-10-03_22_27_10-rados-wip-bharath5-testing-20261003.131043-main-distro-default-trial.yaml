@@ -1,0 +1,9 @@
+run: skanta-2026-10-03_22:27:10-rados-wip-bharath5-testing-20261003.131043-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '605162':
+    tree: workunit/unexplained/cephtool-hang/bad-caps-key-left-behind
+    facts:
+      workunit: cephtool/test.sh
+      task: workunit
+      script: cephtool/test.sh

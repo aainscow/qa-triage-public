@@ -1,0 +1,11 @@
+run: skanta-2026-11-04_12:54:04-rados-wip-bharath9-testing-20261104.043109-main-distro-default-trial
+jobs:
+  '712417':
+    problem: null
+    by: qa_triage (bob+files)
+    why: 'No record placed this job, and the judge (bob) said unsure : cephadm task hit MaxWhileTries (180) in deploy-raw; wait and cause not visible, 75218 not confirmed. If a tracker issue already describes this failure, find it and add a record for it, so that the checks place jobs like this one. If none does, say so: a person will file one. Searching the tracker for "deploy-raw cephadm reached maximum tries", "rados/cephadm/osds rocky_10 MaxWhileTries" found: #76408 Bug #76408 (New): rados/cephadm/osds: tasks.cephadm:Hit timeout while adding host trial165; #74519 Bug #74519 (New): cephadm/osds: Error: statfs /etc/ceph/ceph.client.admin.keyring: no such file or directory. The first 2 are in tracker-<number>.txt.'
+    summary: 'PR #73106 dropped messages from mon.trial107 because it was not yet in the monmap, preventing it from joining and causing ceph_mons to time out'
+    pr: 'PR #73106'
+    status: fail
+    description: rados/cephadm/osds/{0-distro/rocky_10 0-nvme-loop 1-start 2-ops/deploy-raw}
+    reason: reached maximum tries (180) after waiting for 180 seconds

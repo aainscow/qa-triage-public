@@ -1,0 +1,17 @@
+run: yuriw-2026-08-10_19:17:25-fs-wip-yuri10-testing-20260810.174752-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '453132':
+    tree: valgrind/Leak_StillReachable/glibc-dlopen-static-init
+    facts:
+      task: workunit
+      kind: Leak_StillReachable
+      frames: malloc
+      daemons: ''
+  '453238':
+    tree: valgrind/Leak_StillReachable/glibc-dlopen-static-init
+    facts:
+      task: workunit
+      kind: Leak_StillReachable
+      frames: malloc malloc _dl_new_object
+      daemons: ''

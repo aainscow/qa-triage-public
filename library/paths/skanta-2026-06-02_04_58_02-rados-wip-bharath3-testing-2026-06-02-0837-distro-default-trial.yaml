@@ -1,0 +1,62 @@
+run: skanta-2026-06-02_04:58:02-rados-wip-bharath3-testing-2026-06-02-0837-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '253356':
+    tree: crash/abort/specific/remote-reservation-rejected-too-full
+    facts:
+      task: rados
+      source: osd/PeeringState.cc
+      line: '5264'
+      message: ceph_abort_msg("we got a bad state machine event")
+      function: PeeringState::Crashed::Crashed(boost::statechart::state<PeeringState::Crashed, PeeringState::PeeringMachine>::my_context)
+      daemon: osd.13
+      daemon_type: osd
+      host: trial052
+  '253404':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/pg_autoscaler.sh
+      task: workunit
+      script: mon/pg_autoscaler.sh
+      command: echo failed
+      error: failed
+  '253416':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/pg_autoscaler.sh
+      task: workunit
+      script: mon/pg_autoscaler.sh
+      command: return 1
+      error: failed
+  '253496':
+    tree: command/unexplained/git-clone-ci-dns-fallback-missing-tree
+    facts:
+      task: workunit
+      command: rm -rf clone.client.0 && git clone https://github.com/ceph/ceph.git clone.client.0
+      status: '128'
+      host: trial015
+      dns_host: github.com
+      ref: a8adeb5c2b3ea4e1c1e7a6ff9a158459fe9202a5
+  '253529':
+    tree: command/unexplained/git-clone-dns-both-failed
+    facts:
+      task: parallel
+      command: rm -rf clone.client.0 && git clone --depth 1
+      status: '128'
+      host: trial004
+      dns_host: github.com
+      ref: squid
+  '253538':
+    tree: cluster-log/health/dead-ping-not-retried
+    facts:
+      task: ''
+      level: WRN
+      check: MON_NETSPLIT
+      message: 'Health check failed: 1 network partition detected (MON_NETSPLIT)'
+      reporter: mon.b
+  '253591':
+    tree: workunit/unexplained/test-repos-release-file-missing
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh

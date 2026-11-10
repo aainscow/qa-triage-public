@@ -1,0 +1,32 @@
+run: skanta-2026-06-04_15:14:33-rados-wip-bharath7-testing-2026-06-04-1630-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '265439':
+    tree: infra/build
+    facts:
+      task: install
+  '265491':
+    tree: hung/test/rados-api-tests-valgrind-slowdown
+    facts:
+      task: ''
+      test: api_io
+      hung_task: workunit
+  '265561':
+    tree: infra/other/chacra-dns-failure
+    facts:
+      task: install
+      error: chacra-dns-failure
+  '265565':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '265644':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '265651':
+    tree: other/injected-leak-suppressed
+    facts:
+      daemon: osd.0

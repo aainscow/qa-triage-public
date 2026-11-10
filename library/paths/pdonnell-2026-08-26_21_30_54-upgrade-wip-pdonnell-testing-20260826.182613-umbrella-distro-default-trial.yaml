@@ -1,0 +1,7 @@
+run: pdonnell-2026-08-26_21:30:54-upgrade-wip-pdonnell-testing-20260826.182613-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '516663':
+    tree: other/chacra-build-not-ready
+    facts:
+      status: building

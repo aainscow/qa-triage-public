@@ -1,0 +1,36 @@
+run: yuriw-2026-10-21_19:23:54-rados-wip-yuri14-testing-20261021.151926-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '664526':
+    tree: hung/command/cephadm-rm-cluster
+    facts:
+      task: ''
+      hung_task: workunit
+      command: cephadm rm-cluster --fsid f0bb6948-cd8f-11f1-b703-d404e6e7d460 --force --keep-logs
+  '664703':
+    tree: workunit/unexplained/grafana-invalid-ip-address
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      address: localhost
+  '664818':
+    tree: workunit/unexplained/ceph-pg-query-hung/osd-killed-pg-query-no-timeout
+    facts:
+      workunit: misc/test-ceph-helpers.sh
+      task: workunit
+      script: misc/test-ceph-helpers.sh
+      command: ceph pg query
+  '664947':
+    tree: workunit/unexplained/backfill-prio-not-in-progress
+    facts:
+      workunit: osd-backfill/osd-backfill-prio.sh
+      task: workunit
+      script: osd-backfill/osd-backfill-prio.sh
+  '664996':
+    tree: hung/command/thrasher-min-size-pgs-not-active
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph osd unset nodeep-scrub
+      thrasher_failure: test_pool_min_size

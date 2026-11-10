@@ -1,0 +1,12 @@
+run: skanta-2026-08-11_22:46:54-rados-wip-bharath7-testing-20260811.152323-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '458958':
+    tree: valgrind/Leak_PossiblyLost/ec-call-coroutine-stack
+    facts:
+      task: workunit
+      kind: Leak_PossiblyLost
+      frames: malloc UnknownInlinedFun UnknownInlinedFun
+      daemons: ''
+      leak: ec-call-coroutine-stack
+      daemon: osd.12

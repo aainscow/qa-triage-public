@@ -1,0 +1,13 @@
+# Claude Code: a cheap model judges, a strong one learns. Log in to Claude Code,
+# or set ANTHROPIC_API_KEY.
+judge: haiku
+analyst: opus
+agents:
+  haiku:
+    provider: claude
+    model: haiku
+    budget_usd: 0.5
+  opus:
+    provider: claude
+    model: opus
+    budget_usd: 5

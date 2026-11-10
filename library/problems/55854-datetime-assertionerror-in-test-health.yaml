@@ -1,0 +1,28 @@
+id: "55854"
+tracker: https://tracker.ceph.com/issues/55854
+title: "Datetime AssertionError in test_health_history (tasks.mgr.test_insights.TestInsights)"
+kind: test
+tree: test/unittest
+facts:
+  test: '^tasks\.mgr\.test_insights\.TestInsights\.test_health_history$'
+  error: 'not greater than datetime\.datetime'
+match:
+  reason: 'test_health_history'
+confirm:
+  - file: teuthology.log
+    pattern: 'AssertionError: datetime\.datetime\(.*\) not greater than datetime\.datetime'
+notes: |
+  rados/mgr tasks/4-units/insights runs qa/tasks/mgr/test_insights.py. The test
+  test_health_history uses _wait_for_health_history_checks and _wait_for_curr_health_cleared,
+  both of which poll the insights report for up to 15 seconds, asserting
+  assertGreater(timeout, utcnow()). Under heavy debug logging the mgr module takes
+  longer than 15 s to process synthetic health checks, so the deadline expires and the
+  assertion fires: 'datetime.datetime(...) not greater than datetime.datetime(...)'. Seen
+  across tentacle, squid and main branches since 2022.
+examples:
+  - skanta-2026-06-08_15:58:51-rados-wip-bharath21-testing-2026-06-05-2111-tentacle-distro-default-trial/278298
+  - skanta-2026-06-09_02:42:07-rados-wip-bharath2-testing-2026-06-09-0416-distro-default-trial/280551
+  - skanta-2026-06-09_02:42:07-rados-wip-bharath2-testing-2026-06-09-0416-distro-default-trial/280706
+  - skanta-2026-06-10_03:59:16-rados-wip-bharath6-testing-2026-06-10-0655-squid-distro-default-trial/282199
+learned:
+- "2026-10-30 bob-analyst, from skanta-2026-06-08_15:58:51-rados-wip-bharath21-testing-2026-06-05-2111-tentacle-distro-default-trial/278298, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

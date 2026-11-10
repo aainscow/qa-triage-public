@@ -1,0 +1,15 @@
+run: jayaprakash-2026-06-03_09:44:39-rados-wip-jaya-bs-faster-alloc-recovery-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '258807':
+    tree: crash/abort/specific/manifest-recovery-out-of-order-op
+    facts:
+      task: rados
+      source: osd/PrimaryLogPG.cc
+      line: '4430'
+      message: ceph_abort_msg("out of order op")
+      function: void PrimaryLogPG::execute_ctx(OpContext*)
+      daemon: osd.14
+      daemon_type: osd
+      host: trial156
+      pg: '4.16'

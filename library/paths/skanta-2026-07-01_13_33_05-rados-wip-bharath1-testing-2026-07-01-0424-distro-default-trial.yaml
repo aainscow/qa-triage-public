@@ -1,0 +1,17 @@
+run: skanta-2026-07-01_13:33:05-rados-wip-bharath1-testing-2026-07-01-0424-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '331676':
+    tree: infra/build
+    facts:
+      task: install
+  '331681':
+    tree: timeout/admin-socket/osd-init-deadlock
+    facts:
+      task: ceph.healthy
+      wait: wait_for_all_osds_up
+  '331682':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery

@@ -1,0 +1,17 @@
+run: skanta-2026-01-28_09:27:17-rados-wip-bharath2-testing-2026-01-27-0639-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '22974':
+    tree: cluster-log/health/cephadm-failed-daemon-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_FAILED_DAEMON
+      message: 'Health check failed: 1 failed cephadm daemon(s) (CEPHADM_FAILED_DAEMON)'
+      reporter: mon.trial010
+  '23144':
+    tree: workunit/unexplained/cephtool-tmp-foo-rm-not-permitted
+    facts:
+      workunit: cephtool/test.sh
+      task: workunit
+      script: cephtool/test.sh

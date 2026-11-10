@@ -1,0 +1,30 @@
+id: "70697"
+tracker: https://tracker.ceph.com/issues/70697
+title: 'PrimaryLogPG::do_recover_adjacent_clones may cause other writes on the same
+  object to reorder ahead of a rollback to a manifest object'
+kind: product
+tree: crash/abort/specific/manifest-recovery-out-of-order-op
+facts:
+  source: '^osd/PrimaryLogPG\.cc$'
+  message: '^ceph_abort_msg\("out of order op"\)$'
+confirm:
+  - file: teuthology.log
+    pattern: 'PrimaryLogPG\.cc: \d+: ceph_abort_msg\("out of order op"\)'
+  - file: teuthology.log
+    pattern: 'pg\[\d+\.[0-9a-f]+\(.*bad op order, already applied \d+ > this \d+'
+notes: |
+  During thrashing with manifest/dedup objects (set_chunk workload), writes on the
+  same object are requeued out of order during manifest clone recovery.
+  do_recover_adjacent_clones kicks off recovery on an unreadable clone, and
+  requeue_ops from waiting_for_degraded_object places op N-1 behind op N in the
+  queue. When execute_ctx runs op N-1 it finds N already applied and aborts with
+  ceph_abort_msg("out of order op") in PrimaryLogPG::execute_ctx, reached from
+  do_op_impl. The pg is a replicated pool (pg[N.X( with no EC shard suffix s\d+),
+  in active+recovering state. The OSD watchdog then kills it. Differs from #81661
+  (Fast EC case with allow_ec_optimizations and EC shard pgs).
+examples:
+  - jayaprakash-2026-06-03_09:44:39-rados-wip-jaya-bs-faster-alloc-recovery-distro-default-trial/258807
+  - jayaprakash-2026-06-05_10:50:12-rados-wip-jaya-bs-testing-03-06-2026-distro-default-trial/268181
+learned:
+- "2026-10-30 bob-analyst, from jayaprakash-2026-06-03_09:44:39-rados-wip-jaya-bs-faster-alloc-recovery-distro-default-trial/258807"
+- "2026-10-30 bob-analyst, from jayaprakash-2026-06-03_09:44:39-rados-wip-jaya-bs-faster-alloc-recovery-distro-default-trial/258807, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

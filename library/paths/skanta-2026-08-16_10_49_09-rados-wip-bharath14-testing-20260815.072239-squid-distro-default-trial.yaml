@@ -1,0 +1,11 @@
+run: skanta-2026-08-16_10:49:09-rados-wip-bharath14-testing-20260815.072239-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '480171':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/mon-cluster-log.sh
+      task: workunit
+      test: TEST_cluster_log_level
+      check: mon-cluster-log.sh:63
+      script: mon/mon-cluster-log.sh

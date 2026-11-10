@@ -1,0 +1,11 @@
+run: skanta-2026-10-15_23:32:33-rados-wip-bharath22-testing-20261015.065836-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '643601':
+    tree: workunit/standalone
+    facts:
+      workunit: osd/osd-bluefs-volume-ops.sh
+      task: workunit
+      test: TEST_bluestore_expand_with_allocmap_recovery
+      check: osd-bluefs-volume-ops.sh:504
+      script: osd/osd-bluefs-volume-ops.sh

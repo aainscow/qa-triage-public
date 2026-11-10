@@ -1,0 +1,60 @@
+run: skanta-2026-04-13_14:09:46-rados-wip-bharath11-testing-2026-04-13-1517-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '148384':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a
+  '148429':
+    tree: workunit/unexplained
+    facts:
+      workunit: rados/test.sh
+      task: workunit
+      script: rados/test.sh
+  '148457':
+    tree: hung/command/dispatch-delay-queued-for-pg
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph --admin-daemon /var/run/ceph/ceph-osd.6.asok dump_historic_ops
+  '148463':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: '1 slow requests (by type [ ''delayed'' : 1 ] most affected pool [ ''rbd'' : 1 ])'
+      reporter: osd.7
+  '148464':
+    tree: workunit/unexplained/test-librados-build-git-ceph-com-html
+    facts:
+      workunit: rados/test_librados_build.sh
+      task: workunit
+      script: rados/test_librados_build.sh
+  '148479':
+    tree: infra/packages
+    facts:
+      task: install
+  '148500':
+    tree: workunit/unexplained/ceph-pg-query-hung/osd-killed-pg-query-no-timeout
+    facts:
+      workunit: misc/test-ceph-helpers.sh
+      task: workunit
+      script: misc/test-ceph-helpers.sh
+      command: ceph pg query
+  '148569':
+    tree: workunit/unexplained/ganesha-nfsv3-udp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+  '148640':
+    tree: command/timed-out/thrasher-min-size-pgs-not-active
+    facts:
+      task: rados
+      command: ceph pg dump
+      status: '124'
+      host: trial030
+      thrasher_failure: test_pool_min_size

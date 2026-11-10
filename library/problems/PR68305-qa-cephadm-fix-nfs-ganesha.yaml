@@ -1,0 +1,38 @@
+id: PR68305
+pr: https://github.com/ceph/ceph/pull/68305
+title: "qa/cephadm: fix NFS ganesha startup failure in containers"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/68305
+    branch: main
+tree:
+  - workunit/unexplained/ganesha-io-flusher-eperm
+  - workunit/set-e/ganesha-io-flusher-eperm
+facts:
+  script: '^cephadm/test_cephadm\.sh$'
+match:
+  reason: 'workunit test cephadm/test_cephadm\.sh'
+confirm:
+  - file: teuthology.log
+    pattern: 'ganesha\.nfsd.*FATAL :Failed to PR_SET_IO_FLUSHER with EPERM'
+  - file: teuthology.log
+    pattern: 'nfs\.a\.service: Main process exited, code=exited, status=2/INVALIDARGUMENT'
+notes: |
+  The cause: test_cephadm.sh deploys nfs.a using src/cephadm/samples/nfs.json, which
+  had no NFS_CORE_PARAM block setting allow_set_io_flusher_fail = true. On Rocky 10,
+  ganesha 7.0 calls prctl(PR_SET_IO_FLUSHER) at startup; the cephadm container lacks
+  CAP_SYS_ADMIN/CAP_SYS_RAWIO, so the syscall returns EPERM. With
+  allow_set_io_flusher_fail unset (default false), ganesha treats this as a FATAL
+  error and exits with status 2 (systemd: status=2/INVALIDARGUMENT) before reading
+  any RADOS config. After four restarts the wait loop ends with "nfs is not available"
+  and the workunit exits 1. The orchestrator's ganesha.conf.j2 template already had
+  allow_set_io_flusher_fail = true; PR 68305 (merged 2026-04-13) brings samples/nfs.json
+  in line with it. The mgr dashboard "Port 8443 not free" that appears in the cephadm
+  log dump of such jobs is a bystander, not the cause (see also records 76981 and 71506).
+  Related: 76295 (Cannot register NFS V3 on UDP), 76981 (Cannot register NFS V3 on TCP).
+examples:
+  - skanta-2026-04-09_03:57:47-rados-wip-bharath16-testing-2026-04-08-1405-distro-default-trial/141123
+also:
+  - "71506"
+learned:
+- "2026-10-30 bob-analyst, from skanta-2026-04-09_03:57:47-rados-wip-bharath16-testing-2026-04-08-1405-distro-default-trial/141123, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

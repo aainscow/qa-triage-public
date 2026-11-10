@@ -1,0 +1,18 @@
+run: jenkins-build-2026-10-18_06:04:45-rados-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '652091':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/availability.sh
+      task: workunit
+      test: TEST_availablity_score
+      check: availability.sh:143
+      script: mon/availability.sh
+  '652514':
+    tree: cluster-log/message/backfill-reject-injected
+    facts:
+      task: ''
+      level: WRN
+      message: pg 3.d is active+remapped+backfill_toofull, acting [7,9]
+      reporter: mon.a

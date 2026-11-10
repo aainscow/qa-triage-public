@@ -1,0 +1,10 @@
+run: aainscow-2026-10-30_16:11:21-rados-wip-aainscow-stretch-poolmig-qa-261030-distro-default-smithi
+jobs:
+  '696394':
+    problem: '74794'
+    by: qa_triage (claude:sonnet+files)
+    why: 'No record placed this job, and the tree explained it conclusively, so the tool calls it new: wait_for_recovery timed out: the cluster made no recovery progress despite slow ops at 20:12:32. Nobody has looked for its cause. Find it, beyond the symptom where the tree stopped: read the logs around the failure, the daemons'' logs and the source. Search the tracker: if an issue describes this failure, add a record for it. If none does, leave "problem" null, and say in the summary what failed and why, for a person to file. If the explanation stops at a symptom, teach the tree the cause, with a learned node at "timeout/slow-ops/no-recovery-progress": it is asked after the tree''s answer, and answers done with the cause, or unknown to leave the explanation as it is.'
+    summary: wait_for_recovery timed out because the pggrow thrasher kept growing pg_num on a cluster that never settled (tracker 74794); the tool called it new.
+    status: fail
+    description: rados/thrash-erasure-code-big/{ceph cluster/{12-osds} erasure-code/{ec_optimizations/on/{num_zones/2/{2 profile/jerasure-k=2-m=2-crush} on} fast/fast} mon_election/connectivity msgr-failures/osd-dispatch-delay objectstore/{bluestore/{alloc$/{stupid} base mem$/{normal-2} onode-segment$/{512K-onoff} write$/{v2/{compr$/{yes$/{zstd}} v2}}}} pool-migration$/{none-3} rados recovery-overrides/{more-async-recovery} supported-random-distro/{ubuntu_24.04} thrashers/pggrow thrashosds-health workloads/rados-default}
+    reason: 'The WatchDog barked due to Thrasher OSDThrasher threw exception wait_for_recovery: failed before timeout expired'

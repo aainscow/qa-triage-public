@@ -1,0 +1,5 @@
+run: skanta-2026-04-06_10:26:47-rados-wip-bharath14-testing-2026-04-06-1412-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '133240':
+    tree: other/ec-inconsistent-hinfo-assert

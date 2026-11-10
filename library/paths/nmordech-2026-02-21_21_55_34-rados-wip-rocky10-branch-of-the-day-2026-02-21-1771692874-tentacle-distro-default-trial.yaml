@@ -1,0 +1,11 @@
+run: nmordech-2026-02-21_21:55:34-rados-wip-rocky10-branch-of-the-day-2026-02-21-1771692874-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '63279':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '63285':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab

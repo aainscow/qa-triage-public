@@ -1,0 +1,29 @@
+run: skanta-2026-07-12_00:12:33-rados-wip-bharath10-testing-2026-07-11-1405-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '356674':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '356675':
+    tree: infra/build
+    facts:
+      task: install
+  '356681':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: WRN
+      check: MGR_DOWN
+      message: 'Health check failed: no active mgr (MGR_DOWN)'
+      reporter: mon.a
+  '356690':
+    tree: workunit/set-e/test-repos-add-repo-gpg-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release quincy
+      error: 'failed to fetch GPG repo key from https://download.ceph.com/keys/release.gpg: HTTP Error 404: Not Found'

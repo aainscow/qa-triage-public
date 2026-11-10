@@ -1,0 +1,10 @@
+run: nmordech-2026-02-24_07:14:52-rados:cephadm-wip-rocky10-branch-of-the-day-2026-02-23-1771833711-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '67687':
+    tree: workunit/set-e
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+      command: set -e

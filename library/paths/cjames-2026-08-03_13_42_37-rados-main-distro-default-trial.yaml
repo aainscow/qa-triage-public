@@ -1,0 +1,14 @@
+run: cjames-2026-08-03_13:42:37-rados-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '423783':
+    tree: crash/assert/specific
+    facts:
+      task: rados
+      source: osd/PrimaryLogPG.cc
+      line: '666'
+      message: FAILED ceph_assert(!get_acting_recovery_backfill().empty())
+      function: bool PrimaryLogPG::is_degraded_or_backfilling_object(const hobject_t&)
+      daemon: osd.9
+      daemon_type: osd
+      host: trial030

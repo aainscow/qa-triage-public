@@ -1,0 +1,18 @@
+run: nmordech-2026-03-17_06:34:53-upgrade-wip-rocky10-branch-of-the-day-2026-03-16-1773712510-distro-default-trial
+jobs:
+  '104134':
+    problem: '75570'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 14 jobs in 75570, this one among them, and no record names it yet: the tool placed them in no known problem. A record for it should place them all; others are ksirivad-2026-09-17_00:47:47-upgrade-wip-ksirivad-tentacle-revert-only-msgr-distro-default-trial/562050, lflores-2026-04-10_20:41:50-upgrade:reef-x-tentacle-distro-default-trial/144414, nmordech-2026-03-18_10:00:19-upgrade-wip-rocky10-branch-of-the-day-2026-03-18-1773820469-distro-default-trial/107624, nmordech-2026-03-18_10:00:19-upgrade-wip-rocky10-branch-of-the-day-2026-03-18-1773820469-distro-default-trial/107633, nmordech-2026-03-18_10:00:19-upgrade-wip-rocky10-branch-of-the-day-2026-03-18-1773820469-distro-default-trial/107641.'
+    summary: 'The thrasher could not revive osd.5 because systemd''s start limit was hit, and the job then hung until the max job timeout. This is tracker #75570, and no record named it.'
+    status: dead
+    description: upgrade/tentacle-x/stress-split/{0-distro/ubuntu_22.04 0-roles 1-start 2-first-half-tasks/radosbench 3-stress-tasks/{radosbench rbd-cls rbd-import-export rbd_api readwrite snaps-few-objects} 4-second-half-tasks/radosbench mon_election/classic overrides/ignorelist_health}
+    reason: hit max job timeout
+  '104084':
+    problem: '71631'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: People placed 3 jobs that the tool placed in no known problem in 71631, this one among them.
+    summary: Job 104084 is a duplicate of issue 71631; command-error.py applied the mgr-modules-not-loaded branch only to squid images, missing this identical tentacle-x failure.
+    status: fail
+    description: upgrade/tentacle-x/stress-split/{0-distro/centos_9.stream_runc 0-roles 1-start 2-first-half-tasks/rbd-cls 3-stress-tasks/{radosbench rbd-cls rbd-import-export rbd_api readwrite snaps-few-objects} 4-second-half-tasks/rbd-import-export mon_election/connectivity overrides/ignorelist_health}
+    reason: 'Command failed on trial033 with status 22: "sudo /home/ubuntu/cephtest/cephadm --image quay.ceph.io/ceph-ci/ceph:tentacle shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring --fsid 4e554e0b-21e0-11f1-b5a0-d404e6e7d460 -e sha1=b3c2c3959e19e52cd8601d45b1cecc4b9a397cd8 -- bash -c ''ceph orch upgrade start --image quay.ceph.io/ceph-ci/ceph:$sha1-rockylinux-10 --daemon-types mon --limit 1''"'

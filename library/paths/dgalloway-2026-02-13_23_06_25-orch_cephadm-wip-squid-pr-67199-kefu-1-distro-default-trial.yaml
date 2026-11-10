@@ -1,0 +1,11 @@
+run: dgalloway-2026-02-13_23:06:25-orch:cephadm-wip-squid-pr-67199-kefu-1-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '50357':
+    tree: cluster-log/health/cephadm-failed-daemon-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_FAILED_DAEMON
+      message: 'Health check failed: 1 failed cephadm daemon(s) (CEPHADM_FAILED_DAEMON)'
+      reporter: mon.trial167

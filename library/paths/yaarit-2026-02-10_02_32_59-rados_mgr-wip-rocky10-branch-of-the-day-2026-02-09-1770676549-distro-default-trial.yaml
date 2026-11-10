@@ -1,0 +1,15 @@
+run: yaarit-2026-02-10_02:32:59-rados:mgr-wip-rocky10-branch-of-the-day-2026-02-09-1770676549-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '42040':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_prometheus.TestPrometheus.test_urls
+      error: 'AssertionError: Lists differ: [''/metrics''] != []'
+  '42050':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_prometheus.TestPrometheus.test_urls
+      error: 'AssertionError: Lists differ: [''/metrics''] != []'

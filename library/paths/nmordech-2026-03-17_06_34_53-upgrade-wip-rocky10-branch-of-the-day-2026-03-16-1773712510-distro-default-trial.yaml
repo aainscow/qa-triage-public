@@ -1,0 +1,19 @@
+run: nmordech-2026-03-17_06:34:53-upgrade-wip-rocky10-branch-of-the-day-2026-03-16-1773712510-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '104084':
+    tree: command/error/mgr-modules-not-loaded
+    facts:
+      task: parallel
+      error: 'Error EINVAL: Cannot set values for --daemon-types, --services or --hosts when upgrade already in progress.'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:tentacle shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial033
+      module: orchestrator
+  '104134':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:tentacle shell --fsid 5d547930-21e2-11f1-b241-d404e6e7d460 -- ceph
+      osd: osd.5

@@ -1,0 +1,70 @@
+run: skanta-2026-04-21_10:56:08-rados-wip-bharath2-testing-2026-04-21-1241-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '165894':
+    tree: timeout/unexplained/registry-pull-failed
+    facts:
+      task: cephadm.wait_for_service
+      wait: MaxWhileTries
+      error: registry-pull-failed
+  '165899':
+    tree: command/unexplained/registry-pull-failed
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:635e827e05e172b415360df6e4fa78e1e8e2acc9 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '7'
+      host: trial025
+      error: registry-pull-failed
+  '165940':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial072:x (6209), after 303.539 seconds
+      reporter: mds.a
+  '165952':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: WRN
+      check: BLUESTORE_SLOW_OP_ALERT
+      message: 'Health check failed: 1 OSD(s) experiencing slow operations in BlueStore (BLUESTORE_SLOW_OP_ALERT)'
+      reporter: mon.a
+  '165980':
+    tree: hung/command/dispatch-delay-queued-for-pg
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph --admin-daemon /var/run/ceph/ceph-osd.12.asok dump_blocked_ops
+  '165994':
+    tree: workunit/set-e
+    facts:
+      intended_crash: osd.0
+      workunit: rados/test_crash.sh
+      task: workunit
+      script: rados/test_crash.sh
+      command: '[ 0 = 4 ]'
+  '166056':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a
+  '166092':
+    tree: workunit/unexplained/ganesha-nfsv3-udp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+  '166131':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '166163':
+    tree: timeout/unexplained/thrasher-min-size-list-remove
+    facts:
+      task: rados
+      wait: The WatchDog barked due to Thrasher OSDThrasher threw except...
+      thrasher_failure: test_pool_min_size

@@ -1,0 +1,17 @@
+run: jcollin-2026-02-18_03:11:55-fs-wip-jcollin-testing-20260218.004834-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '55394':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: OSD bench result of 91875.290441 IOPS is not within the threshold limit range of 1000.000000 IOPS and 80000.000000 IOPS for osd.0. IOPS capacity is unchanged at 21500.000000 IOPS. The recommendation is to establish the osd's IOPS capacity using other benchmark tools (e.g. Fio) and then override osd_mclock_max_capacity_iops_[hdd|ssd].
+      reporter: osd.0
+  '55511':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: OSD bench result of 121252.097661 IOPS is not within the threshold limit range of 1000.000000 IOPS and 80000.000000 IOPS for osd.0. IOPS capacity is unchanged at 21500.000000 IOPS. The recommendation is to establish the osd's IOPS capacity using other benchmark tools (e.g. Fio) and then override osd_mclock_max_capacity_iops_[hdd|ssd].
+      reporter: osd.0

@@ -1,0 +1,40 @@
+run: skanta-2026-09-20_02:51:43-rados-wip-bharath22-testing-20260920.002814-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '570051':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '570113':
+    tree: hung/command/cephadm-rm-cluster
+    facts:
+      task: ''
+      hung_task: workunit
+      command: cephadm rm-cluster --fsid cd5dc515-b4a1-11f1-8a5d-d404e6e7d460 --force --keep-logs
+  '570117':
+    tree: infra/other/nvme-cli-host-identity
+    facts:
+      task: nvme_loop
+  '570130':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '570131':
+    tree: infra/other
+    facts:
+      task: install
+  '570211':
+    tree: command/error
+    facts:
+      task: full_sequential
+      error: failed to fetch mon config (--no-mon-config to skip)
+      command: rados --no-log-to-stderr --name=client.0 --pool=unique_pool_1 bench --concurrent-ios=16 --object-size=65536 --block-size=65536
+      status: '1'
+      host: trial124
+  '570342':
+    tree: timeout/slow-ops/osd-auth-failure
+    facts:
+      task: rados
+      wait: wait_for_recovery

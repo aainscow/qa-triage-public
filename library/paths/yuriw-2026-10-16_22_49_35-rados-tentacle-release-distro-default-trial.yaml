@@ -1,0 +1,14 @@
+run: yuriw-2026-10-16_22:49:35-rados-tentacle-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '649257':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 'osd.3(4) found snap mapper error on pg 3.34s4 oid 3:2dfa757e:::trial18415627-2:20 snaps in mapper: {}, oi: {1c} ...repaired'
+      reporter: osd.3
+  '649304':
+    tree: other/backfill-toofull-not-backfilling
+    facts:
+      pgid: '2.0'

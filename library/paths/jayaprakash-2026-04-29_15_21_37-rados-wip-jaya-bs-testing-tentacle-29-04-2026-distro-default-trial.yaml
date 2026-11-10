@@ -1,0 +1,18 @@
+run: jayaprakash-2026-04-29_15:21:37-rados-wip-jaya-bs-testing-tentacle-29-04-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '185866':
+    tree: cluster-log/other/cephadm-pull-manifest-unknown
+    facts:
+      task: cephadm
+  '185886':
+    tree: timeout/unexplained/host-config-key-missing
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '185969':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_module_selftest.TestModuleSelftest.test_selftest_command_spam
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'

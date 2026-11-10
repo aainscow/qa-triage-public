@@ -1,0 +1,11 @@
+run: pdonnell-2026-09-10_12:59:36-rados-wip-pdonnell-testing-20260910.003149-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '548612':
+    tree: command/error
+    facts:
+      task: cephadm
+      error: 'Failed to restart sshd.service: Unit sshd.service not found.'
+      command: echo TrustedUserCAKeys /etc/ssh/ca-key.pub | tee -a /etc/ssh/sshd_config &&
+      status: '5'
+      host: trial030

@@ -1,0 +1,11 @@
+run: skanta-2026-05-12_11:16:42-rados-wip-bharath18-testing-2026-05-12-0450-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '208761':
+    tree: infra/container-image
+    facts:
+      task: cephadm
+  '208777':
+    tree: infra/other
+    facts:
+      task: pexec

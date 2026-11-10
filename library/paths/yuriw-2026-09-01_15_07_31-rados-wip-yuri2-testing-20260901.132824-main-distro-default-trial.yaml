@@ -1,0 +1,24 @@
+run: yuriw-2026-09-01_15:07:31-rados-wip-yuri2-testing-20260901.132824-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '528167':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '528493':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'Error EINVAL: Unable to stop daemon mgr.trial152.ftosdf: ALERT: Cannot stop active Mgr daemon, Please switch active Mgrs with ''ceph mgr fail trial152.ftosdf'''
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:e6b0949528350b214a5d47d03abdd14de9f656bc shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial152
+  '528502':
+    tree: workunit/standalone/nvmeof-beacon-diff-count
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:293
+      script: mon/misc.sh

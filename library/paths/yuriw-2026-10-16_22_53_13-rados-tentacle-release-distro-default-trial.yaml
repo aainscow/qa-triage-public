@@ -1,0 +1,7 @@
+run: yuriw-2026-10-16_22:53:13-rados-tentacle-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '649458':
+    tree: infra/build
+    facts:
+      task: install

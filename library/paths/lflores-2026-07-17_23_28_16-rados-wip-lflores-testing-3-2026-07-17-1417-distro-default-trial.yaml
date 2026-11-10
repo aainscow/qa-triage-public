@@ -1,0 +1,63 @@
+run: lflores-2026-07-17_23:28:16-rados-wip-lflores-testing-3-2026-07-17-1417-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '374619':
+    tree: workunit/unexplained/cephtool-osd-epoch-race
+    facts:
+      workunit: cephtool/test.sh
+      task: workunit
+      script: cephtool/test.sh
+  '374634':
+    tree: crash/abort/bluestore-error/unexplained/enoent-on-object-removed-as-divergent
+    facts:
+      task: rados
+      source: os/bluestore/BlueStore.cc
+      line: '16539'
+      message: ceph_abort_msg("unexpected error")
+      function: void BlueStore::_txc_add_transaction(TransContext*, ObjectStore::Transaction*)
+      daemon: osd.15
+      daemon_type: osd
+      host: trial188
+      error: '2'
+      op: OP_SETATTR
+      caller: ECBackend::handle_sub_write(pg_shard_t, boost::intrusive_ptr<OpRequest>, ECSubWrite&, ZTracer::Trace const&, ECListener&)
+      object: 1#3:45cfbf7e:::trial18849837-46:95#
+  '374644':
+    tree: infra/other/nvme-list-json-failed
+    facts:
+      task: nvme_loop
+  '374651':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '374652':
+    tree: infra/build
+    facts:
+      task: install
+  '374705':
+    tree: hung/test/rados-api-tests-valgrind-slowdown
+    facts:
+      task: ''
+      test: io
+      hung_task: workunit
+  '374729':
+    tree: hung/command/ceph-daemon-config-set-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: sudo TESTDIR=/home/ubuntu/cephtest bash -c 'for f in 0 1 2 3 ; do sudo ceph daemon osd.$f config set osd_recovery_sleep 0 ; sudo ceph daemon osd.$f config set osd_recovery_max_active 20 ; done'
+  '374749':
+    tree: workunit/set-e
+    facts:
+      intended_crash: osd.0
+      workunit: rados/test_crash.sh
+      task: workunit
+      script: rados/test_crash.sh
+      command: '[ 0 = 4 ]'
+  '374853':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery

@@ -1,0 +1,15 @@
+run: skanta-2026-10-18_00:07:27-rados-wip-bharath19-testing-20261016.230223-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '651274':
+    tree: workunit/unexplained/iscsi-gwcli-host-not-found
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+  '651293':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'

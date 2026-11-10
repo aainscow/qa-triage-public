@@ -1,0 +1,24 @@
+id: "79379"
+tracker: https://tracker.ceph.com/issues/79379
+title: "Mirror ubuntu repos in the lab"
+kind: infra
+tree: hung/command/apt-update-stalled
+facts:
+  hung_task: '^kernel$'
+match:
+  reason: 'hit max job timeout'
+notes: |
+  In suites that run the kernel task with kdb on Ubuntu (distro kernel), the task runs apt-get
+  update and installs linux-image-generic on every host in parallel, then reboots each host and
+  enables kdb. If archive.ubuntu.com is unreachable or slow, the apt transaction of one host
+  hangs (Ign: lines, or 'Connection failed'), that host never installs or reboots, and the
+  kernel task waits for it until teuthology is killed at the max job timeout. The other hosts
+  finish and log 'Enabling kdb on', so the last command the tree sees (echo ttyS1 | tee
+  /sys/module/kgdboc/parameters/kgdboc) is a red herring from a healthy host. The tracker's fix
+  is lab infrastructure: mirroring Ubuntu's repos internally. The learned node at
+  hung/command/apt-update-stalled finds the host that started apt-get update but never rebooted
+  or enabled kdb, and has Ign: or 'Connection failed' lines.
+examples:
+  - yuriw-2026-08-04_13:05:43-rados-wip-yuri8-testing-20260803.202233-umbrella-distro-default-trial/429256
+learned:
+- "2026-10-30 bob-analyst, from yuriw-2026-08-04_13:05:43-rados-wip-yuri8-testing-20260803.202233-umbrella-distro-default-trial/429256, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

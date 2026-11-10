@@ -1,0 +1,10 @@
+run: lflores-2026-03-12_02:28:06-upgrade-wip-rocky10-branch-of-the-day-2026-03-09-1773078259-with-pr-63859-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '99689':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a

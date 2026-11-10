@@ -1,0 +1,24 @@
+run: skanta-2026-09-19_16:29:13-rados-wip-bharath17-testing-20260919.063401-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '569748':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/mon-stretch-mode-5-mons-8-osds.sh
+      task: workunit
+      script: mon/mon-stretch-mode-5-mons-8-osds.sh
+      command: ceph mon enable_stretch_mode e stretch_rule datacenter
+      error: 'Error EINVAL: stretch mode is already engaged'
+  '569755':
+    tree: workunit/standalone/nvmeof-beacon-diff-count
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:293
+      script: mon/misc.sh
+  '569758':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery

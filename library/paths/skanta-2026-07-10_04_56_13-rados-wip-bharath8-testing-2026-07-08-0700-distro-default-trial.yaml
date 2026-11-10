@@ -1,0 +1,19 @@
+run: skanta-2026-07-10_04:56:13-rados-wip-bharath8-testing-2026-07-08-0700-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '352144':
+    tree: workunit/unexplained/test-repos-gpg-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+  '352233':
+    tree: timeout/unexplained/thrasher-wait-for-recovery-failed
+    facts:
+      task: full_sequential
+      wait: wait_for_recovery
+  '352418':
+    tree: timeout/unexplained
+    facts:
+      task: cephadm
+      wait: wait_until_healthy

@@ -1,0 +1,13 @@
+run: nmordech-2026-02-23_13:43:25-rados-wip-rocky10-branch-of-the-day-2026-02-23-1771833711-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '66555':
+    tree: crash/signal/backtrace
+    facts:
+      task: rados
+      signal: Segmentation fault
+      frames: ErasureCodeJerasureCauchyGood::prepare() < ErasureCodeJerasure::init(std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::ostream*) < ErasureCodePluginJerasure::factory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char,
+        std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::shared_ptr<ceph::ErasureCodeInterface>*, std::ostream*)
+      daemon: osd.5
+      daemon_type: osd
+      host: trial129

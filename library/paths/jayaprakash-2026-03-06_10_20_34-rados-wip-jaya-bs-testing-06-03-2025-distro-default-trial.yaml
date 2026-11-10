@@ -1,0 +1,59 @@
+run: jayaprakash-2026-03-06_10:20:34-rados-wip-jaya-bs-testing-06-03-2025-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '90321':
+    tree: workunit/unexplained/backfill-prio-not-in-progress
+    facts:
+      workunit: osd/osd-recovery-prio.sh
+      task: workunit
+      script: osd/osd-recovery-prio.sh
+  '90354':
+    tree: command/unexplained/crush-location-json-mismatch
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:48c31344c3d9ec8d6697e6c62a2f5aa862ff291f shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial121
+  '90373':
+    tree: workunit/unexplained/grafana-invalid-ip-address
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      address: localhost
+  '90378':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '90431':
+    tree: hung/command/workunit-clone-git-ceph-com-504
+    facts:
+      task: workunit
+      hung_task: workunit
+      command: find /home/ubuntu/cephtest -ls ; rmdir -- /home/ubuntu/cephtest
+  '90432':
+    tree: hung/command/workunit-clone-git-ceph-com-504
+    facts:
+      task: workunit
+      hung_task: workunit
+      command: find /home/ubuntu/cephtest -ls ; rmdir -- /home/ubuntu/cephtest
+  '90438':
+    tree: hung/command/workunit-clone-git-ceph-com-504
+    facts:
+      task: workunit
+      hung_task: workunit
+      command: find /home/ubuntu/cephtest -ls ; rmdir -- /home/ubuntu/cephtest
+  '90443':
+    tree: hung/command/workunit-clone-git-ceph-com-504
+    facts:
+      task: workunit
+      hung_task: workunit
+      command: find /home/ubuntu/cephtest -ls ; rmdir -- /home/ubuntu/cephtest
+  '90444':
+    tree: hung/command/workunit-clone-git-ceph-com-504
+    facts:
+      task: workunit
+      hung_task: workunit
+      command: find /home/ubuntu/cephtest -ls ; rmdir -- /home/ubuntu/cephtest

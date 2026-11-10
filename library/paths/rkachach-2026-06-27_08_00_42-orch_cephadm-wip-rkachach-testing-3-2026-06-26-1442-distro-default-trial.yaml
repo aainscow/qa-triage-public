@@ -1,0 +1,10 @@
+run: rkachach-2026-06-27_08:00:42-orch:cephadm-wip-rkachach-testing-3-2026-06-26-1442-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '319284':
+    tree: command/unexplained/download-cephadm-failed
+    facts:
+      task: cephadm
+      command: test -s cephadm && test $(stat -c%s cephadm)
+      status: '1'
+      host: trial032

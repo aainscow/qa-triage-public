@@ -1,0 +1,10 @@
+run: dgalloway-2026-02-13_23:06:25-orch:cephadm-wip-squid-pr-67199-kefu-1-distro-default-trial
+jobs:
+  '50357':
+    problem: '65728'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 2 jobs in 75277, this one among them, and no record names it yet: the tool placed them in 65728. A record for it should place them all; others are yuriw-2026-02-24_16:22:43-rados-wip-yuri6-testing-2026-02-22-1629-squid-distro-default-trial/68646.'
+    summary: A transient CEPHADM_FAILED_DAEMON warning during OSD deployment failed smoke-singlehost, which did not ignore it (tracker 75277, same cause as 65728); record 65728 now lists 75277 in `also`.
+    status: fail
+    description: orch:cephadm/smoke-singlehost/{0-random-distro$/{centos_9.stream} 1-start 2-services/basic 3-final}
+    reason: '"2026-02-17T00:13:31.081639+0000 mon.trial167 (mon.0) 281 : cluster [WRN] Health check failed: 1 failed cephadm daemon(s) (CEPHADM_FAILED_DAEMON)" in cluster log'

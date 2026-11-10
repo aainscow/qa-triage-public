@@ -1,0 +1,11 @@
+run: yuriw-2026-04-11_19:57:35-rados-squid-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '145903':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/mon-cluster-log.sh
+      task: workunit
+      test: TEST_journald_cluster_log_level
+      check: mon-cluster-log.sh:206
+      script: mon/mon-cluster-log.sh

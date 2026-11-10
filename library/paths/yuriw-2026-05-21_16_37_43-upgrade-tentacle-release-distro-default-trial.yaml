@@ -1,0 +1,10 @@
+run: yuriw-2026-05-21_16:37:43-upgrade-tentacle-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '227122':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: telemetry module includes new collections; please re-opt-in to new collections with `ceph telemetry on`
+      reporter: mon.a

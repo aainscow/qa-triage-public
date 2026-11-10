@@ -1,0 +1,31 @@
+id: "80616"
+tracker: https://tracker.ceph.com/issues/80616
+title: "TEST_bluestore_expand_with_allocmap_recovery: return 1"
+kind: test
+tree: workunit/standalone
+facts:
+  script: '^osd/osd-bluefs-volume-ops\.sh$'
+  test: '^TEST_bluestore_expand_with_allocmap_recovery$'
+match:
+  reason: 'osd/osd-bluefs-volume-ops\.sh'
+confirm:
+  - file: teuthology.log
+    pattern: 'too many arguments: \[--auth-supported=none\]'
+notes: |
+  TEST_bluestore_expand_with_allocmap_recovery in qa/standalone/osd/osd-bluefs-volume-ops.sh
+  sets CEPH_ARGS with '--auth-supported=none' instead of the
+  '--auth_cluster_required=none --auth_service_required=none --auth_client_required=none'
+  used by the other standalone tests. run_mon passes CEPH_ARGS to 'ceph-mon --mkfs', which
+  rejects it with 'too many arguments: [--auth-supported=none]', so run_mon returns 1 at
+  osd-bluefs-volume-ops.sh:504 before any OSD starts. A qa commit (875eab6) updated the auth
+  configs but missed this test. Fix PR https://github.com/ceph/ceph/pull/71975 was open when
+  this record was written.
+examples:
+  - skanta-2026-09-09_04:52:39-rados-wip-bharath11-testing-20260908.131148-squid-distro-default-trial/545077
+  - skanta-2026-09-18_01:01:10-rados-wip-bharath20-testing-20260917.152243-tentacle-distro-default-trial/565493
+  - skanta-2026-09-23_00:46:01-rados-wip-bharath19-testing-20260922.090258-tentacle-distro-default-trial/575916
+  - skanta-2026-09-25_04:43:26-rados-wip-bharath28-testing-20260924.103245-tentacle-distro-default-trial/581850
+  - skanta-2026-10-15_23:32:33-rados-wip-bharath22-testing-20261015.065836-tentacle-distro-default-trial/643601
+  - yuriw-2026-10-16_15:50:03-rados-tentacle-release-distro-default-trial/646860
+learned:
+- "2026-10-30 bob-analyst, from skanta-2026-09-09_04:52:39-rados-wip-bharath11-testing-20260908.131148-squid-distro-default-trial/545077, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

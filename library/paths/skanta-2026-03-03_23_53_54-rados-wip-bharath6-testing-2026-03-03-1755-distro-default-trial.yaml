@@ -1,0 +1,20 @@
+run: skanta-2026-03-03_23:53:54-rados-wip-bharath6-testing-2026-03-03-1755-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '79587':
+    tree: crash/assert/specific
+    facts:
+      task: rados
+      source: osd/osd_types.h
+      line: '5250'
+      message: FAILED ceph_assert(it->second == oid)
+      function: void pg_missing_set<TrackChanges>::add(const hobject_t&, eversion_t, eversion_t, bool) [with bool TrackChanges = false]
+      daemon: osd.14
+      daemon_type: osd
+      host: trial049
+  '79743':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_prometheus.TestPrometheus.test_standby
+      error: 'AssertionError: ''text/html;charset=utf-8'' != ''text/plain;charset=utf-8'''

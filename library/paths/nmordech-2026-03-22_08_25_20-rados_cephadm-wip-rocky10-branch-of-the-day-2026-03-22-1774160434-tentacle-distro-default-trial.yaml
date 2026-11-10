@@ -1,0 +1,8 @@
+run: nmordech-2026-03-22_08:25:20-rados:cephadm-wip-rocky10-branch-of-the-day-2026-03-22-1774160434-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '116046':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries

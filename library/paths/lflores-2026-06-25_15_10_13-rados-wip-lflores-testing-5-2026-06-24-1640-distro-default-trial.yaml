@@ -1,0 +1,10 @@
+run: lflores-2026-06-25_15:10:13-rados-wip-lflores-testing-5-2026-06-24-1640-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '316558':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: all OSDs are running umbrella or later but require_osd_release < umbrella
+      reporter: mon.a

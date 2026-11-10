@@ -1,0 +1,12 @@
+run: nmordech-2026-06-03_18:29:30-rados-wip-bharath2-testing-2026-06-03-0438-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '260829':
+    tree: command/unexplained/git-clone-ci-dns-fallback-missing-tree
+    facts:
+      task: workunit
+      command: rm -rf clone.client.2 && git clone https://git.ceph.com/ceph.git clone.client.2
+      status: '128'
+      host: trial166
+      dns_host: git.ceph.com
+      ref: 3d27c4a405d07d475483c91b2daf84af24793f3b

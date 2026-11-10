@@ -1,0 +1,44 @@
+run: lflores-2026-01-21_20:56:39-rados-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '11813':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: OSD bench result of 88144.544124 IOPS is not within the threshold limit range of 1000.000000 IOPS and 80000.000000 IOPS for osd.2. IOPS capacity is unchanged at 21500.000000 IOPS. The recommendation is to establish the osd's IOPS capacity using other benchmark tools (e.g. Fio) and then override osd_mclock_max_capacity_iops_[hdd|ssd].
+      reporter: osd.2
+  '11872':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 1.1s0 1:80294688:::trial19516711-645:headdata digests are inconsistent
+      reporter: osd.8
+  '11947':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.5s0 3:a2c9a560:::trial14616874-7:edata digests are inconsistent
+      reporter: osd.8
+  '11956':
+    tree: command/unexplained/prometheus-module-inactive
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:20763e3b00eca4f0dd8e8ba26cc85db51c13d48d shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '4'
+      host: trial073
+  '12001':
+    tree: workunit/unexplained
+    facts:
+      workunit: mon/availability.sh
+      task: workunit
+      script: mon/availability.sh
+  '12016':
+    tree: command/unexplained/crush-location-json-mismatch
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:20763e3b00eca4f0dd8e8ba26cc85db51c13d48d shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial023

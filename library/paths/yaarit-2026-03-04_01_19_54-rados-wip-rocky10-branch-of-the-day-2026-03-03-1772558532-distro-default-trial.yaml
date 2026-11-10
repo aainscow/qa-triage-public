@@ -1,0 +1,5 @@
+run: yaarit-2026-03-04_01:19:54-rados-wip-rocky10-branch-of-the-day-2026-03-03-1772558532-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '79915':
+    tree: other/ec-inconsistent-hinfo-assert

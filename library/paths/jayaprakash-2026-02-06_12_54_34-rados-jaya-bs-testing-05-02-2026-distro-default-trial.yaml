@@ -1,0 +1,24 @@
+run: jayaprakash-2026-02-06_12:54:34-rados-jaya-bs-testing-05-02-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '38111':
+    tree: command/unexplained
+    facts:
+      task: ceph
+      command: yes | mkfs.xfs -f -i size=2048 /dev/vg_nvme/lv_2
+      status: '1'
+      host: trial085
+  '38128':
+    tree: workunit/standalone
+    facts:
+      workunit: osd/osd-bluefs-volume-ops.sh
+      task: workunit
+      test: TEST_bluestore_expand
+      check: osd-bluefs-volume-ops.sh:485
+      script: osd/osd-bluefs-volume-ops.sh
+  '38187':
+    tree: workunit/unexplained/dencoder-decode-failure
+    facts:
+      workunit: dencoder/test-dencoder.sh
+      task: workunit
+      script: dencoder/test-dencoder.sh

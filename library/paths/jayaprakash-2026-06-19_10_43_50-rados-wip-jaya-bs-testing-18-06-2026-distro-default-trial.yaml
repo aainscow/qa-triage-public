@@ -1,0 +1,10 @@
+run: jayaprakash-2026-06-19_10:43:50-rados-wip-jaya-bs-testing-18-06-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '300531':
+    tree: timeout/unexplained/thrasher-wait-for-clean-pg-down
+    facts:
+      task: rados
+      wait: wait_for_clean
+      thrasher_failure: test_map_discontinuity
+      pg_state: down+remapped

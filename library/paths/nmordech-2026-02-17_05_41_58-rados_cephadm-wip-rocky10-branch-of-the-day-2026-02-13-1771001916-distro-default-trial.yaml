@@ -1,0 +1,17 @@
+run: nmordech-2026-02-17_05:41:58-rados:cephadm-wip-rocky10-branch-of-the-day-2026-02-13-1771001916-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '51625':
+    tree: workunit/set-e
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+      command: set -e
+  '51634':
+    tree: command/unexplained/crush-location-json-mismatch
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:9bf4f688a328d758033a6c4b1e16121b513eafca-rockylinux-10 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial010

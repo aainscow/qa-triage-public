@@ -1,0 +1,30 @@
+run: skanta-2026-05-26_00:44:20-rados-wip-bharath17-testing-2026-05-25-1331-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '237379':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a
+  '237391':
+    tree: workunit/unexplained
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+  '237405':
+    tree: workunit/unexplained/ganesha-nfsv3-tcp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+  '237418':
+    tree: command/timed-out/thrasher-min-size-pgs-not-active
+    facts:
+      task: rados
+      command: ceph status
+      status: '124'
+      host: trial053
+      thrasher_failure: test_pool_min_size

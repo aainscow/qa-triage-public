@@ -1,0 +1,18 @@
+# Everything on your own machine, with Ollama: nothing is sent anywhere but
+# pulpito, qa-proxy and the tracker, which qa_triage reads. Pull the models first,
+# e.g. ollama pull gemma4:26b, and check their tags with ollama list.
+judge: gemma-small
+# A local analyst is the weak part: gemma4:26b with a 32768 context settled only 1
+# of 5 doubts whose answer was known, though it judged well. Check what it proposes,
+# or use a hosted analyst (see claude.yaml).
+analyst: gemma
+agents:
+  gemma-small:
+    provider: ollama
+    model: gemma4:e4b
+    context: 32768
+  gemma:
+    provider: ollama
+    model: gemma4:31b
+    context: 65536            # the analyst reads more
+    options: {temperature: 0}

@@ -1,0 +1,10 @@
+run: skanta-2026-10-28_03:11:19-rados-wip-bharath14-testing-20261027.071324-main-distro-default-trial
+jobs:
+  '684984':
+    problem: '77737'
+    by: qa_triage (bob+files)
+    why: 'No record placed this job, and the judge (bob) said unsure : mon/test_mon_osdmap_prune.sh failed with status 1 during monthrash; monitors were thrashed but the specific check that failed is not in the excerpts. If a tracker issue already describes this failure, find it and add a record for it, so that the checks place jobs like this one. If none does, say so: a person will file one. Searching the tracker for "test_mon_osdmap_prune monthrash osdmap pruned", "test_mon_osdmap_prune osdmap_first_committed", "test_mon_osdmap_prune getmap pruned epoch" found: #77737 Bug #77737 (New): rados/monthrash test_mon_osdmap_prune.sh: monitor returns monmap bytes for osd getmap on pruned epoch; #54369 Bug #54369 (New): mon/test_mon_osdmap_prune.sh: jq .osdmap_first_committed [[ 11 -eq 20 ]].'
+    summary: 'mon/test_mon_osdmap_prune.sh failed because mon.2 returned a monmap payload (3822 bytes) for osd getmap on pruned epoch 623, matching tracker #77737'
+    status: fail
+    description: rados/monthrash/{ceph clusters/3-mons mon_election/connectivity msgr-failures/mon-delay msgr/async-v2only objectstore/{bluestore/{alloc$/{btree} base mem$/{normal-2} onode-segment$/{512K-onoff} write$/{random/{compr$/{yes$/{zlib}} random}}}} rados rados_op_timeout supported-random-distro/{rocky_10} thrashers/sync-many workloads/rados_mon_osdmap_prune}
+    reason: 'Command failed (workunit test mon/test_mon_osdmap_prune.sh) on trial153 with status 1: ''cd -- /home/ubuntu/cephtest/mnt.0/client.0/tmp && CEPH_CLI_TEST_DUP_COMMAND=1 CEPH_REF=ecdefa900ecc2bfae3ae656f93b1395afe24aae6 TESTDIR="/home/ubuntu/cephtest" CEPH_CLIENT_ID=0 CEPH_ARGS="--cluster=ceph" CEPH_ID="0" PATH=$PATH:/usr/sbin CEPH_BASE=/home/ubuntu/cephtest/clone.client.0 CEPH_ROOT=/home/ubuntu/cephtest/clone.client.0 CEPH_MNT=/home/ubuntu/cephtest/mnt.0 adjust-ulimits ceph-coverage /home/ubuntu/cephtest/archive/coverage timeout 3h /home/ubuntu/cephtest/clone.client.0/qa/workunits/mon/test_mon_osdmap_prune.sh'''

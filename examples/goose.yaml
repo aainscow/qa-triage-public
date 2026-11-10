@@ -1,0 +1,15 @@
+# goose, which reaches many providers (Anthropic, OpenAI, Google, Ollama,
+# OpenRouter, Databricks and more) with the credentials of its own config
+# (goose configure). qa_triage gives it none of goose's own extensions: the
+# analyst gets only qa_triage's read-only evidence tools.
+judge: goose-flash
+analyst: goose-pro
+agents:
+  goose-flash:
+    provider: goose
+    goose_provider: google
+    model: gemini-2.5-flash
+  goose-pro:
+    provider: goose
+    goose_provider: google
+    model: gemini-2.5-pro

@@ -1,0 +1,10 @@
+run: pdonnell-2026-06-13_16:37:37-upgrade-wip-pdonnell-testing-20260613.133611-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '291652':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: telemetry module includes new collections; please re-opt-in to new collections with `ceph telemetry on`
+      reporter: mon.a

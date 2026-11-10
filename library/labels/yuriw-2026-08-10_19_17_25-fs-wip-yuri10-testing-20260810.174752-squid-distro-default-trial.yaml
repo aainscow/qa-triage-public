@@ -1,0 +1,10 @@
+run: yuriw-2026-08-10_19:17:25-fs-wip-yuri10-testing-20260810.174752-squid-distro-default-trial
+jobs:
+  '453132':
+    problem: '74566'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: People placed 3 jobs that the tool placed in no known problem in 74566, this one among them.
+    summary: 'Monitor startup static initializer dlopen leak in glibc causes Leak_StillReachable valgrind error (tracker #74566).'
+    status: fail
+    description: fs/verify/{begin/{0-install 1-ceph 2-logrotate 3-kernel 3-modules} clusters/1a5s-mds-1c-client conf/{client mds mgr mon osd} distro/{ubuntu/{overrides ubuntu_latest}} mount/fuse objectstore-ec/bluestore-comp-ec-root overrides/{ignorelist_health ignorelist_wrongly_marked_down mon-debug pg_health session_timeout} ranks/1 tasks/dbench validater/valgrind}
+    reason: 'valgrind error: Leak_StillReachable malloc'

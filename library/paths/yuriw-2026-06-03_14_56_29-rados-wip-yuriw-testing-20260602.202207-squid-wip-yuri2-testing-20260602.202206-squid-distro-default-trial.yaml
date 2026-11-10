@@ -1,0 +1,10 @@
+run: yuriw-2026-06-03_14:56:29-rados-wip-yuriw-testing-20260602.202207-squid-wip-yuri2-testing-20260602.202206-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '260414':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN Degraded data redundancy: 54730/441165 objects degraded (12.406%), 17 pgs degraded, 1 pg undersized'
+      reporter: mon.a

@@ -1,0 +1,34 @@
+id: '48896'
+tracker: https://tracker.ceph.com/issues/48896
+title: 'osd/OSDMap.cc: FAILED ceph_assert(osd_weight.count(i.first))'
+kind: product
+tree: crash/assert/specific
+facts:
+  source: osd/OSDMap\.cc
+  message: FAILED ceph_assert\(osd_weight\.count\(oid\)\)
+  function: OSDMap::calc_deviations\(
+  daemon_type: mgr
+notes: |
+  ceph-mgr's balancer (do_upmap -> OSDMap::calc_pg_upmaps -> calc_deviations) aborts on
+  ceph_assert(osd_weight.count(oid)): an OSD that a PG's up set maps to (pgs_by_osd) has
+  no entry in osd_weight, because get_osds_weight() leaves out OSDs whose adjusted weight
+  (reweight x CRUSH weight under the pool's rule) is 0. The older code asserted the same
+  in calc_pg_upmaps, as osd_weight.count(i.first), which is this issue's title.
+  As the tracker has it (2026-10-08): CRUSH maps a PG to an OSD of CRUSH weight 0 when a
+  rule's take reaches only zero-weight OSDs, as with a rule of one take per site while
+  one whole site is crush-reweighted to 0 but still in: straw2 returns the first item of
+  a bucket whose items all weigh 0, and the leaf is checked only against the reweight.
+  The rest of the rule keeps the total weight above 0, so the osd_weight_total == 0
+  return does not save it, and the mgr aborts on every balancer pass. The default rules
+  (take default, chooseleaf over hosts) never pick a zero-weight item while a sibling
+  has weight. PR #72503 (under review) skips calc_pg_upmaps when an up OSD has no weight.
+  The same assert in qa/standalone/mon-stretch (mgr output in the mgr's own log, not in
+  teuthology.log) is record 77785, which the tracker closed as a duplicate of this one.
+  Job 705808 is rados/thrash-erasure-code-big with an LRC profile, not a stretch rule:
+  the crash, in teuthology.log through the mgr's stderr, is this assert, but which zero
+  weight this job's rule reached is not established.
+examples:
+- skanta-2026-11-03_00:24:17-rados-wip-bharath27-testing-20261102.042152-main-distro-default-trial/705808
+learned:
+- "2026-11-09 an analyst, from skanta-2026-11-03_00:24:17-rados-wip-bharath27-testing-20261102.042152-main-distro-default-trial/705808, as a reviewer said"
+- "2026-11-10 by hand: the cause, from the tracker and record 77785"

@@ -1,0 +1,33 @@
+run: skanta-2026-07-12_04:39:06-rados-wip-bharath12-testing-2026-07-09-1411-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '356703':
+    tree: hung/command/ceph-daemon-config-set-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: for f in 0 1 2 3 ;
+  '356705':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: WRN
+      check: MGR_INFLUX_DB_LIST_FAILED
+      message: 'Health check failed: Failed to list/create InfluxDB database (MGR_INFLUX_DB_LIST_FAILED)'
+      reporter: mon.a
+  '356712':
+    tree: cluster-log/health/cephadm-failed-daemon-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_FAILED_DAEMON
+      message: 'Health check failed: 1 failed cephadm daemon(s) (CEPHADM_FAILED_DAEMON)'
+      reporter: mon.a
+  '356720':
+    tree: workunit/set-e/test-repos-add-repo-gpg-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release quincy
+      error: 'failed to fetch GPG repo key from https://download.ceph.com/keys/release.gpg: HTTP Error 404: Not Found'

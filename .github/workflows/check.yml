@@ -1,0 +1,24 @@
+# On every push and pull request: the tests, and qa_triage lint of the library (the
+# records, the learned nodes, the settled jobs and the memory), with the qa_triage
+# of the same commit.
+name: check
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pyyaml
+      # Some tests commit to git repositories of their own.
+      - run: |
+          git config --global user.name qa_triage-tests
+          git config --global user.email qa_triage-tests@localhost
+      - run: python -m unittest discover -s tests -t tests
+      - run: python . --archive https --set db=none lint

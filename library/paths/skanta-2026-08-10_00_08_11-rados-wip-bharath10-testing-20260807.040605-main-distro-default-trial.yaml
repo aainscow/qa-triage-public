@@ -1,0 +1,7 @@
+run: skanta-2026-08-10_00:08:11-rados-wip-bharath10-testing-20260807.040605-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '449638':
+    tree: infra/build
+    facts:
+      task: install

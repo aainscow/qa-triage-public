@@ -1,0 +1,14 @@
+# A free local judge first, a hosted one only when it is unsure, and a strong model to learn.
+judge: [gemma, haiku]
+analyst: opus
+agents:
+  gemma:
+    provider: ollama
+    model: gemma4:26b
+  haiku:
+    provider: claude
+    model: haiku
+    budget_usd: 0.5
+  opus:
+    provider: claude
+    model: opus

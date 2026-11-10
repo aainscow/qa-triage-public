@@ -1,0 +1,28 @@
+run: jenkins-build-2026-09-17_06:05:09-rados-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '563110':
+    tree: timeout/unexplained/thrasher-min-size-pgs-not-active
+    facts:
+      task: rados
+      wait: MaxWhileTries
+      thrasher_failure: test_pool_min_size
+      pg_state: down
+  '563205':
+    tree: cluster-log/health/radosbench-populate-overfill
+    facts:
+      task: ''
+      level: WRN
+      check: OSD_NEARFULL
+      message: 'Health check failed: 1 nearfull osd(s) (OSD_NEARFULL)'
+      reporter: mon.a
+      pool: test
+  '563307':
+    tree: cluster-log/health/radosbench-populate-overfill
+    facts:
+      task: ''
+      level: WRN
+      check: POOL_NEARFULL
+      message: 'Health check failed: 2 pool(s) nearfull (POOL_NEARFULL)'
+      reporter: mon.a
+      pool: unique_pool_0

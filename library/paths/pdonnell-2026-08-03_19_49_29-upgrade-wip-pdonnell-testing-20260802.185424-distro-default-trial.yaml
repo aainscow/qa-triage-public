@@ -1,0 +1,5 @@
+run: pdonnell-2026-08-03_19:49:29-upgrade-wip-pdonnell-testing-20260802.185424-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '424717':
+    tree: other/workunit-keyring-attribute

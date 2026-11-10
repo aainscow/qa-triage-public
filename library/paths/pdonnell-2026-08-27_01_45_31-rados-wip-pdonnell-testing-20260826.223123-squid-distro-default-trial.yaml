@@ -1,0 +1,36 @@
+run: pdonnell-2026-08-27_01:45:31-rados-wip-pdonnell-testing-20260826.223123-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '518570':
+    tree: workunit/unexplained/grafana-invalid-ip-address
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      address: localhost
+  '518577':
+    tree: command/unexplained/not-found
+    facts:
+      task: exec
+      command: egrep (defer backfill|defer recovery) /var/log/ceph/ceph-osd.*.log
+      status: '1'
+      host: trial139
+  '518637':
+    tree: workunit/standalone
+    facts:
+      workunit: osd/osd-recovery-prio.sh
+      task: workunit
+      test: TEST_recovery_pool_priority
+      check: osd-recovery-prio.sh:449
+      script: osd/osd-recovery-prio.sh
+  '518651':
+    tree: other/backfill-toofull-not-backfilling
+    facts:
+      pgid: '2.0'
+  '518763':
+    tree: crash/client/unexplained/old-client-aes256k-keyring
+    facts:
+      task: exec
+      program: ceph_test_cls_rbd
+      error: '-5'
+      cipher: aes256k

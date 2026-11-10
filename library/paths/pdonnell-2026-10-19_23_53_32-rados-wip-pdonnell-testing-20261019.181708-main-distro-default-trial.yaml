@@ -1,0 +1,23 @@
+run: pdonnell-2026-10-19_23:53:32-rados-wip-pdonnell-testing-20261019.181708-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '658865':
+    tree: cluster-log/message/laggy-socket-failures
+    facts:
+      task: ''
+      level: WRN
+      message: PG 2.0s0 marked LAGGY; acting [3,1,2]
+      reporter: osd.3
+  '658995':
+    tree: workunit/standalone/nvmeof-beacon-diff-count
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:302
+      script: mon/misc.sh
+  '658999':
+    tree: timeout/unexplained
+    facts:
+      task: cephadm
+      wait: wait_until_healthy

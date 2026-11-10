@@ -1,0 +1,10 @@
+run: lflores-2026-03-31_22:52:22-rados-wip-yuri6-testing-2026-03-20-1643-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '128691':
+    tree: command/unexplained
+    facts:
+      task: ceph
+      command: yes | mkfs.xfs -f -i size=2048 -f /dev/vg_nvme/lv_2
+      status: '1'
+      host: trial036

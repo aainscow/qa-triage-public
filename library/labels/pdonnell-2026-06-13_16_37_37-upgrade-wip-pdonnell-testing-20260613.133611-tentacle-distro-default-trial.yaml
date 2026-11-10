@@ -1,0 +1,10 @@
+run: pdonnell-2026-06-13_16:37:37-upgrade-wip-pdonnell-testing-20260613.133611-tentacle-distro-default-trial
+jobs:
+  '291652':
+    problem: '77382'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 3 jobs in 77382, this one among them, and no record names it yet: the tool placed them in 77382, by the memory of what people answered alone, no known problem. A record for it should place them all; others are yuriw-2026-05-21_16:37:43-upgrade-tentacle-release-distro-default-trial/227122, yuriw-2026-06-27_19:38:02-upgrade-squid-release-distro-default-trial/320478.'
+    summary: Upgrade job failed the teardown cluster-log scan on a transient mon [WRN] telemetry re-opt-in detail line that the suite's log-ignorelist doesn't cover (tracker 77382); the result 'new' should be a duplicate of 77382.
+    status: fail
+    description: upgrade/telemetry-upgrade/reef-x/{0-random-distro$/{centos_9.stream_runc} 0-start 1-tasks$/{centos-stream9}}
+    reason: '"2026-06-13T16:55:35.120432+0000 mon.a (mon.0) 130 : cluster [WRN] telemetry module includes new collections; please re-opt-in to new collections with `ceph telemetry on`" in cluster log'

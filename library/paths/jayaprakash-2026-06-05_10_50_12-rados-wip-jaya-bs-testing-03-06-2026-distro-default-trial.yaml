@@ -1,0 +1,15 @@
+run: jayaprakash-2026-06-05_10:50:12-rados-wip-jaya-bs-testing-03-06-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '268181':
+    tree: crash/abort/specific/manifest-recovery-out-of-order-op
+    facts:
+      task: rados
+      source: osd/PrimaryLogPG.cc
+      line: '4430'
+      message: ceph_abort_msg("out of order op")
+      function: void PrimaryLogPG::execute_ctx(OpContext*)
+      daemon: osd.15
+      daemon_type: osd
+      host: trial191
+      pg: '4.25'

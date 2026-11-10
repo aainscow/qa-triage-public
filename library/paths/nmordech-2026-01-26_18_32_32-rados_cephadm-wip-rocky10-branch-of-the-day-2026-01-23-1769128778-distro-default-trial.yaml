@@ -1,0 +1,14 @@
+run: nmordech-2026-01-26_18:32:32-rados:cephadm-wip-rocky10-branch-of-the-day-2026-01-23-1769128778-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '18789':
+    tree: infra/other/nvme-cli-host-identity
+    facts:
+      task: nvme_loop
+  '18793':
+    tree: command/unexplained/crush-location-json-mismatch
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:b62a951ffc48a50e41d23e63ed6b312afb1c1621-rockylinux-10 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial094

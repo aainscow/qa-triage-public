@@ -1,0 +1,9 @@
+run: nmordech-2026-02-23_13:38:59-rados:mgr-wip-rocky10-branch-of-the-day-2026-02-23-1771833711-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '66521':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_progress.TestProgress.test_osd_came_back
+      error: 'IndexError: list index out of range'

@@ -1,0 +1,9 @@
+run: jayaprakash-2026-10-08_14:59:53-rados-wip-bs-reshuffle-nlc-08-10-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '620038':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'

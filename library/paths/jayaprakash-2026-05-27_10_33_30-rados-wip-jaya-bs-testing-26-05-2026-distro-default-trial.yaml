@@ -1,0 +1,15 @@
+run: jayaprakash-2026-05-27_10:33:30-rados-wip-jaya-bs-testing-26-05-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '240897':
+    tree: workunit/unexplained/dencoder-decode-failure
+    facts:
+      workunit: dencoder/test-dencoder.sh
+      task: workunit
+      script: dencoder/test-dencoder.sh
+  '241013':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: cephadm.shell
+      command: ceph cephadm osd activate $HOST; while ! ceph orch ps | grep $OSD | grep running ; do sleep 5 ; done

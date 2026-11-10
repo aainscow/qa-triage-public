@@ -1,0 +1,26 @@
+run: yuriw-2026-08-24_23:11:13-rados-wip-yuri2-testing-20260824.212845-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '510403':
+    tree: command/error
+    facts:
+      task: full_sequential
+      error: failed to fetch mon config (--no-mon-config to skip)
+      command: rados --no-log-to-stderr --name=client.0 --pool=unique_pool_1 bench --concurrent-ios=16 --object-size=65536 --block-size=65536
+      status: '1'
+      host: trial092
+  '510440':
+    tree: workunit/standalone/nvmeof-beacon-diff-count
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:293
+      script: mon/misc.sh
+  '510442':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: PG 3.cs0 marked LAGGY; acting [0,5,1]
+      reporter: osd.0

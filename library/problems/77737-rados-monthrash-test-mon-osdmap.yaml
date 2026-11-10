@@ -1,0 +1,26 @@
+id: "77737"
+tracker: https://tracker.ceph.com/issues/77737
+title: "rados/monthrash test_mon_osdmap_prune.sh: monitor returns monmap bytes for osd
+  getmap on pruned epoch"
+kind: product
+tree: workunit/unexplained/osdmap-pruned-epoch-wrong-bytes
+facts:
+  workunit: '^mon/test_mon_osdmap_prune\.sh$'
+confirm:
+  - file: teuthology.log
+    pattern: 'mon_command_ack\(\[\{"prefix": "osd getmap", "epoch": \d+\}\]=0.*\) ==== \d+\+0\+3822'
+notes: |
+  During monthrash (monitor elections and restarts), a monitor returns 3822 bytes
+  in reply to `osd getmap <pruned-epoch>` with rc=0. A real osdmap is much larger;
+  3822 bytes is the size of a monmap. osdmaptool --print then decodes monmap content
+  (epoch 0, election_strategy: 3) instead of the expected epoch, so test_osdmap's
+  `grep 'epoch N'` fails with status 1 and the workunit exits with status 1.
+
+  The bug is in OSDMonitor::preprocess_command -> get_full_from_pinned_map: under
+  thrash, the newly-elected leader has not yet written the pinned full map to its
+  store when the command arrives, and the wrong key is read instead.
+examples:
+  - skanta-2026-10-28_03:11:19-rados-wip-bharath14-testing-20261027.071324-main-distro-default-trial/684984
+learned:
+- "2026-10-30 bob-analyst, from skanta-2026-10-28_03:11:19-rados-wip-bharath14-testing-20261027.071324-main-distro-default-trial/684984"
+- "2026-11-05 Bob, from skanta-2026-10-28_03:11:19-rados-wip-bharath14-testing-20261027.071324-main-distro-default-trial/684984, as qa_triage (bob+files) said"

@@ -1,0 +1,13 @@
+run: skanta-2026-08-10_02:01:18-rados-wip-bharath5-testing-20260810.001955-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '450281':
+    tree: cluster-log/health/discard-queue-overload
+    facts:
+      task: ''
+      level: WRN
+      check: BLOCK_DEVICE_DISCARD_QUEUE
+      message: 'Health check failed: 1 OSD(s) experiencing slow discard operations (BLOCK_DEVICE_DISCARD_QUEUE)'
+      reporter: mon.a
+      osd: osd.1
+      device: BLOCK

@@ -1,0 +1,32 @@
+id: "75007"
+tracker: https://tracker.ceph.com/issues/75007
+title: "rados/thrash-erasure-code ec_optimizations_off osd.2(0) found snap mapper error on pg 3.36s0 oid 3:6cc032a5:::trial18728466-404:30"
+kind: product
+tree: cluster-log/message
+facts:
+  level: '^ERR$'
+  message: 'found snap mapper error on pg'
+  reporter: '^osd\.'
+confirm:
+  - file: teuthology.log
+    pattern: 'cluster \[ERR\] \S+ found snap mapper error on pg \S+ oid \S+ (snaps in mapper: .*, oi: .*|snaps missing in mapper, should be: .*) \.\.\.repaired'
+notes: |
+  During scrub or replica scrub on an erasure-coded or replicated pool, the OSD's PgScrubber
+  (src/osd/scrubber/pg_scrubber.cc) checks object snap mapper consistency and logs
+  'osd.<who> found snap mapper error on pg <pg> oid <oid> snaps in mapper: <bogus>, oi: <snaps> ...repaired'
+  or 'snaps missing in mapper, should be: <snaps> ...repaired' as an [ERR] to the cluster log.
+  The teardown cluster-log check treats any un-ignored [ERR] as a failure.
+  The suspected cause (the tracker, 2026-10-30, not yet confirmed): on recently
+  recovered replicas, snap mapper entries created during recovery were not visible to
+  later snap-trim repops (update_snaps), leaving an OBJ_ without its SNA_ entries, which
+  scrub then finds. PR 68707 (merged on main 2026-05-06; not on tentacle) makes
+  SnapMapper::update_snaps() fall back to add_oid() for a missing OBJ_ record. Both
+  examples ran without it: 39330 is main of 2026-02, 649257 tentacle. A job of main
+  after 2026-05 failing this way would say the PR is not the whole fix.
+examples:
+  - skanta-2026-02-07_05:16:09-rados-wip-bharath5-testing-2026-02-06-2052-distro-default-trial/39330
+  - yuriw-2026-10-16_22:49:35-rados-tentacle-release-distro-default-trial/649257
+also:
+  - 56438
+learned:
+- "2026-11-09 Bob, from yuriw-2026-10-16_22:49:35-rados-tentacle-release-distro-default-trial/649257, as qa_triage (bob+files) said"

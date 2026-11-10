@@ -1,0 +1,28 @@
+run: skanta-2026-09-25_03:59:04-rados-wip-bharath29-testing-20260924.231744-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '581509':
+    tree: infra/other/chacra-http-error
+    facts:
+      task: install
+      error: chacra-http-error
+  '581512':
+    tree: infra/other/chacra-http-error
+    facts:
+      task: install
+      error: chacra-http-error
+  '581564':
+    tree: infra/other/chacra-http-error
+    facts:
+      task: install
+      error: chacra-http-error
+  '581671':
+    tree: hung/command/dispatch-delay-queued-for-pg
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph --admin-daemon /var/run/ceph/ceph-osd.10.asok dump_ops_in_flight
+  '581719':
+    tree: infra/other/kernel-reconnect-timeout
+    facts:
+      task: kernel

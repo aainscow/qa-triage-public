@@ -1,0 +1,53 @@
+run: skanta-2026-04-09_03:57:47-rados-wip-bharath16-testing-2026-04-08-1405-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '141085':
+    tree: command/unexplained/git-clone-ci-dns-fallback-missing-tree
+    facts:
+      task: workunit
+      command: rm -rf clone.client.0 && git clone https://github.com/ceph/ceph.git clone.client.0
+      status: '128'
+      host: trial059
+      dns_host: github.com
+      ref: squid
+  '141099':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '141109':
+    tree: workunit/unexplained/ceph-pg-query-hung/osd-killed-pg-query-no-timeout
+    facts:
+      workunit: misc/test-ceph-helpers.sh
+      task: workunit
+      script: misc/test-ceph-helpers.sh
+      command: ceph pg query
+  '141122':
+    tree: crash/assert/specific
+    facts:
+      task: workunit
+      source: erasure-code/ErasureCode.cc
+      line: '252'
+      message: FAILED ceph_assert(chunk.is_contiguous())
+      function: int ceph::ErasureCode::encode_prepare(const ceph::bufferlist&, std::map<int, ceph::buffer::v15_2_0::list>&) const
+      daemon: osd.2
+      daemon_type: osd
+      host: trial094
+  '141123':
+    tree: workunit/unexplained/ganesha-io-flusher-eperm
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+  '141128':
+    tree: workunit/set-e
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release 17.2.6
+      error: 'Traceback (most recent call last):'
+  '141133':
+    tree: crash/client/unnamed/ceph-bluestore-tool-avl-inconsistent-tree
+    facts:
+      task: workunit

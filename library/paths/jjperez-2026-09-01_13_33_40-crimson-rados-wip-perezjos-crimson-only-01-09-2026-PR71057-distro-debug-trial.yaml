@@ -1,0 +1,12 @@
+run: jjperez-2026-09-01_13:33:40-crimson-rados-wip-perezjos-crimson-only-01-09-2026-PR71057-distro-debug-trial
+code: afbb20a06ddc
+jobs:
+  '527954':
+    tree: crash/client/ceph/ping-monitor-abort
+    facts:
+      task: workunit
+      program: ceph
+      error: 'Fatal Python error: Aborted'
+      test: test_ping_monitor
+      call: ping_monitor
+      script: test_rados.py

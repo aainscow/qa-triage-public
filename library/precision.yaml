@@ -1,0 +1,584 @@
+# How often the jobs people answered that qa_triage placed in each problem were placed
+# rightly, from qa_triage remember: report.PRECISION.
+'51370':
+  placed: 1
+  right: 1
+'52109':
+  placed: 54
+  right: 42
+'55838':
+  placed: 1
+  right: 1
+'55854':
+  placed: 1
+  right: 1
+'56097':
+  placed: 3
+  right: 3
+'56652':
+  placed: 7
+  right: 6
+'58224':
+  placed: 10
+  right: 8
+'59079':
+  placed: 46
+  right: 46
+'63192':
+  placed: 5
+  right: 5
+'63784':
+  placed: 5
+  right: 3
+'64872':
+  placed: 2
+  right: 2
+'65728':
+  placed: 24
+  right: 22
+'66881':
+  placed: 5
+  right: 5
+'67555':
+  placed: 13
+  right: 10
+'68337':
+  placed: 25
+  right: 23
+'68586':
+  placed: 57
+  right: 56
+'68649':
+  placed: 1
+  right: 1
+'68668':
+  placed: 23
+  right: 22
+'68669':
+  placed: 3
+  right: 3
+'68960':
+  placed: 9
+  right: 9
+'69497':
+  placed: 2
+  right: 2
+'69954':
+  placed: 14
+  right: 14
+'70142':
+  placed: 1
+  right: 1
+'70279':
+  placed: 1
+  right: 1
+'70320':
+  placed: 5
+  right: 5
+'70669':
+  placed: 166
+  right: 160
+'70714':
+  placed: 2
+  right: 2
+'70716':
+  placed: 15
+  right: 15
+'71005':
+  placed: 29
+  right: 29
+'71118':
+  placed: 6
+  right: 4
+'71181':
+  placed: 3
+  right: 3
+'71344':
+  placed: 21
+  right: 21
+'71506':
+  placed: 2
+  right: 2
+'71631':
+  placed: 2
+  right: 2
+'71816':
+  placed: 109
+  right: 109
+'71830':
+  placed: 1
+  right: 0
+'72312':
+  placed: 4
+  right: 3
+'72380':
+  placed: 2
+  right: 2
+'72747':
+  placed: 27
+  right: 27
+'72888':
+  placed: 28
+  right: 27
+'72945':
+  placed: 9
+  right: 9
+'73246':
+  placed: 1
+  right: 1
+'73249':
+  placed: 4
+  right: 3
+'73278':
+  placed: 41
+  right: 41
+'73630':
+  placed: 4
+  right: 3
+'73921':
+  placed: 10
+  right: 10
+'73946':
+  placed: 1
+  right: 1
+'74074':
+  placed: 34
+  right: 34
+'74148':
+  placed: 15
+  right: 14
+'74149':
+  placed: 13
+  right: 13
+'74178':
+  placed: 14
+  right: 13
+'74332':
+  placed: 58
+  right: 57
+'74517':
+  placed: 46
+  right: 46
+'74518':
+  placed: 13
+  right: 13
+'74523':
+  placed: 44
+  right: 44
+'74524':
+  placed: 87
+  right: 86
+'74525':
+  placed: 62
+  right: 62
+'74566':
+  placed: 2
+  right: 2
+'74574':
+  placed: 2
+  right: 0
+'74577':
+  placed: 8
+  right: 8
+'74604':
+  placed: 1
+  right: 0
+'74605':
+  placed: 8
+  right: 8
+'74607':
+  placed: 9
+  right: 9
+'74610':
+  placed: 1
+  right: 1
+'74678':
+  placed: 2
+  right: 2
+'74701':
+  placed: 8
+  right: 2
+'74708':
+  placed: 8
+  right: 8
+'74754':
+  placed: 4
+  right: 4
+'74774':
+  placed: 5
+  right: 5
+'74794':
+  placed: 26
+  right: 25
+'74800':
+  placed: 2
+  right: 2
+'74818':
+  placed: 5
+  right: 4
+'74819':
+  placed: 12
+  right: 12
+'74827':
+  placed: 30
+  right: 30
+'74860':
+  placed: 7
+  right: 7
+'74873':
+  placed: 11
+  right: 10
+'75133':
+  placed: 5
+  right: 5
+'75208':
+  placed: 14
+  right: 14
+'75211':
+  placed: 4
+  right: 3
+'75216':
+  placed: 26
+  right: 25
+'75218':
+  placed: 32
+  right: 29
+'75358':
+  placed: 17
+  right: 15
+'75360':
+  placed: 5
+  right: 5
+'75381':
+  placed: 2
+  right: 2
+'75406':
+  placed: 29
+  right: 29
+'75414':
+  placed: 14
+  right: 13
+'75415':
+  placed: 2
+  right: 2
+'75430':
+  placed: 5
+  right: 5
+'75440':
+  placed: 1
+  right: 1
+'75488':
+  placed: 36
+  right: 36
+'75513':
+  placed: 5
+  right: 5
+'75570':
+  placed: 14
+  right: 13
+'75593':
+  placed: 1
+  right: 1
+'75695':
+  placed: 3
+  right: 3
+'75763':
+  placed: 17
+  right: 17
+'75764':
+  placed: 47
+  right: 47
+'75821':
+  placed: 5
+  right: 5
+'75852':
+  placed: 4
+  right: 4
+'75962':
+  placed: 2
+  right: 2
+'76028':
+  placed: 30
+  right: 30
+'76213':
+  placed: 3
+  right: 3
+'76294':
+  placed: 4
+  right: 4
+'76295':
+  placed: 7
+  right: 7
+'76297':
+  placed: 40
+  right: 38
+'76298':
+  placed: 7
+  right: 7
+'76390':
+  placed: 3
+  right: 2
+'76397':
+  placed: 2
+  right: 2
+'76408':
+  placed: 3
+  right: 3
+'76466':
+  placed: 1
+  right: 1
+'76470':
+  placed: 102
+  right: 101
+'76471':
+  placed: 1
+  right: 1
+'76472':
+  placed: 55
+  right: 53
+'76473':
+  placed: 26
+  right: 26
+'76549':
+  placed: 2
+  right: 0
+'76954':
+  placed: 1
+  right: 1
+'76955':
+  placed: 1
+  right: 1
+'76957':
+  placed: 1
+  right: 1
+'76980':
+  placed: 7
+  right: 7
+'76981':
+  placed: 4
+  right: 4
+'76991':
+  placed: 1
+  right: 1
+'76992':
+  placed: 1
+  right: 1
+'77053':
+  placed: 7
+  right: 7
+'77096':
+  placed: 1
+  right: 1
+'77106':
+  placed: 69
+  right: 68
+'77110':
+  placed: 9
+  right: 8
+'77113':
+  placed: 3
+  right: 2
+'77130':
+  placed: 41
+  right: 40
+'77248':
+  placed: 21
+  right: 19
+'77250':
+  placed: 9
+  right: 9
+'77379':
+  placed: 1
+  right: 1
+'77382':
+  placed: 1
+  right: 1
+'77415':
+  placed: 2
+  right: 2
+'77416':
+  placed: 1
+  right: 1
+'77417':
+  placed: 21
+  right: 19
+'77443':
+  placed: 5
+  right: 5
+'77459':
+  placed: 34
+  right: 34
+'77461':
+  placed: 2
+  right: 2
+'77713':
+  placed: 2
+  right: 2
+'77739':
+  placed: 22
+  right: 22
+'77743':
+  placed: 18
+  right: 18
+'77785':
+  placed: 1
+  right: 1
+'77809':
+  placed: 3
+  right: 3
+'77991':
+  placed: 2
+  right: 2
+'78153':
+  placed: 8
+  right: 8
+'78154':
+  placed: 14
+  right: 13
+'78215':
+  placed: 1
+  right: 1
+'78250':
+  placed: 1
+  right: 1
+'78294':
+  placed: 3
+  right: 3
+'78379':
+  placed: 10
+  right: 10
+'78429':
+  placed: 5
+  right: 4
+'78659':
+  placed: 4
+  right: 2
+'78780':
+  placed: 35
+  right: 34
+'79024':
+  placed: 11
+  right: 9
+'79128':
+  placed: 3
+  right: 3
+'79133':
+  placed: 1
+  right: 1
+'79140':
+  placed: 1
+  right: 1
+'79443':
+  placed: 10
+  right: 10
+'79445':
+  placed: 1
+  right: 1
+'79515':
+  placed: 1
+  right: 1
+'79571':
+  placed: 22
+  right: 22
+'79576':
+  placed: 24
+  right: 24
+'79694':
+  placed: 1
+  right: 1
+'79814':
+  placed: 5
+  right: 5
+'79831':
+  placed: 112
+  right: 112
+'79878':
+  placed: 49
+  right: 49
+'79943':
+  placed: 38
+  right: 33
+'79946':
+  placed: 44
+  right: 41
+'79948':
+  placed: 42
+  right: 42
+'80024':
+  placed: 4
+  right: 3
+'80122':
+  placed: 2
+  right: 2
+'80124':
+  placed: 1
+  right: 1
+'80145':
+  placed: 1
+  right: 1
+'80186':
+  placed: 1
+  right: 1
+'80192':
+  placed: 7
+  right: 6
+'80239':
+  placed: 2
+  right: 2
+'80294':
+  placed: 7
+  right: 6
+'80415':
+  placed: 10
+  right: 10
+'80616':
+  placed: 4
+  right: 4
+'80643':
+  placed: 3
+  right: 3
+'80746':
+  placed: 2
+  right: 2
+'80756':
+  placed: 18
+  right: 18
+'80977':
+  placed: 1
+  right: 1
+'80986':
+  placed: 6
+  right: 6
+'81126':
+  placed: 2
+  right: 2
+'81135':
+  placed: 8
+  right: 7
+'81136':
+  placed: 17
+  right: 17
+'81282':
+  placed: 1
+  right: 1
+'81494':
+  placed: 2
+  right: 2
+'81515':
+  placed: 41
+  right: 41
+'81629':
+  placed: 2
+  right: 2
+'81661':
+  placed: 1
+  right: 1
+'81857':
+  placed: 18
+  right: 18
+'81932':
+  placed: 2
+  right: 2
+'82182':
+  placed: 1
+  right: 1

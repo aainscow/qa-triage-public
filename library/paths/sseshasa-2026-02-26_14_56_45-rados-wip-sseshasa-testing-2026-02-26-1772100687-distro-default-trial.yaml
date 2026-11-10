@@ -1,0 +1,9 @@
+run: sseshasa-2026-02-26_14:56:45-rados-wip-sseshasa-testing-2026-02-26-1772100687-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '72432':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_progress.TestProgress.test_osd_came_back
+      error: 'IndexError: list index out of range'

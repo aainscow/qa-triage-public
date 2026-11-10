@@ -1,0 +1,10 @@
+run: jayaprakash-2026-07-15_18:38:17-rados-wip-jaya-bs-testing2-15-07-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '366546':
+    tree: hung/command/host-drain-osd-not-scheduled
+    facts:
+      task: ''
+      hung_task: cephadm.shell
+      command: exit 1; fi
+      daemon: osd.5

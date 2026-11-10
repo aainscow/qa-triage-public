@@ -1,0 +1,17 @@
+run: yaarit-2026-02-05_03:52:11-rados-wip-rocky10-branch-of-the-day-2026-02-03-1770151121-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '35766':
+    tree: command/unexplained/prometheus-module-inactive
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:cc10e2c6fe2f33b89e7bf8a6a0ef84bfecaffab4-rockylinux-10 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '4'
+      host: trial070
+  '35903':
+    tree: command/unexplained/prometheus-module-inactive
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:cc10e2c6fe2f33b89e7bf8a6a0ef84bfecaffab4-rockylinux-10 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '4'
+      host: trial050

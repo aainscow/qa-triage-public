@@ -1,0 +1,26 @@
+run: skanta-2026-07-02_01:10:52-rados-wip-bharath2-testing-2026-07-01-2021-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '334834':
+    tree: infra/other/nvme-list-json-failed
+    facts:
+      task: nvme_loop
+  '335063':
+    tree: timeout/unexplained
+    facts:
+      task: cephadm
+      wait: wait_until_healthy
+  '335065':
+    tree: workunit/unexplained/test-repos-release-file-missing
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+  '335079':
+    tree: cluster-log/health/cephadm-failed-daemon-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_FAILED_DAEMON
+      message: 'Health check failed: 1 failed cephadm daemon(s) (CEPHADM_FAILED_DAEMON)'
+      reporter: mon.a

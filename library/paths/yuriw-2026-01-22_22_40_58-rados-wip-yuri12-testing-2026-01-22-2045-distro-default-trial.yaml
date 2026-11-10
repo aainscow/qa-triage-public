@@ -1,0 +1,13 @@
+run: yuriw-2026-01-22_22:40:58-rados-wip-yuri12-testing-2026-01-22-2045-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '13388':
+    tree: crash/signal/backtrace
+    facts:
+      task: rados
+      signal: Segmentation fault
+      frames: ErasureCodeJerasureCauchyGood::prepare() < ErasureCodeJerasure::init(std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::ostream*) < ErasureCodePluginJerasure::factory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char,
+        std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::shared_ptr<ceph::ErasureCodeInterface>*, std::ostream*)
+      daemon: osd.1
+      daemon_type: osd
+      host: trial060

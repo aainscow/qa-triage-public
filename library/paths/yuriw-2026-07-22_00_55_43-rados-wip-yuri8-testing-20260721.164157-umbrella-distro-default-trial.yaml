@@ -1,0 +1,8 @@
+run: yuriw-2026-07-22_00:55:43-rados-wip-yuri8-testing-20260721.164157-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '384113':
+    tree: timeout/unexplained/host-config-key-missing
+    facts:
+      task: cephadm
+      wait: MaxWhileTries

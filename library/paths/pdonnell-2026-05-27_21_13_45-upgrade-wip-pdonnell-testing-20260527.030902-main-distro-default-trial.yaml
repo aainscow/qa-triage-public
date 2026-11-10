@@ -1,0 +1,45 @@
+run: pdonnell-2026-05-27_21:13:45-upgrade-wip-pdonnell-testing-20260527.030902-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '243486':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid shell --fsid 41d37725-5a24-11f1-8e3d-d404e6e7d460 -- ceph
+      osd: osd.2
+  '243543':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid shell --fsid dceeb44f-5a2a-11f1-878c-d404e6e7d460 -- ceph
+      osd: osd.3
+  '243569':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: docker kill -s 1 ceph-75ea5b86-5a2e-11f1-832a-d404e6e7d460-osd-7
+      osd: osd.1
+  '243742':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid shell --fsid 2e4f060c-5a43-11f1-9dda-d404e6e7d460 -- ceph
+      osd: osd.7
+  '243773':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid shell --fsid a3240a0d-5a45-11f1-9172-d404e6e7d460 -- ceph
+      osd: osd.7
+  '243805':
+    tree: hung/command/osd-start-limit-hit
+    facts:
+      task: ''
+      hung_task: parallel
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid shell --fsid 1c0f06ed-5a49-11f1-9c8b-d404e6e7d460 -- ceph
+      osd: osd.1

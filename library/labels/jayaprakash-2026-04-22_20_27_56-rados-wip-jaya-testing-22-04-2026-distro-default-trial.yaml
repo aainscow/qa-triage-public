@@ -1,0 +1,10 @@
+run: jayaprakash-2026-04-22_20:27:56-rados-wip-jaya-testing-22-04-2026-distro-default-trial
+jobs:
+  '169667':
+    problem: '75778'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 2 jobs in 75778, this one among them, and no record names it yet: the tool placed them in no known problem. A record for it should place them all; others are skanta-2026-03-03_23:53:54-rados-wip-bharath6-testing-2026-03-03-1755-distro-default-trial/79587.'
+    summary: osd.0 and osd.2 asserted at osd_types.h:5250 (rmissing duplicate version after a PG merge, tracker 75778); no record existed, so the job was reported as new.
+    status: fail
+    description: rados/thrash-erasure-code-big/{ceph cluster/{12-osds} ec_optimizations/ec_optimizations_off mon_election/connectivity msgr-failures/osd-delay objectstore/{bluestore/{alloc$/{hybrid} base mem$/{normal-1} onode-segment$/{512K} write$/{v1/{compr$/{no$/{no}} v1}}}} rados recovery-overrides/{more-active-recovery} supported-random-distro/{ubuntu_latest} thrashers/mapgap thrashosds-health workloads/ec-rados-plugin=jerasure-k=4-m=2}
+    reason: The WatchDog barked due to Thrasher OSDThrasher threw exception timed out waiting for admin_socket to appear after osd.2 restart

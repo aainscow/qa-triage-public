@@ -1,0 +1,8 @@
+run: skanta-2026-11-04_12:54:04-rados-wip-bharath9-testing-20261104.043109-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '712417':
+    tree: timeout/unexplained/mons-not-in-monmap
+    facts:
+      task: cephadm
+      wait: MaxWhileTries

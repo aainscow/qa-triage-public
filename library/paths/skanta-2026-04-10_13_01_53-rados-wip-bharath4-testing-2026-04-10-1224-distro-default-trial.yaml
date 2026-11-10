@@ -1,0 +1,51 @@
+run: skanta-2026-04-10_13:01:53-rados-wip-bharath4-testing-2026-04-10-1224-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '143035':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial181:x (6265), after 304.076 seconds
+      reporter: mds.a
+  '143037':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:94948b1a3f047f5cb8d50cbd094429cf116d08a1 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial072
+  '143042':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:94948b1a3f047f5cb8d50cbd094429cf116d08a1 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial020
+  '143046':
+    tree: workunit/unexplained
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+  '143048':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '143049':
+    tree: workunit/unexplained/ceph-pg-query-hung/osd-killed-pg-query-no-timeout
+    facts:
+      workunit: misc/test-ceph-helpers.sh
+      task: workunit
+      script: misc/test-ceph-helpers.sh
+      command: ceph pg query
+  '143053':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a

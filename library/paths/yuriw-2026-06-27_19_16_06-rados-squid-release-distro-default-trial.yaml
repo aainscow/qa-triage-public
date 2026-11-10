@@ -1,0 +1,10 @@
+run: yuriw-2026-06-27_19:16:06-rados-squid-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '319803':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN Degraded data redundancy: 70/1059 objects degraded (6.610%), 8 pgs degraded, 14 pgs undersized'
+      reporter: mon.a

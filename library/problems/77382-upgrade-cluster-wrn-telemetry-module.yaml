@@ -1,0 +1,36 @@
+id: "77382"
+tracker: https://tracker.ceph.com/issues/77382
+title: "upgrade: cluster [WRN] telemetry module includes new collections; please re-opt-in to new collections with `ceph telemetry on`\" in cluster log"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/69973
+    branch: main
+    fixed_in: v21.3.0-1501-g44075f25c8
+tree: cluster-log/message
+facts:
+  message: '^telemetry module includes new collections; please re-opt-in to new collections with `ceph telemetry on`$'
+  reporter: '^mon\.'
+match:
+  reason: 'telemetry module includes new collections'
+confirm:
+  - file: teuthology.log
+    pattern: 'cluster \[WRN\] +telemetry module includes new collections; please re-opt-in to new collections'
+notes: |
+  The cause: in upgrade/telemetry-upgrade (and other upgrade suites), after the cephadm
+  upgrade the telemetry mgr module raises the TELEMETRY_CHANGED health check ('Telemetry
+  requires re-opt-in', see refresh_health_checks in src/pybind/mgr/telemetry/module.py)
+  until the user re-opts in. The mon logs the check's detail line as its own entry:
+  'cluster [WRN]     telemetry module includes new collections; please re-opt-in to new
+  collections with `ceph telemetry on`'. The suite's log-ignorelist has 'TELEMETRY_CHANGED' and
+  'Telemetry requires re-opt-in', neither of which is in the detail line, so the cephadm
+  teardown cluster-log scan ('Checking cluster log for badness...') fails the job even though
+  the warning is transient and the workunit re-opts in right after the upgrade. The cluster
+  is not broken. PR 69973 (qa/suites/upgrade: ignore expected telemetry warning) adds the
+  warning to the ignorelist of the telemetry-upgrade squid-x and tentacle-x suites; it is
+  not in builds before v21.3.0-1501-g44075f25c8 or the backports to tentacle and squid.
+examples:
+  - yuriw-2026-05-21_16:37:43-upgrade-tentacle-release-distro-default-trial/227122
+  - yuriw-2026-06-27_19:38:02-upgrade-squid-release-distro-default-trial/320478
+  - pdonnell-2026-06-13_16:37:37-upgrade-wip-pdonnell-testing-20260613.133611-tentacle-distro-default-trial/291652
+learned:
+- "2026-10-30 bob-analyst, from pdonnell-2026-06-13_16:37:37-upgrade-wip-pdonnell-testing-20260613.133611-tentacle-distro-default-trial/291652, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

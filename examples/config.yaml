@@ -1,0 +1,135 @@
+# Every qa_triage setting, with what it does. Copy the parts you need to
+# ~/.config/qa_triage/config.yaml (your own settings) or ./qa_triage.yaml (a
+# project's, read after yours), or name a file with --config or $QA_TRIAGE_CONFIG.
+# Command-line options override these, and --set key=value overrides any of them.
+# Paths are relative to this file. No setting holds a password or API key, only
+# the name of a file that does: see Keys in docs/guide.md for every key.
+
+# problems: ../library/problems   # the problem records
+# nodes: ../library/nodes         # the nodes the tree learned
+# labels: ../library/labels       # the settled jobs
+# db: git@github.com:aainscow/qa-triage.git#main:library
+                              # the shared library of what qa_triage learned, in place
+                              #   of the three above: a directory, or a git URL, which
+                              #   may end in #branch or #branch:directory; by default,
+                              #   unless the three above are set, library/ on the main
+                              #   branch of the repository qa_triage was cloned from;
+                              #   none for only the records in its own checkout
+archive: trial200:/a          # where the job files are: an ssh host that has the
+                              #   archive, and the directory of the runs there (it
+                              #   needs the sepia VPN); or https, to download them
+                              #   from qa-proxy into the cache, which is much
+                              #   slower; or another server's https URL of the runs
+cache: ~/.cache/qa_triage     # each run's output (runs/<run>), the archive's
+                              #   answers, and files downloaded with archive: https
+# git: /path/to/ceph          # the ceph clone to check out the source a job ran
+                              #   from, and for the fix check (default: the one
+                              #   you run it in, else the one qa_triage's
+                              #   checkout is in; none for no checkouts)
+worktrees: ~/.cache/qa_triage/worktrees   # the checkouts, one per commit
+deep: false                   # also run the records' deep checks
+at_once: 8                    # the most jobs of a run triaged at once
+corpus:                       # results.json of earlier triage runs, which every
+  - ~/.cache/qa_triage/runs/*/results.json   # change to the records is checked
+                              #   against (default: the runs next to --out)
+learn_max: 5                  # the most groups of jobs one run learns from
+lessons_at_once: 1            # how many lessons ask their analysts at once, or all
+judges_at_once: 4             # how many groups of jobs ask the judge at once, or all
+# learn_budget: 5             # the most one lesson may cost, in the analyst's unit
+approve: ask                  # before the records or the tree change: ask (ask), keep
+                              #   each that passes the checks (always), or keep each
+                              #   for qa_triage pending (hold)
+# approve_edits: ask          # before a change edits a record or a learned file, not
+                              #   only adds to the library: as approve, but never
+                              #   always unless this says so (default: ask, and with
+                              #   no one to ask, hold in pending/edits)
+# holdout: ~/qa_triage/holdout   # answered runs held out of learning, as qa_triage
+                              #   answers keeps them: no lesson from them, no memory
+                              #   of them, and a change may not place fewer of them
+                              #   rightly; score them for how the library does on
+                              #   runs it has not seen
+cited_lines: 10               # the most lines of the logs a result shows for a line
+                              #   the judge quotes, of those that have it
+# editor: lnav -c ':goto {line}' {file}   # what qa_triage open, and v in the review,
+                              #   open a file of the archive at a line with (default
+                              #   $VISUAL, $EDITOR or vim, given +{line} {file})
+edit_on: archive              # where: on the archive's host, over ssh, where the
+                              #   files are (archive), or here, on a copy (here)
+mouse: true                   # the review's full screen starts with the mouse on: the
+                              #   wheel scrolls, a click chooses, a drag copies
+judge_on_open: false          # the review asks the judge about every group not
+                              #   judged yet as it opens, without asking first
+tracker_project: rados        # where review's file key files tracker issues
+# tracker_key: ~/.redmine_key # a file with the tracker's API key, or a JSON object
+                              #   with it as tracker.ceph.com_token; $REDMINE_API_KEY
+                              #   comes first. The tracker is read with it, as you,
+                              #   and issues are filed with it
+# github_key: ~/.config/qa_triage/github_key # a file with a GitHub token, or a JSON
+                              #   object with it as github_token, for when gh is not
+                              #   signed in; $GITHUB_TOKEN comes first. PRs are read
+                              #   with it, and commented on when you ask
+
+# The judge looks at the jobs the tree and the records are unsure of: any of the
+# agents below, or a spec. Several agents are asked in turn, each only if the one
+# before is unsure: put the cheapest first. Leave it out for no AI. These agents
+# are examples of each kind, not a recommendation: qa_triage works with any of them.
+# judge: [gemma, haiku]
+
+# The analyst learns from the jobs the tree and the records could not decide, and
+# answers doubts: it reads the evidence files itself, and teaches the tree or
+# changes the records. A capable agent pays for itself, as it runs once per problem.
+# Leave it out, and a run has none; a review uses the judge's agent.
+# analyst: opus
+
+# The agents, by name. "provider" says what runs; the other settings depend on it.
+# Instead of a name, --judge and --analyst also take a spec, such as claude:haiku,
+# ollama:gemma4:26b, goose:anthropic/claude-sonnet-4-5 or openai:gpt-5@<url>.
+agents:
+  haiku:                      # Claude Code (claude -p); log in, or ANTHROPIC_API_KEY
+    provider: claude
+    model: haiku
+    budget_usd: 0.5           # the most one call may cost (default 2)
+  opus:
+    provider: claude
+    model: opus
+
+  bob:                        # Bob Shell, headless; needs BOB_API_KEY, or key_file
+    provider: bob
+    # max_turns: 30           # default 3 inline, 30 reading files, 50 for doubts
+    # key_file: ~/.config/qa_triage/bob_key   # if BOB_API_KEY is not set
+    # timeout: 1800           # seconds
+
+  goose-sonnet:               # goose, with any provider it supports
+    provider: goose
+    goose_provider: anthropic
+    model: claude-sonnet-4-5
+  goose-local:
+    provider: goose
+    goose_provider: ollama
+    model: gemma4:26b
+
+  gemma:                      # a model served by Ollama
+    provider: ollama
+    model: gemma4:26b         # check the tag with: ollama list
+    url: http://localhost:11434   # default $OLLAMA_HOST, or this
+    context: 32768            # Ollama cuts longer prompts; judges need about 16k
+    # options: {temperature: 0}   # more Ollama model options
+    # think: false            # a model that can think, such as Gemma 4, does so only
+                              # if this is true or a level (low, medium, high):
+                              # its thinking fills the context, and can fill all of it
+    # max_turns: 30           # rounds of tool calls when reading files
+
+  vllm:                       # anything with an OpenAI-compatible API
+    provider: openai
+    model: google/gemma-4-31b-it
+    url: http://localhost:8000/v1   # default $OPENAI_BASE_URL, or OpenAI's
+    api_key_env: ''           # no key; default OPENAI_API_KEY
+    # json_schema: true       # ask for the answer's JSON schema; turn off if the
+    #                         # server does not support response_format
+    # price: {input: 0.1, output: 0.4}   # dollars per million tokens, to report
+    #                         # the cost; these are made up
+
+  mine:                       # any command: the prompt on stdin, the JSON on stdout
+    provider: cmd
+    command: my-agent --json
+    # files: true             # it reads the evidence directory, its working directory

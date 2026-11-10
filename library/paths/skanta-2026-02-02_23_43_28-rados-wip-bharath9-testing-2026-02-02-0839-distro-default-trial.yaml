@@ -1,0 +1,9 @@
+run: skanta-2026-02-02_23:43:28-rados-wip-bharath9-testing-2026-02-02-0839-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '30415':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_module_selftest.TestModuleSelftest.test_selftest_command_spam
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'

@@ -1,0 +1,8 @@
+run: skanta-2026-04-26_13:06:36-rados-wip-bharath20-testing-2026-04-26-1249-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '178964':
+    tree: timeout/slow-ops/slow-ping-time
+    facts:
+      task: cephadm
+      wait: wait_until_healthy

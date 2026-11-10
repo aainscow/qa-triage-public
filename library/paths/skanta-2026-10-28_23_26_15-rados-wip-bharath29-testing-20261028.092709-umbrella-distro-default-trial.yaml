@@ -1,0 +1,8 @@
+run: skanta-2026-10-28_23:26:15-rados-wip-bharath29-testing-20261028.092709-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '688678':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery

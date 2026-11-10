@@ -1,0 +1,15 @@
+run: lflores-2026-07-08_14:24:37-rados-wip-lflores-testing-2026-07-07-1045-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '345958':
+    tree: infra/build
+    facts:
+      task: install
+  '346141':
+    tree: workunit/standalone/nvmeof-beacon-diff-count
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:285
+      script: mon/misc.sh

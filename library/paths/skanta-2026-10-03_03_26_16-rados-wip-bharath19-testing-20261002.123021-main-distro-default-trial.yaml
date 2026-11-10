@@ -1,0 +1,19 @@
+run: skanta-2026-10-03_03:26:16-rados-wip-bharath19-testing-20261002.123021-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '603334':
+    tree: infra/ansible
+    facts:
+      task: ansible.cephlab
+  '603525':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '603575':
+    tree: crash/client/ceph_test_rados/dispatch-delay-op-timeout
+    facts:
+      task: rados
+      program: ceph_test_rados
+      error: '-110'

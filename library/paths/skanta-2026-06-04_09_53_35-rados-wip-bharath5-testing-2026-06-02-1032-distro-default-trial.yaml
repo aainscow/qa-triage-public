@@ -1,0 +1,62 @@
+run: skanta-2026-06-04_09:53:35-rados-wip-bharath5-testing-2026-06-02-1032-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '263690':
+    tree: infra/build
+    facts:
+      task: install
+  '263707':
+    tree: cluster-log/health/cephadm-refresh-failed-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_REFRESH_FAILED
+      message: 'Health check failed: failed to probe daemons or devices (CEPHADM_REFRESH_FAILED)'
+      reporter: mon.trial122
+  '263720':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/pg_autoscaler.sh
+      task: workunit
+      script: mon/pg_autoscaler.sh
+      command: '[ 0 -eq 0 ]'
+      error: failed
+  '263736':
+    tree: test/unexplained/ssh-connection-lost
+    facts:
+      task: cephfs_test_runner
+      host: trial169
+  '263739':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: cephadm.shell
+      command: ceph cephadm osd activate $HOST; while ! ceph orch ps | grep $OSD | grep running ; do sleep 5 ; done
+  '263741':
+    tree: infra/packages/epel-mirror-404
+    facts:
+      task: kernel
+  '263770':
+    tree: command/error/zap-device-missing
+    facts:
+      task: cephadm
+      error: 'RuntimeError: Failed command: /usr/bin/docker run --rm --ipc=host --stop-signal=SIGTERM --ulimit nofile=1048576 --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CO...'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:2ab72e59e1791d7fc11a15048f0a5382d932de15 ceph-volume -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial071
+  '263779':
+    tree: cluster-log/health/cephadm-refresh-failed-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_REFRESH_FAILED
+      message: 'Health check failed: failed to probe daemons or devices (CEPHADM_REFRESH_FAILED)'
+      reporter: mon.trial165
+  '263893':
+    tree: infra/packages/epel-mirror-404
+    facts:
+      task: kernel
+  '263901':
+    tree: infra/packages/epel-mirror-404
+    facts:
+      task: kernel

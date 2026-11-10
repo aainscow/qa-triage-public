@@ -1,0 +1,25 @@
+run: nmordech-2026-02-04_08:13:49-rados-wip-rocky10-branch-of-the-day-2026-02-03-1770151121-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '33886':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '33887':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '33924':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.1s0 3:80057af5:::benchmark_data_trial184_39891_object3969:headdata digests are inconsistent
+      reporter: osd.6
+  '33967':
+    tree: command/unexplained/prometheus-module-inactive
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:cc10e2c6fe2f33b89e7bf8a6a0ef84bfecaffab4-rockylinux-10 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '4'
+      host: trial033

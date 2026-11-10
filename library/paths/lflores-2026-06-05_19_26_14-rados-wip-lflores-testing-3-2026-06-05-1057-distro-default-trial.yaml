@@ -1,0 +1,11 @@
+run: lflores-2026-06-05_19:26:14-rados-wip-lflores-testing-3-2026-06-05-1057-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '269103':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/pg_autoscaler.sh
+      task: workunit
+      script: mon/pg_autoscaler.sh
+      command: '[ 0 -eq 0 ]'
+      error: failed

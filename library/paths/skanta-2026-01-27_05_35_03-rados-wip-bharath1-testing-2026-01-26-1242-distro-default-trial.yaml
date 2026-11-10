@@ -1,0 +1,30 @@
+run: skanta-2026-01-27_05:35:03-rados-wip-bharath1-testing-2026-01-26-1242-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '19744':
+    tree: workunit/unexplained/dencoder-decode-failure
+    facts:
+      workunit: dencoder/test-dencoder.sh
+      task: workunit
+      script: dencoder/test-dencoder.sh
+  '19748':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.6s0 3:6001f4cd:::benchmark_data_trial110_16730_object73634:headdata digests are inconsistent
+      reporter: osd.15
+  '19757':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.6s0 3:67d105f6:::trial12328504-17:1adata digests are inconsistent
+      reporter: osd.14
+  '19767':
+    tree: command/unexplained/prometheus-module-inactive
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:5b1ffb60e129610ac79ba9e1d53d0b78c875eb4a shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '4'
+      host: trial030

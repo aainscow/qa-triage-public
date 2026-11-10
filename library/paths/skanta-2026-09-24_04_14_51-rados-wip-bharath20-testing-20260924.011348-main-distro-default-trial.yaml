@@ -1,0 +1,12 @@
+run: skanta-2026-09-24_04:14:51-rados-wip-bharath20-testing-20260924.011348-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '577674':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '577799':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab

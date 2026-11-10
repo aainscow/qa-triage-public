@@ -1,0 +1,41 @@
+run: yuriw-2026-10-20_19:35:34-rados-wip-yuri13-testing-20261020.164521-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '662399':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: cephadm.shell
+      command: ceph cephadm osd activate $HOST; while ! ceph orch ps --daemon_type osd | grep $OSD | grep running ; do sleep 5 ; done
+  '662534':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: ERR
+      check: MDS_ALL_DOWN
+      message: 'Health check failed: 1 filesystem is offline (MDS_ALL_DOWN)'
+      reporter: mon.a
+  '662682':
+    tree: command/error
+    facts:
+      task: cephadm
+      error: 'RuntimeError: Failed command: /usr/bin/docker run --rm --ipc=host --stop-signal=SIGTERM --ulimit nofile=1048576 --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CO...'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid ceph-volume -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial034
+  '663033':
+    tree: command/error
+    facts:
+      task: cephadm
+      error: 'RuntimeError: Failed command: /usr/bin/docker run --rm --ipc=host --stop-signal=SIGTERM --ulimit nofile=1048576 --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CO...'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:squid ceph-volume -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial038
+  '663059':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:288
+      script: mon/misc.sh

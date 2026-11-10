@@ -1,0 +1,25 @@
+run: lflores-2026-04-17_22:03:40-rados-wip-lflores-testing-2-2026-04-08-1424-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '159086':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '159143':
+    tree: cluster-log/message/backfill-reject-injected
+    facts:
+      task: ''
+      level: WRN
+      message: pg 3.0 is active+remapped+backfill_toofull, acting [11,9,6]
+      reporter: mon.a
+  '159228':
+    tree: cluster-log/health/mon-restart-reconnect-delay
+    facts:
+      task: ''
+      level: WRN
+      check: MON_NETSPLIT
+      message: 'Health check failed: 1 network partition detected (MON_NETSPLIT)'
+      reporter: mon.l
+      first: r
+      second: t

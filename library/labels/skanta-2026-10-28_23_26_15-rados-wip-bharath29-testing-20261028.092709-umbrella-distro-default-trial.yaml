@@ -1,0 +1,10 @@
+run: skanta-2026-10-28_23:26:15-rados-wip-bharath29-testing-20261028.092709-umbrella-distro-default-trial
+jobs:
+  '688678':
+    problem: '75216'
+    by: a reviewer
+    why: Its https://tracker.ceph.com/issues/75216
+    summary: Host-thrashed EC isa k=2 m=1 pool never recovered (wait_for_recovery timeout) with thrashers/default_host; this is tracker 75216, which the record's match did not admit.
+    status: fail
+    description: rados/thrash-erasure-code-isa/{arch/x86_64 ceph clusters/{fixed-4} ec_optimizations/ec_optimizations_on mon_election/connectivity msgr-failures/few objectstore/{bluestore/{alloc$/{avl} base mem$/{normal-1} onode-segment$/{1M} write$/{v2/{compr$/{no$/{no}} v2}}}} rados recovery-overrides/{more-async-recovery} supported-random-distro/{centos_9.stream} thrashers/default_host thrashosds-health workloads/ec-rados-plugin=isa-k=2-m=1}
+    reason: 'The WatchDog barked due to Thrasher OSDThrasher threw exception wait_for_recovery: failed before timeout expired'

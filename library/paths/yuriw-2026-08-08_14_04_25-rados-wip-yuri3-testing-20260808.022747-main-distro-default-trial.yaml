@@ -1,0 +1,5 @@
+run: yuriw-2026-08-08_14:04:25-rados-wip-yuri3-testing-20260808.022747-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '446707':
+    tree: other/osd-recovery-incomplete-assert

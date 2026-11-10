@@ -1,0 +1,15 @@
+run: nmordech-2026-02-17_05:46:21-rados-wip-rocky10-branch-of-the-day-2026-02-13-1771001916-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '51710':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_prometheus.TestPrometheus.test_urls
+      error: 'AssertionError: Lists differ: [''/metrics''] != []'
+  '51932':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_prometheus.TestPrometheus.test_urls
+      error: 'AssertionError: Lists differ: [''/metrics''] != []'

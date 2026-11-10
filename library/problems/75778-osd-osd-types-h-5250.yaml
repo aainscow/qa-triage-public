@@ -1,0 +1,38 @@
+id: "75778"
+tracker: https://tracker.ceph.com/issues/75778
+title: "osd/osd_types.h: 5250: FAILED ceph_assert(it->second == oid)"
+kind: product
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/68284
+    branch: main
+    fixed_in: v21.0.0-1085-g2a23682b08
+tree: crash/assert/specific
+facts:
+  source: '^osd/osd_types\.h$'
+  message: 'ceph_assert\(it->second == oid\)'
+  function: 'pg_missing_set<TrackChanges>::add'
+notes: |
+  An OSD hits FAILED ceph_assert(it->second == oid) at osd/osd_types.h:5250 in
+  pg_missing_set<TrackChanges>::add(), called from
+  PrimaryLogPG::prep_backfill_object_push <- recover_backfill <- start_recovery_ops.
+  Other OSDs rebuilding the same missing list crash the same way, so the job then
+  fails on a symptom such as the watchdog barking because an OSD would not restart
+  (timed out waiting for admin_socket to appear).
+  The cause (Alex Ainscow, tracker): rmissing, the reverse index of the missing
+  list, was made a map keyed by eversion_t in PR 66799, with an assert that a
+  duplicate key belongs to the same object. After a PG merge two different objects
+  of the merged PG can carry the same version (each source PG generated it
+  independently); the PG log discards its entries on merge, but backfill builds
+  the missing list from object infos, so two objects with one version reach
+  add(). The old behaviour was silently corrupting rmissing; the new assert
+  detects it. Seen in rados/thrash and rados/thrash-erasure-code-big jobs whose
+  thrasher shrinks and grows pools (PG merges) and kills OSDs.
+  Fixed by PR 68284 (osd: Allow multiple objects with same version in missing
+  list), which makes rmissing a multimap; merged as 2a23682b08, tracker Fixed In
+  v21.0.0-1085-g2a23682b08 (backport to tentacle #76385). Builds before that
+  that contain PR 66799 hit it.
+examples:
+  - jayaprakash-2026-04-22_20:27:56-rados-wip-jaya-testing-22-04-2026-distro-default-trial/169667
+  - skanta-2026-03-03_23:53:54-rados-wip-bharath6-testing-2026-03-03-1755-distro-default-trial/79587
+learned:
+- "2026-10-30 bob-analyst, from jayaprakash-2026-04-22_20:27:56-rados-wip-jaya-testing-22-04-2026-distro-default-trial/169667, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

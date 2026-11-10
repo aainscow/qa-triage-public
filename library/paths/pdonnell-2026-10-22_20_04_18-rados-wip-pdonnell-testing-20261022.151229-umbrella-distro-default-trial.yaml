@@ -1,0 +1,11 @@
+run: pdonnell-2026-10-22_20:04:18-rados-wip-pdonnell-testing-20261022.151229-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '668466':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: ERR
+      check: MDS_ALL_DOWN
+      message: 'Health check failed: 1 filesystem is offline (MDS_ALL_DOWN)'
+      reporter: mon.a

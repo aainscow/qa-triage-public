@@ -1,0 +1,12 @@
+run: jenkins-build-2026-06-25_06:03:13-smoke-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '314801':
+    tree: workunit/gtest/external-error-inject
+    facts:
+      workunit: rados/test.sh
+      task: workunit
+      test: OmapTest.LargeOmapRecovery/Replicated,
+      script: rados/test.sh
+      injection: thrashosds
+      check: wait_for_upmap

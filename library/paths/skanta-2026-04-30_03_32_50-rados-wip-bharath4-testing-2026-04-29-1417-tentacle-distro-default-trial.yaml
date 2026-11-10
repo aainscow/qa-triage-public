@@ -1,0 +1,8 @@
+run: skanta-2026-04-30_03:32:50-rados-wip-bharath4-testing-2026-04-29-1417-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '186841':
+    tree: crash/client/unexplained/dispatch-delay-op-timeout
+    facts:
+      task: rados
+      program: ceph_test_rados

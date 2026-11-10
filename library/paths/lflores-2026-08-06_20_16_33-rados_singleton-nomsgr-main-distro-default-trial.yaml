@@ -1,0 +1,14 @@
+run: lflores-2026-08-06_20:16:33-rados:singleton-nomsgr-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '438132':
+    tree: crash/assert/specific
+    facts:
+      task: ceph
+      source: mgr/DaemonServer.cc
+      line: '282'
+      message: FAILED ceph_assert(r == 0)
+      function: int DaemonServer::init(uint64_t, entity_addrvec_t)
+      daemon: mgr.x
+      daemon_type: mgr
+      host: trial191

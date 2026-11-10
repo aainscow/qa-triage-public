@@ -1,0 +1,18 @@
+run: skanta-2026-10-12_16:15:49-rados-wip-bharath5-testing-20261012.095720-main-distro-default-trial
+jobs:
+  '628557':
+    problem: '68649'
+    by: qa_triage (bob+files)
+    why: 'No record placed this job, and the tree explained it conclusively, so the tool calls it new: BlueStore did not handle error 2 (No such file or directory) in OP_SETATTRS of 1#3:0d9e85f4:::trial14933060-992:99#, from ECLegacy::ECBackendL::handle_sub_write(pg_shard_t, boost::intrusive_ptr<OpRequest>, ECSubWrite&, ZTracer::Trace const&, ECListener&). Nobody has looked for its cause. Find it, beyond the symptom where the tree stopped: read the logs around the failure, the daemons'' logs and the source. Search the tracker: if an issue describes this failure, add a record for it. If none does, leave "problem" null, and say in the summary what failed and why, for a person to file. If the explanation stops at a symptom, teach the tree the cause, with a node at "crash/abort/bluestore-error/error-2": it is asked after the tree''s answer, and answers done with the cause, or unknown to leave the explanation as it is.'
+    summary: osd.2 removed clone :99 as an unrollbackable divergent entry (so it was missing), then received a real EC sub-write for it from osd.12 and aborted on BlueStore ENOENT. This is the 68649 chain, seen again in a build that already has PR 71525's fix.
+    status: fail
+    description: rados/thrash-erasure-code-overwrites/{bluestore-bitmap ceph clusters/{fixed-4} ec_optimizations/ec_optimizations_off fast/fast mon_election/classic msgr-failures/osd-delay rados recovery-overrides/{more-async-partial-recovery} supported-random-distro/{rocky_10} thrashers/fastread thrashosds-health workloads/ec-small-objects-fast-read-overwrites}
+    reason: 'Command failed on trial056 with status 124: ''sudo adjust-ulimits ceph-coverage /home/ubuntu/cephtest/archive/coverage timeout 120 ceph --cluster ceph osd dump --format=json'''
+  '628620':
+    problem: null
+    by: qa_triage (bob+files)
+    why: 'No record placed this job, and the tree explained it conclusively, so the tool calls it new: rocksdb ThreadPoolImpl BGItem deque allocated by RocksDBStore::CompactThread during CompactRange is not freed at monitor exit; needs a valgrind suppression in qa/valgrind.supp. Nobody has looked for its cause. Find it, beyond the symptom where the tree stopped: read the logs around the failure, the daemons'' logs and the source. Search the tracker: if an issue describes this failure, add a record for it. If none does, leave "problem" null, and say in the summary what failed and why, for a person to file. If the explanation stops at a symptom, teach the tree the cause, with a node at "valgrind/Leak_StillReachable/rocksdb-compact-thread-bgitem": it is asked after the tree''s answer, and answers done with the cause, or unknown to leave the explanation as it is.'
+    summary: 'Teardown failed on a Leak_StillReachable in ceph-mon: a rocksdb thread-pool queue allocated by the compact thread, which qa/valgrind.supp does not suppress. It was hidden behind the OpenSSL leak until PR #71606 suppressed that one. No tracker issue exists; PR 72698 (open) proposes the suppression, so a person should file one.'
+    status: fail
+    description: rados/verify/{ceph clusters/fixed-4 d-thrash/none mon_election/connectivity msgr-failures/few msgr/async-v1only objectstore/{bluestore/{alloc$/{hybrid} base mem$/{normal-1} onode-segment$/{1M} write$/{random/{compr$/{no$/{no}} random}}}} rados read-affinity/balance rpm_latest tasks/rados_api_tests validater/valgrind}
+    reason: 'valgrind error: Leak_StillReachable operator new[](unsigned long) allocate allocate'

@@ -1,0 +1,11 @@
+run: skanta-2026-11-03_06:27:24-rados-wip-bharath11-testing-20261028.083425-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '707131':
+    tree: workunit/set-e/cephadm-release-mismatch
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      command: /usr/sbin/cephadm --image quay.ceph.io/ceph-ci/ceph:main bootstrap --mon-id a --mgr-id x
+      error: 'Error: Container release vampire != cephadm release umbrella; please use matching version of cephadm (pass --allow-mismatched-release to continue anyway)'

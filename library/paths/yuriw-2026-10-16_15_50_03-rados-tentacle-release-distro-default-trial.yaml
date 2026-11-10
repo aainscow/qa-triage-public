@@ -1,0 +1,11 @@
+run: yuriw-2026-10-16_15:50:03-rados-tentacle-release-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '646860':
+    tree: workunit/standalone
+    facts:
+      workunit: osd/osd-bluefs-volume-ops.sh
+      task: workunit
+      test: TEST_bluestore_expand_with_allocmap_recovery
+      check: osd-bluefs-volume-ops.sh:504
+      script: osd/osd-bluefs-volume-ops.sh

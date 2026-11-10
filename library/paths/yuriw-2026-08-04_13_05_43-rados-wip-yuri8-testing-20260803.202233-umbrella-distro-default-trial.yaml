@@ -1,0 +1,10 @@
+run: yuriw-2026-08-04_13:05:43-rados-wip-yuri8-testing-20260803.202233-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '429256':
+    tree: hung/command/apt-update-stalled
+    facts:
+      task: ''
+      hung_task: kernel
+      command: echo ttyS1 | tee /sys/module/kgdboc/parameters/kgdboc
+      stalled_host: trial090

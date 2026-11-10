@@ -1,0 +1,10 @@
+run: yuriw-2026-10-22_20:33:51-rados-wip-yuri12-testing-20261022.154156-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '668927':
+    tree: command/unexplained/crush-location-json-mismatch
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:7a05cd7b75e1a4fb26f340e56e8afb0663f7aa23 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '1'
+      host: trial029

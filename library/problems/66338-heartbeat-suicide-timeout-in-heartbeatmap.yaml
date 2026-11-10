@@ -1,0 +1,21 @@
+id: "66338"
+tracker: https://tracker.ceph.com/issues/66338
+title: "Heartbeat suicide timeout in HeartbeatMap::_check"
+kind: test
+tree: crash/signal/backtrace
+facts:
+  frames: 'HeartbeatMap::_check'
+match:
+  description: 'validater/valgrind'
+confirm:
+  - file: remote/*/log/ceph-osd.*.log.gz
+    pattern: "heartbeat_map reset_timeout 'OSD::osd_op_tp thread .*' had suicide timed out after"
+notes: |
+  Under valgrind the OSD is starved: its osd_op_tp thread does not reset its
+  internal heartbeat within the 150s suicide timeout, and HeartbeatMap::_check
+  aborts the OSD. PR 54492 raised the timeout for the valgrind suite but the
+  issue says 150s is still not enough. Not a product assert in the data path.
+examples:
+  - aainscow-2026-10-30_16:04:42-rados-wip-aainscow-stretch-poolmig-noqa-261030-distro-default-smithi/696072
+learned:
+- "2026-11-01 Claude (sonnet), from aainscow-2026-10-30_16:04:42-rados-wip-aainscow-stretch-poolmig-noqa-261030-distro-default-smithi/696072, as qa_triage (claude:sonnet+files) said"

@@ -1,0 +1,11 @@
+run: skanta-2026-09-06_15:27:24-rados-wip-bharath4-testing-20260906.123456-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '541271':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: WRN
+      check: POOL_NEARFULL
+      message: 'Health check failed: 2 pool(s) nearfull (POOL_NEARFULL)'
+      reporter: mon.a

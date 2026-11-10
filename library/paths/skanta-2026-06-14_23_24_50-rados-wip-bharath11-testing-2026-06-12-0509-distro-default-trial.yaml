@@ -1,0 +1,17 @@
+run: skanta-2026-06-14_23:24:50-rados-wip-bharath11-testing-2026-06-12-0509-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '293706':
+    tree: infra/other/nvme-list-json-failed
+    facts:
+      task: nvme_loop
+  '293708':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '293728':
+    tree: other/injected-leak-suppressed
+    facts:
+      daemon: osd.0

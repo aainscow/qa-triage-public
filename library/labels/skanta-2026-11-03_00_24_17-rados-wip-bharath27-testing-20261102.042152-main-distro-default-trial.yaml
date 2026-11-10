@@ -1,0 +1,10 @@
+run: skanta-2026-11-03_00:24:17-rados-wip-bharath27-testing-20261102.042152-main-distro-default-trial
+jobs:
+  '705808':
+    problem: '48896'
+    by: a reviewer
+    why: ''
+    summary: '"FAILED ceph_assert(osd_weight.count(oid))" in osd/OSDMap.cc names the check that failed (teuthology.log:554184)'
+    status: fail
+    description: rados/thrash-erasure-code-big/{ceph cluster/{12-osds} erasure-code/{ec_optimizations/off/{off profile/lrc-k=4-m=2-l=3} fast/normal} mon_election/connectivity msgr-failures/fastclose objectstore/{bluestore/{alloc$/{stupid} base mem$/{normal-1} onode-segment$/{512K-onoff} write$/{v2/{compr$/{no$/{no}} v2}}}} rados recovery-overrides/{default} supported-random-distro/{ubuntu_24.04} thrashers/morepggrow thrashosds-health workloads/rados-default}
+    reason: 'The WatchDog barked due to Thrasher OSDThrasher threw exception Command failed on trial113 with status 124: ''sudo adjust-ulimits ceph-coverage /home/ubuntu/cephtest/archive/coverage timeout 120 ceph --cluster ceph pg dump --format=json'''

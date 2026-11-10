@@ -1,0 +1,36 @@
+run: yuriw-2026-05-15_14:18:16-rados-wip-yuri-testing-2026-05-14-1648-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '213348':
+    tree: crash/assert/specific
+    facts:
+      task: ''
+      source: osd/PrimaryLogPG.cc
+      line: '15792'
+      message: FAILED ceph_assert(is_primary())
+      function: int PrimaryLogPG::rep_repair_primary_object(const hobject_t&, OpContext*)
+      daemon: osd.0
+      daemon_type: osd
+      host: trial077
+  '213362':
+    tree: command/error
+    facts:
+      task: watch_notify_same_primary
+      error: 'error 110: (110) Connection timed out'
+      command: rados -p unique_pool_0 notify foo-0 notify1
+      status: '1'
+      host: trial021
+  '213373':
+    tree: command/error
+    facts:
+      task: scrub_test
+      error: 'error 2: (2) No such file or directory'
+      command: rados list-inconsistent-obj 2.5
+      status: '1'
+      host: trial078
+  '213609':
+    tree: workunit/unexplained/ganesha-nfsv3-udp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh

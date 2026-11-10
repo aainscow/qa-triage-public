@@ -1,0 +1,146 @@
+run: skanta-2026-03-25_22:46:45-rados-wip-bharath8-testing-2026-03-25-1848-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '122160':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_disabled_module
+      error: 'tasks.ceph_test_case.TestTimeoutError: Timed out after 90s and 0 retries'
+  '122161':
+    tree: infra/build
+    facts:
+      task: install
+  '122162':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a
+  '122164':
+    tree: crash/client/unnamed/ceph-kvstore-tool-close-db-segfault
+    facts:
+      task: workunit
+      program: ceph-kvstore-tool
+      signal: Segmentation fault
+      function: RocksDBStore::get_wholespace_iterator
+  '122165':
+    tree: workunit/unexplained/ceph-post-file-drop-unreachable
+    facts:
+      workunit: post-file.sh
+      task: workunit
+      script: post-file.sh
+  '122167':
+    tree: cluster-log/health/cephadm-failed-daemon-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_FAILED_DAEMON
+      message: 'Health check failed: 1 failed cephadm daemon(s) (CEPHADM_FAILED_DAEMON)'
+      reporter: mon.a
+  '122168':
+    tree: valgrind/Leak_StillReachable/rocksdb-error-handler
+    facts:
+      task: workunit
+      kind: Leak_StillReachable
+      frames: operator new[](unsigned long) UnknownInlinedFun _GLOBAL__sub_I_error_handler.cc.lto_priv.0
+      daemons: ''
+  '122169':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:65048e6102d3c68d0193d06ecddcda822ac7d743 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial130
+  '122172':
+    tree: hung/command/dispatch-delay-queued-for-pg
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph --admin-daemon /var/run/ceph/ceph-osd.9.asok dump_ops_in_flight
+  '122173':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:65048e6102d3c68d0193d06ecddcda822ac7d743 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial116
+  '122175':
+    tree: infra/other/rocksdb-error-handler
+    facts:
+      task: pexec
+  '122177':
+    tree: workunit/unexplained/ceph-pg-query-hung/osd-killed-pg-query-no-timeout
+    facts:
+      workunit: misc/test-ceph-helpers.sh
+      task: workunit
+      script: misc/test-ceph-helpers.sh
+      command: ceph pg query
+  '122180':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: WRN
+      message: 'Health detail: HEALTH_WARN 2 pool(s) full'
+      reporter: mon.a
+  '122181':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:65048e6102d3c68d0193d06ecddcda822ac7d743 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial056
+  '122185':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:284
+      script: mon/misc.sh
+  '122186':
+    tree: crash/assert/specific
+    facts:
+      task: rados
+      source: osd/PrimaryLogPG.cc
+      line: '433'
+      message: FAILED ceph_assert(is_primary())
+      function: virtual void PrimaryLogPG::on_local_recover(const hobject_t&, const ObjectRecoveryInfo&, ObjectContextRef, bool, ObjectStore::Transaction*)
+      daemon: osd.4
+      daemon_type: osd
+      host: trial107
+  '122188':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:65048e6102d3c68d0193d06ecddcda822ac7d743 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial036
+  '122189':
+    tree: valgrind/Leak_StillReachable/rocksdb-error-handler
+    facts:
+      task: mon_recovery
+      kind: Leak_StillReachable
+      frames: operator new[](unsigned long) UnknownInlinedFun _GLOBAL__sub_I_error_handler.cc.lto_priv.0
+      daemons: ''
+  '122190':
+    tree: workunit/set-e
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release 17.2.6
+      error: 'Traceback (most recent call last):'
+  '122197':
+    tree: command/error
+    facts:
+      task: cephadm.shell
+      error: 'RuntimeError: Failed command: /usr/bin/podman run --rm --ipc=host --stop-signal=SIGTERM --net=host --entrypoint /usr/sbin/ceph-volume --privileged --group-add=disk --init -e CONTAINER_IMAGE=quay.ceph....'
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:65048e6102d3c68d0193d06ecddcda822ac7d743 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '22'
+      host: trial021

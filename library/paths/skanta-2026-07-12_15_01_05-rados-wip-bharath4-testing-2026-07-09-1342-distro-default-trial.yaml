@@ -1,0 +1,28 @@
+run: skanta-2026-07-12_15:01:05-rados-wip-bharath4-testing-2026-07-09-1342-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '358456':
+    tree: workunit/unexplained/test-repos-gpg-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+  '358458':
+    tree: cluster-log/message/pg-not-ready-to-merge
+    facts:
+      task: ''
+      level: WRN
+      message: osd.10 reported pg 3.58 not ready to merge; backing off pg_num decrease for pool 'unique_pool_0'
+      reporter: mon.a
+  '358474':
+    tree: infra/ssh
+    facts:
+      task: workunit
+  '358483':
+    tree: workunit/set-e/test-repos-add-repo-gpg-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release quincy
+      error: 'failed to fetch GPG repo key from https://download.ceph.com/keys/release.gpg: HTTP Error 404: Not Found'

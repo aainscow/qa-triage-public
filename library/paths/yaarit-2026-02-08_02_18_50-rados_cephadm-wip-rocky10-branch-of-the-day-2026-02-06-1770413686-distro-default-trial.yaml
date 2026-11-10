@@ -1,0 +1,11 @@
+run: yaarit-2026-02-08_02:18:50-rados:cephadm-wip-rocky10-branch-of-the-day-2026-02-06-1770413686-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '39771':
+    tree: cluster-log/health
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_APPLY_SPEC_FAIL
+      message: 'Health check failed: Failed to apply 1 service(s): osd.default (CEPHADM_APPLY_SPEC_FAIL)'
+      reporter: mon.a

@@ -1,0 +1,19 @@
+run: yuriw-2026-07-28_17:11:12-rados-wip-yuri3-testing-20260728.135610-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '406311':
+    tree: workunit/set-e/test-repos-add-repo-shaman-http-error
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --dev main
+      error: 'Traceback (most recent call last):'
+  '406329':
+    tree: crash/client/unnamed/ceph-bluestore-tool-avl-assert
+    facts:
+      task: workunit
+  '406415':
+    tree: infra/other/nvme-list-json-failed
+    facts:
+      task: nvme_loop

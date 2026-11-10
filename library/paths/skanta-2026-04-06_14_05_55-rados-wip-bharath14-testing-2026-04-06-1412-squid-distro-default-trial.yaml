@@ -1,0 +1,15 @@
+run: skanta-2026-04-06_14:05:55-rados-wip-bharath14-testing-2026-04-06-1412-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '133531':
+    tree: cluster-log/other/cephadm-pull-manifest-unknown
+    facts:
+      task: cephadm
+  '133548':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/mon-cluster-log.sh
+      task: workunit
+      test: TEST_journald_cluster_log_level
+      check: mon-cluster-log.sh:206
+      script: mon/mon-cluster-log.sh

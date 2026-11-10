@@ -1,0 +1,26 @@
+run: lflores-2026-01-23_19:07:45-rados-wip-rocky10-branch-of-the-day-2026-01-23-1769128778-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '15315':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.3s0 3:c001eb03:::benchmark_data_trial174_17425_object4071:headdata digests are inconsistent
+      reporter: osd.10
+  '15326':
+    tree: cluster-log/health/radosbench-populate-overfill
+    facts:
+      task: ''
+      level: WRN
+      check: POOL_NEARFULL
+      message: 'Health check failed: 3 pool(s) nearfull (POOL_NEARFULL)'
+      reporter: mon.a
+      pool: rados-bench-cbt
+  '15389':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 'Unhandled exception from module ''dashboard'' while running on mgr.y: Timeout(''Port 8765 not free on 10.20.193.16.'')'
+      reporter: mgr.y

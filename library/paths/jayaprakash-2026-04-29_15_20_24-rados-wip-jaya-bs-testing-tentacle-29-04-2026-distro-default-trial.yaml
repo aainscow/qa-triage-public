@@ -1,0 +1,8 @@
+run: jayaprakash-2026-04-29_15:20:24-rados-wip-jaya-bs-testing-tentacle-29-04-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '185489':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries

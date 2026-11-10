@@ -1,0 +1,16 @@
+run: jayaprakash-2026-04-20_13:52:18-rados-wip-jaya-bs-testing-20-04-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '164518':
+    tree: workunit/set-e/test-repos-add-repo-metadata-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release quincy
+      error: 'Traceback (most recent call last):'
+  '164524':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries

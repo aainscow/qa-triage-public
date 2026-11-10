@@ -1,0 +1,90 @@
+id: "75216"
+tracker: https://tracker.ceph.com/issues/75216
+title: "rados/thrash-erasure-code-isa: PGs did not recover in time"
+kind: test
+tree:
+  - timeout/slow-ops/no-recovery-progress
+  - timeout/unexplained/thrasher-wait-for-clean-pg-down
+facts:
+  wait: '^wait_for_(recovery|clean)$'
+match:
+  description: 'pggrow_host|careful_host|thrashers/mapgap|thrash-erasure-code-isa/.*thrashers/default_host'
+  reason: 'wait_for_(recovery|clean): failed before timeout expired'
+confirm:
+  - file: teuthology.log
+    pattern: 'thrash_hosts: true|chance_test_map_discontinuity: \d+'
+  - file: teuthology.log
+    pattern: 'chance_pgnum_grow: \d+'
+notes: |
+  The pggrow_host thrasher grows pg_num/pgp_num of pools and thrashes entire hosts
+  (thrash_hosts: true) with min_in: 2, so most OSDs can be simultaneously out on a
+  fixed-4 cluster. thrashosds also sets mgr_debug_aggressive_pg_num_changes=true by
+  default (qa/tasks/thrashosds.py), so the mgr adjust_pgs() throttling that would defer
+  splits while inactive/degraded/misplaced ratios are high is bypassed. The cluster is
+  overloaded by the PG growth: the pgmap grows from 35 to 200+ PGs, most of them sit in
+  peering, remapped+peering or activating+remapped for minutes, and ops sit 'queued for
+  pg' on many OSDs. On wide EC pools (isa k=10 m=4) this is worst, and msgr-failures/
+  osd-dispatch-delay with bluestore compression (osd op num shards: 1) caps OSD op
+  throughput further (see 81629), but the same failure happens in rados/thrash on
+  replicated pools (pool-snaps-few-objects). The OSDThrasher's wait_for_recovery sees
+  'no progress seen, keeping timeout for now' repeatedly and eventually expires with
+  'failed before timeout expired'; the watchdog then barks. The timeout, slow ops and
+  'no progress seen' are symptoms; the cause is the unthrottled pg_num growth on a
+  host-thrashed cluster, which is the cause tracker 74794 describes for morepggrow and
+  pggrow_host (people place pggrow_host jobs from both rados/thrash and
+  rados/thrash-erasure-code-isa in 74794, hence `also`). The thrash_hosts: true and
+  chance_pgnum_grow config lines (from the pggrow_host thrasher yaml) are what pick
+  these jobs; the 74794 record keeps the morepggrow and MaxWhileTries variants.
+  The careful_host thrasher (rados/thrash-erasure-code-isa/thrashers/careful_host.yaml)
+  has the same thrash_hosts: true, min_in: 2 and chance_pgnum_grow/shrink/pgpnum_fix
+  settings but sets aggressive_pg_num_changes: false, so the mgr throttling is kept;
+  people still place its wait_for_recovery failures here (job 528167 is named in the
+  tracker, a wide isa k=8 m=6 pool with osd-dispatch-delay 0.1 and aggressive zstd
+  compression with osd op num shards: 1), so the overload of host thrashing plus the
+  dispatch-delay and compression cap (81629) is the shared cause, not the unthrottled
+  growth alone.
+  The default_host thrasher of the same suite (thrashers/default_host.yaml:
+  thrash_hosts: true, min_in: 2, chance_pgnum_grow/shrink/pgpnum_fix: 1,
+  chance_bluestore_reshard: 1) is a third variant that people place here (the tracker
+  names it among the thrashers that reproduce this). Job 688678 (isa k=2 m=1,
+  msgr-failures/few, no compression, no dispatch delay) shows 'no progress seen, keeping
+  timeout for now' for about 20 minutes with PG 3.8 in recovery_unfound/degraded after the
+  host thrashing; wait_for_recovery then expired with 'failed before timeout expired'. It
+  has neither the dispatch-delay nor the compression condition of 81629, so the shared
+  cause is the host-thrashing plus pg_num-growth overload of a small EC pool that does not
+  get back to clean in time. The jobs's PRs under test (bluestore_tool.cc, MgrMap.cc) do not
+  explain it; the same failure is reported on main-branch runs.
+  OSD logs of such jobs may also hold stray 'could not find secret_id' / 'verify_authorizer
+  could not get service secret' lines from OSDs that were killed and revived by the host
+  thrasher (job 265644 has them from 21:07 on, over an hour after the stall began; job
+  568204 has them from 01:58 on, 50 minutes after the stall began at 01:07-01:09, and
+  only osd.7 was ever marked down for lack of a beacon, at 02:27). Such lines are not
+  the cause (80746) unless the monitors also marked several OSDs down for lack of
+  beacons, past what the EC pool tolerates; the tree only calls an auth failure then.
+  A second variant: the mapgap thrasher (chance_test_map_discontinuity: 2,
+  chance_pgnum_grow 0.25, min_in: 2) fails in OSDThrasher.test_map_discontinuity, not in
+  wait_for_recovery. Job 300531 (isa k=6 m=3, osd-dispatch-delay, no compression): the
+  thrasher revived osd.9 at 12:13:07 without marking it in, took osd.6 out at 12:13:24,
+  and at 12:14:25, right after wait_for_recovery let it pass, killed osd.11 (mark down and
+  out). PG 3.d went down+remapped one second later and stayed so until the 1800 s
+  wait_for_clean timeout ran out; the other PGs were active+clean and there was no slow-op
+  storm, so this is not the pg_num overload above. People place it in 75216 (PGs did not
+  recover in time) because the thrashed EC pool did not get back to clean; the likely
+  cause is that wait_for_recovery's is_recovered lets degraded/undersized PGs pass, so the
+  next kill removes a third shard-holding OSD while the revived one is not recovered (as
+  in 76298), but the cluster log of that job was not available to confirm it. The tree
+  explains it at timeout/unexplained/thrasher-wait-for-clean-pg-down.
+examples:
+  - skanta-2026-09-19_16:29:13-rados-wip-bharath17-testing-20260919.063401-main-distro-default-trial/569758
+  - jayaprakash-2026-07-24_10:10:00-rados-wip-jaya-bs-testing-umbrella-23-07-2026-distro-default-trial/396316
+  - skanta-2026-06-04_15:14:33-rados-wip-bharath7-testing-2026-06-04-1630-distro-default-trial/265644
+  - skanta-2026-09-18_23:45:18-rados-wip-bharath3-testing-20260918.154843-main-distro-default-trial/568204
+  - yuriw-2026-09-01_15:07:31-rados-wip-yuri2-testing-20260901.132824-main-distro-default-trial/528167
+  - jayaprakash-2026-06-19_10:43:50-rados-wip-jaya-bs-testing-18-06-2026-distro-default-trial/300531
+  - skanta-2026-10-28_23:26:15-rados-wip-bharath29-testing-20261028.092709-umbrella-distro-default-trial/688678
+also:
+  - "74794"
+learned:
+- "2026-10-30 bob-analyst, from yuriw-2026-09-01_15:07:31-rados-wip-yuri2-testing-20260901.132824-main-distro-default-trial/528167, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"
+- "2026-10-30 bob-analyst, from jayaprakash-2026-06-19_10:43:50-rados-wip-jaya-bs-testing-18-06-2026-distro-default-trial/300531, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"
+- "2026-11-09 Bob, from skanta-2026-10-28_23:26:15-rados-wip-bharath29-testing-20261028.092709-umbrella-distro-default-trial/688678, as a reviewer said"

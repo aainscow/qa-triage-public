@@ -1,0 +1,9 @@
+run: nmordech-2026-02-25_11:34:16-rados:mgr-wip-rocky10-branch-of-the-day-2026-02-24-1771941190-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '69835':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_devicehealth.TestDeviceHealth.test_sql_autocommit1
+      error: 'tasks.ceph_test_case.TestTimeoutError: Timed out after 30s and 0 retries'

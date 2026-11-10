@@ -1,0 +1,18 @@
+run: yuriw-2026-10-16_22:49:35-rados-tentacle-release-distro-default-trial
+jobs:
+  '649304':
+    problem: '80218'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 3 jobs in 80218, this one among them, and no record names it yet: the tool placed them in no known problem. A record for it should place them all; others are pdonnell-2026-08-27_01:45:31-rados-wip-pdonnell-testing-20260826.223123-squid-distro-default-trial/518651, pdonnell-2026-10-06_12:33:23-rados-wip-pdonnell-testing-20260929.172601-umbrella-distro-default-trial/611513.'
+    summary: backfill_toofull test leaves nobackfill/norecover set, so PG 2.0 stays backfill_toofull and never reaches backfilling (tracker 80218); the tool wrongly called it new.
+    status: fail
+    description: rados/singleton/{all/backfill-toofull mon_election/classic msgr-failures/few msgr/async-v1only objectstore/{bluestore/{alloc$/{stupid} base mem$/{normal-1} onode-segment$/{1M} write$/{v2/{compr$/{no$/{no}} v2}}}} rados supported-random-distro$/{ubuntu_latest}}
+    reason: 2.0 not in backfilling
+  '649257':
+    problem: '75007'
+    by: qa_triage (bob+files)
+    why: 'The tool decided this job by itself: duplicate 75007 (explain -> prefilter -> confirm -> fix-check). Its judge (bob), asked to check that, disagrees: it says new : EC thrash job failed on un-ignored [ERR] ''found snap mapper error ... repaired'' from osd.3; new, cause not in logs. Find out from the logs which is right. If the judge is, change the records, or the tree (mend a node on its path that answered it wrongly, or add one where it stopped), so that the tool gets jobs like this one right by itself; if the tool is, say why.'
+    summary: 'Duplicate of 75007: osd.3 scrub repaired a snap mapper inconsistency and logged an un-ignored [ERR]; the tool''s result was right.'
+    status: fail
+    description: rados/thrash-erasure-code-isa/{arch/x86_64 ceph clusters/{fixed-4} ec_optimizations/ec_optimizations_off mon_election/classic msgr-failures/osd-dispatch-delay objectstore/{bluestore/{alloc$/{avl} base mem$/{normal-1} onode-segment$/{1M} write$/{v1/{compr$/{no$/{no}} v1}}}} rados recovery-overrides/{more-async-recovery} supported-random-distro$/{ubuntu_latest} thrashers/pggrow_host thrashosds-health workloads/ec-rados-plugin=isa-k=10-m=4}
+    reason: '"2026-10-17T05:16:01.890213+0000 osd.3 (osd.3) 3 : cluster [ERR] osd.3(4) found snap mapper error on pg 3.34s4 oid 3:2dfa757e:::trial18415627-2:20 snaps in mapper: {}, oi: {1c} ...repaired" in cluster log'

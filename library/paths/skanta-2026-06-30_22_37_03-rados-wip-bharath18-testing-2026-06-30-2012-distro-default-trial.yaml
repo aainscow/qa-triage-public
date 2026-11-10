@@ -1,0 +1,9 @@
+run: skanta-2026-06-30_22:37:03-rados-wip-bharath18-testing-2026-06-30-2012-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '329184':
+    tree: hung/command/ceph-daemon-config-set-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: sudo TESTDIR=/home/ubuntu/cephtest bash -c 'for f in 0 1 2 3 ; do sudo ceph daemon osd.$f config set osd_recovery_sleep 0 ; sudo ceph daemon osd.$f config set osd_recovery_max_active 20 ; done'

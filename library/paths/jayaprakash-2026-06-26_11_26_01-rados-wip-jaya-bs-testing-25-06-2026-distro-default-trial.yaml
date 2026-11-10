@@ -1,0 +1,12 @@
+run: jayaprakash-2026-06-26_11:26:01-rados-wip-jaya-bs-testing-25-06-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '318075':
+    tree: crash/client/unnamed/balancer-osd-weight-assert
+    facts:
+      task: workunit
+      daemon: mgr.x
+      daemon_type: mgr
+      source: osd/OSDMap.cc
+      message: FAILED ceph_assert(osd_weight.count(oid))
+      function: OSDMap::calc_deviations

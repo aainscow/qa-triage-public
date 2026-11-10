@@ -1,0 +1,34 @@
+id: "80218"
+tracker: https://tracker.ceph.com/issues/80218
+title: "qa/tasks/backfill_toofull.py: AssertionError: 2.0 not in backfilling"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/72959
+    branch: main
+tree: other/backfill-toofull-not-backfilling
+match:
+  reason: 'not in backfilling'
+confirm:
+  - file: teuthology.log
+    pattern: 'AssertionError: \S+ not in backfilling'
+  - file: teuthology.log
+    pattern: 'qa/tasks/backfill_toofull\.py", line \d+, in wait_for_pg_state'
+notes: |
+  The backfill_toofull task (rados/singleton/all/backfill-toofull) sets noout, nobackfill
+  and norecover, kills the target OSD, makes the PG backfill_toofull with a low
+  backfillfull ratio, then raises the ratio and waits in wait_for_pg_state() for the PG to
+  be 'backfilling'. nobackfill/norecover are still set at that point: OSD::activate_map()
+  pauses recovery under norecover, PG::on_active_actmap() gates recovery on nobackfill, and
+  PrimaryLogPG defers backfill, so the PG never retries its backfill reservation and stays
+  active+undersized+degraded+remapped+backfill_toofull. After 300 polls the task asserts
+  'AssertionError: 2.0 not in backfilling' (backfill_toofull.py line 30, called from line
+  192). The log shows 'not backfilling' for each poll, the PG state with backfill_toofull,
+  and 'noout,nobackfill,norecover flag(s) set' in ceph status. The wait_for_clean timeout
+  at teardown is a consequence. Test bug; fix is PR 72959, which clears the recovery pause
+  after raising backfillfull and pauses it again once backfilling starts.
+examples:
+  - yuriw-2026-10-16_22:49:35-rados-tentacle-release-distro-default-trial/649304
+  - pdonnell-2026-08-27_01:45:31-rados-wip-pdonnell-testing-20260826.223123-squid-distro-default-trial/518651
+  - pdonnell-2026-10-06_12:33:23-rados-wip-pdonnell-testing-20260929.172601-umbrella-distro-default-trial/611513
+learned:
+- "2026-10-30 bob-analyst, from yuriw-2026-10-16_22:49:35-rados-tentacle-release-distro-default-trial/649304, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

@@ -1,0 +1,27 @@
+run: skanta-2026-02-22_05:22:34-rados-wip-bharath9-testing-2026-02-21-2044-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '63453':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '63457':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '63458':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '63462':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '63464':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab
+  '63472':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab

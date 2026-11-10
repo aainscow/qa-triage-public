@@ -1,0 +1,7 @@
+normalisation: 1
+run: yuriw-2026-02-22_19:35:40-rados-wip-yuri6-testing-2026-02-22-1629-squid-distro-default-trial
+signatures:
+  ? 'workunit/unexplained/cephtool-tmp-foo-rm-not-permitted | cephtool/test.sh | cephtool/test.sh test_tell_output_file: rm /tmp/foo not permitted'
+  : '66881': 1
+titles:
+  '66881': 'qa/workunits/cephtool/test.sh: cannot remove ''/tmp/foo'': Operation not permitted'

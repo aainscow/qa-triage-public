@@ -1,0 +1,7 @@
+run: xuxuehan-2026-07-17_12:19:21-crimson-rados-wip-seastore-new-trans-cc-distro-debug-trial
+code: afbb20a06ddc
+jobs:
+  '373776':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab

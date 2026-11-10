@@ -1,0 +1,34 @@
+id: "74800"
+tracker: https://tracker.ceph.com/issues/74800
+title: "qa/standalone/osd/divergent-priors.sh: Core dump generated from call to OSDService::maybe_share_map"
+kind: product
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/67253
+    branch: main
+    fixed_in: v21.0.0-450-g7248b9cc45
+tree: crash/client
+match:
+  reason: 'workunit test osd/divergent-priors\.sh'
+confirm:
+  - file: teuthology.log
+    pattern: 'ERROR: Failure due to cores found'
+  - file: teuthology.log
+    pattern: "core looks like: .* from 'ceph-osd\\b"
+notes: |
+  A qa/standalone workunit (here osd/divergent-priors.sh) ends with 'ERROR: Failure due to cores found'
+  from ceph-helpers.sh teardown, and teuthology flags the coredump. The standalone daemons' output is
+  not in teuthology.log, so the tree sees no daemon crash and stops at crash/client/unnamed (or
+  crash/client/ceph). The core is from ceph-osd, which aborted in
+  OSDService::build_incremental_map_msg (src/osd/OSD.cc:1484, ceph_abort()), called from
+  send_incremental_map and OSDService::maybe_share_map while handling an OSD heartbeat ping. osd.N.log
+  shows 'missing incremental map N', 'also missing full map N', 'unable to load latest map N' and
+  'unable to load latest full map N' just before the abort: the requested map range was already
+  trimmed (or the store read failed) and newest_map could not be loaded. PR 67253 logs and returns an
+  empty MOSDMap instead of aborting; the receiver drops it. The tentacle backport is #75990.
+examples:
+  - skanta-2026-08-22_23:37:38-rados-wip-bharath8-testing-20260822.101926-tentacle-distro-default-trial/506531
+  - yuriw-2026-02-03_16:00:06-rados-wip-yuri4-testing-2026-02-02-2122-distro-default-trial/32061
+also:
+  - "75990"
+learned:
+- "2026-10-30 bob-analyst, from yuriw-2026-02-03_16:00:06-rados-wip-yuri4-testing-2026-02-02-2122-distro-default-trial/32061, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

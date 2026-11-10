@@ -1,0 +1,9 @@
+run: yuriw-2026-07-22_14:51:00-rados-wip-yuri8-testing-20260721.164157-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '386843':
+    tree: workunit/unexplained/ganesha-nfsv3-tcp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh

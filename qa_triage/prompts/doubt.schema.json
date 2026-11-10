@@ -1,0 +1,97 @@
+{
+  "type": "object",
+  "properties": {
+    "assessment": {"enum": ["right", "wrong", "unsure", "need-more"]},
+    "problem": {"type": ["string", "null"]},
+    "pr": {"type": ["string", "null"]},
+    "summary": {"type": "string"},
+    "explanation": {"type": "string"},
+    "walkthrough": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {"type": "string"},
+          "do": {"type": "string"},
+          "finds": {"type": "string"},
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "file": {"type": "string"},
+                "text": {"type": "string"},
+                "shows": {"type": "string"}
+              },
+              "required": ["file", "text"]
+            }
+          }
+        },
+        "required": ["title", "do", "finds", "evidence"]
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {"type": "string"},
+          "text": {"type": "string"}
+        },
+        "required": ["file", "text"]
+      }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {"type": "string"},
+          "yaml": {"type": "string"}
+        },
+        "required": ["id", "yaml"]
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {"type": "string"},
+          "code": {"type": "string"}
+        },
+        "required": ["file", "code"]
+      }
+    },
+    "wording": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node": {"type": "string"},
+          "answer": {"type": "string"},
+          "says": {"type": "string"}
+        },
+        "required": ["node", "answer", "says"]
+      }
+    },
+    "requests": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "file": {"type": "string"},
+          "pattern": {"type": "string"},
+          "search": {"type": "string"},
+          "tracker": {"type": "string"},
+          "pr": {"type": "string"},
+          "search_prs": {"type": "string"},
+          "script": {"type": "string"},
+          "args": {"type": "string"}
+        }
+      }
+    },
+    "tool_suggestions": {"type": "string"}
+  },
+  "required": ["assessment", "problem", "summary", "explanation", "evidence"]
+}

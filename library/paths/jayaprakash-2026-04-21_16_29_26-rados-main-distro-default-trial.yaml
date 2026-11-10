@@ -1,0 +1,17 @@
+run: jayaprakash-2026-04-21_16:29:26-rados-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '167322':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: '3.1bs0 soid 3:d92fb4ce:::trial12722425-24:16a : object info version incorrect auth_oi=3:d92fb4ce:::trial12722425-24:16a(823''507 client.4571.0:7829 dirty|data_digest s 12779520 uv 827 dd 2baff7c5 alloc_hint [0 0 0] shard_versions={1: 776''471, 2: 776''471, 3: 776''471, 4: 776''471, 5: 776''471, 6: 776''471, 7: 776''471, 8: 776''471, 9: 776''471}) candidate_oi=3:d92fb4ce:::trial12722425-24:16a(798''485 client.4571.0:7829 dirty|data_digest s 12779520 uv 827 dd 2baff7c5 alloc_hint [0 0 0] shard_versions={1: 776''471, 2: 776''471, 3: 776''471, 4: 776''471, 5: 776''471, 6: 776''471, 7: 776''471, 8: 776''471, 9: 776''471})'
+      reporter: osd.4
+  '167330':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: '3.16s0 soid 3:6e7042d8:::trial13022711-18:7e : object info version incorrect auth_oi=3:6e7042d8:::trial13022711-18:7e(348''362 client.4673.0:2418 dirty|data_digest s 163840 uv 359 dd 23abc4d alloc_hint [0 0 0] shard_versions={1: 282''311, 2: 282''311, 3: 282''311, 4: 282''311, 5: 282''311, 6: 282''311, 7: 282''311, 8: 282''311, 9: 282''311}) candidate_oi=3:6e7042d8:::trial13022711-18:7e(309''327 client.4673.0:2418 dirty|data_digest s 163840 uv 359 dd 23abc4d alloc_hint [0 0 0] shard_versions={1: 282''311, 2: 282''311, 3: 282''311, 4: 282''311, 5: 282''311, 6: 282''311, 7: 282''311, 8: 282''311, 9: 282''311})'
+      reporter: osd.9

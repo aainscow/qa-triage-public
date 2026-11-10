@@ -1,0 +1,33 @@
+run: skanta-2026-09-30_21:49:09-rados-wip-bharath8-testing-20260930.133801-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '597283':
+    tree: command/unexplained/cbt-perf-keyerror-pid
+    facts:
+      task: cbt
+      command: cbt-venv/bin/python cbt/cbt.py -a archive/cbt archive/cbt/cbt_config.yaml
+      status: '1'
+      host: trial172
+  '597359':
+    tree: crash/assert/specific
+    facts:
+      task: rados
+      source: osd/MissingLoc.h
+      line: '242'
+      message: FAILED ceph_assert(0 == "unexpected need for missing item")
+      function: void MissingLoc::add_active_missing(const pg_missing_t&)
+      daemon: osd.5
+      daemon_type: osd
+      host: trial007
+  '597540':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '597588':
+    tree: crash/client/ceph_test_rados/dispatch-delay-op-timeout
+    facts:
+      task: rados
+      program: ceph_test_rados
+      error: '-110'

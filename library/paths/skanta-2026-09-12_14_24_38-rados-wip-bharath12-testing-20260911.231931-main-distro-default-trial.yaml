@@ -1,0 +1,18 @@
+run: skanta-2026-09-12_14:24:38-rados-wip-bharath12-testing-20260911.231931-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '553732':
+    tree: hung/command/objectstore-synthetic-csum-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: mkdir $TESTDIR/archive/ostest && cd $TESTDIR/archive/ostest && ulimit -Sn
+      test: SyntheticMatrixCsumAlgorithm
+  '553961':
+    tree: workunit/standalone/nvmeof-beacon-diff-count
+    facts:
+      workunit: mon/misc.sh
+      task: workunit
+      test: TEST_mon_features
+      check: misc.sh:293
+      script: mon/misc.sh

@@ -1,0 +1,16 @@
+run: yuriw-2026-01-23_21:16:01-rados-wip-yuri13-testing-2026-01-23-1852-reef-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '15588':
+    tree: other/saw-valgrind-issues
+    facts:
+      kind: Leak_StillReachable
+      daemon: mon.a
+  '15685':
+    tree: cluster-log/health/cephadm-stray-daemon-transient
+    facts:
+      task: ''
+      level: WRN
+      check: CEPHADM_STRAY_DAEMON
+      message: 'Health check failed: 1 stray daemon(s) not managed by cephadm (CEPHADM_STRAY_DAEMON)'
+      reporter: mon.a

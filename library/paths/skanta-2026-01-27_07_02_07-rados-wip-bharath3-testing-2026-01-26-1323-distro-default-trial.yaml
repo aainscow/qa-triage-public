@@ -1,0 +1,73 @@
+run: skanta-2026-01-27_07:02:07-rados-wip-bharath3-testing-2026-01-26-1323-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '19845':
+    tree: workunit/unexplained/grafana-invalid-ip-address
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      address: localhost
+  '19850':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.es0 3:70015517:::benchmark_data_trial148_16735_object83006:headdata digests are inconsistent
+      reporter: osd.13
+  '19851':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.2s0 3:49bf397d:::trial13716807-15:1ddata digests are inconsistent
+      reporter: osd.13
+  '19853':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 1.fs0 1:f1723524:::trial12328865-777:headdata digests are inconsistent
+      reporter: osd.11
+  '19859':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.2s0 3:442323d1:::trial13729189-19:1edata digests are inconsistent
+      reporter: osd.7
+  '19860':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 1.0s0 1:0d404639:::trial08628501-16:headdata digests are inconsistent
+      reporter: osd.8
+  '19865':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.3s0 3:c62d415f:::trial09628537-42:6data digests are inconsistent
+      reporter: osd.15
+  '19866':
+    tree: command/unexplained/prometheus-module-inactive
+    facts:
+      task: cephadm.shell
+      command: cephadm --image quay.ceph.io/ceph-ci/ceph:58ab6e4054f08aaae01d34c1b74767c3b8f2e768 shell -c /etc/ceph/ceph.conf -k /etc/ceph/ceph.client.admin.keyring
+      status: '4'
+      host: trial073
+  '19875':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.6s0 3:65a33761:::trial17816725-31:bdata digests are inconsistent
+      reporter: osd.15
+  '19886':
+    tree: workunit/unexplained/grafana-invalid-ip-address
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      address: localhost

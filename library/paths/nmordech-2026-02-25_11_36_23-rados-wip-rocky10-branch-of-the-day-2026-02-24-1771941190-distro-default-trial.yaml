@@ -1,0 +1,21 @@
+run: nmordech-2026-02-25_11:36:23-rados-wip-rocky10-branch-of-the-day-2026-02-24-1771941190-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '69969':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '70008':
+    tree: test/unittest
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_devicehealth.TestDeviceHealth.test_sql_autocommit1
+      error: 'tasks.ceph_test_case.TestTimeoutError: Timed out after 30s and 0 retries'
+  '70083':
+    tree: workunit/unexplained/ceph-pg-query-hung/osd-killed-pg-query-no-timeout
+    facts:
+      workunit: misc/test-ceph-helpers.sh
+      task: workunit
+      script: misc/test-ceph-helpers.sh
+      command: ceph pg query

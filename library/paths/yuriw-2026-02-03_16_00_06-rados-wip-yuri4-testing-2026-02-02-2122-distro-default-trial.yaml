@@ -1,0 +1,15 @@
+run: yuriw-2026-02-03_16:00:06-rados-wip-yuri4-testing-2026-02-02-2122-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '31522':
+    tree: workunit/set-e/fusermount-missing
+    facts:
+      workunit: objectstore/test_fuse.sh
+      task: workunit
+      script: objectstore/test_fuse.sh
+      command: rmdir store_test_fuse_mnt/0.0_head
+      error: 'rmdir: failed to remove ''store_test_fuse_mnt/0.0_head'': Directory not empty'
+  '32061':
+    tree: crash/client/unnamed
+    facts:
+      task: workunit

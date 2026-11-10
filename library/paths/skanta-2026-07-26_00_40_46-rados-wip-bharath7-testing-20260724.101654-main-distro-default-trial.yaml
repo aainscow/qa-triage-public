@@ -1,0 +1,8 @@
+run: skanta-2026-07-26_00:40:46-rados-wip-bharath7-testing-20260724.101654-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '400500':
+    tree: timeout/admin-socket/osd-init-deadlock
+    facts:
+      task: ceph.healthy
+      wait: wait_for_all_osds_up

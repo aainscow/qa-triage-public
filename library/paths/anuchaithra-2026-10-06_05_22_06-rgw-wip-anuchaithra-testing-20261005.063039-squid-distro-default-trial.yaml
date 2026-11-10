@@ -1,0 +1,10 @@
+run: anuchaithra-2026-10-06_05:22:06-rgw-wip-anuchaithra-testing-20261005.063039-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '610140':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 'Failed to load ceph-mgr modules: k8sevents'
+      reporter: mgr.x

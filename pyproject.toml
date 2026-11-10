@@ -1,0 +1,21 @@
+[project]
+name = "qa_triage"
+version = "0.1.0"
+description = "Find the known problems among the failed jobs of a Ceph teuthology QA run"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "LGPL-2.1-only OR LGPL-3.0-only"}
+dependencies = ["PyYAML"]
+
+[project.scripts]
+qa_triage = "qa_triage.cli:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["qa_triage"]
+
+[tool.setuptools.package-data]
+qa_triage = ["prompts/*"]

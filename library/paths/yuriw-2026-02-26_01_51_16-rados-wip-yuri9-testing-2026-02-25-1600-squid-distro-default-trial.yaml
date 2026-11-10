@@ -1,0 +1,5 @@
+run: yuriw-2026-02-26_01:51:16-rados-wip-yuri9-testing-2026-02-25-1600-squid-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '71132':
+    tree: other/ec-inconsistent-hinfo-assert

@@ -1,0 +1,14 @@
+run: skanta-2026-08-10_11:36:04-rados-wip-bharath1-testing-20260810.014116-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '452044':
+    tree: crash/assert/specific
+    facts:
+      task: rados
+      source: osd/MissingLoc.h
+      line: '242'
+      message: FAILED ceph_assert(0 == "unexpected need for missing item")
+      function: void MissingLoc::add_active_missing(const pg_missing_t&)
+      daemon: osd.7
+      daemon_type: osd
+      host: trial185

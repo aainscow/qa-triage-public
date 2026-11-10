@@ -1,0 +1,32 @@
+run: skanta-2026-01-26_08:54:40-rados-wip-bharath4-testing-2026-01-26-1300-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '17686':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.9s0 3:900078d0:::benchmark_data_trial153_16599_object17853:headdata digests are inconsistent
+      reporter: osd.12
+  '17689':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: 3.as0 3:52091ca2:::trial19116616-10:1bdata digests are inconsistent
+      reporter: osd.6
+  '17728':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '17788':
+    tree: crash/signal/backtrace
+    facts:
+      task: rados
+      signal: Segmentation fault
+      frames: ErasureCodeJerasureCauchyGood::prepare() < ErasureCodeJerasure::init(std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::ostream*) < ErasureCodePluginJerasure::factory(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char,
+        std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >&, std::shared_ptr<ceph::ErasureCodeInterface>*, std::ostream*)
+      daemon: osd.9
+      daemon_type: osd
+      host: trial172

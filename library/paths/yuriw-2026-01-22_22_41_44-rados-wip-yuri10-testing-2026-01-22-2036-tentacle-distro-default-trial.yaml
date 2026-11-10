@@ -1,0 +1,11 @@
+run: yuriw-2026-01-22_22:41:44-rados-wip-yuri10-testing-2026-01-22-2036-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '13615':
+    tree: cluster-log/health/mon-restart-reconnect-delay
+    facts:
+      task: ''
+      level: WRN
+      check: MON_NETSPLIT
+      message: 'Health check failed: 1 network partition detected (MON_NETSPLIT)'
+      reporter: mon.k

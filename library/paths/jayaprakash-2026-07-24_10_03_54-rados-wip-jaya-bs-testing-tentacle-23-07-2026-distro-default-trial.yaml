@@ -1,0 +1,18 @@
+run: jayaprakash-2026-07-24_10:03:54-rados-wip-jaya-bs-testing-tentacle-23-07-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '396115':
+    tree: workunit/unexplained/grafana-invalid-ip-address
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh
+      address: localhost
+  '396128':
+    tree: workunit/set-e/test-repos-add-repo-metadata-404
+    facts:
+      workunit: cephadm/test_repos.sh
+      task: workunit
+      script: cephadm/test_repos.sh
+      command: tmp.*/tmp.* -v add-repo --release quincy
+      error: 'Traceback (most recent call last):'

@@ -1,0 +1,25 @@
+run: skanta-2026-10-12_16:15:49-rados-wip-bharath5-testing-20261012.095720-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '628557':
+    tree: crash/abort/bluestore-error/error-2/enoent-on-object-removed-as-divergent
+    facts:
+      task: rados
+      source: os/bluestore/BlueStore.cc
+      line: '16786'
+      message: ceph_abort_msg("unexpected error")
+      function: void BlueStore::_txc_add_transaction(TransContext*, ObjectStore::Transaction*)
+      daemon: osd.2
+      daemon_type: osd
+      host: trial063
+      error: '2'
+      op: OP_SETATTRS
+      caller: ECLegacy::ECBackendL::handle_sub_write(pg_shard_t, boost::intrusive_ptr<OpRequest>, ECSubWrite&, ZTracer::Trace const&, ECListener&)
+      object: 1#3:0d9e85f4:::trial14933060-992:99#
+  '628620':
+    tree: valgrind/Leak_StillReachable/rocksdb-compact-thread-bgitem/rocksdb-queue-unsuppressed
+    facts:
+      task: workunit
+      kind: Leak_StillReachable
+      frames: operator new[](unsigned long) allocate allocate
+      daemons: ''

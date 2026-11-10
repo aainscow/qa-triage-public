@@ -1,0 +1,39 @@
+run: skanta-2026-06-09_02:42:07-rados-wip-bharath2-testing-2026-06-09-0416-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '280469':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial196:y (4564), after 300.561 seconds
+      reporter: mds.b
+  '280494':
+    tree: infra/build
+    facts:
+      task: install
+  '280551':
+    tree: test/unittest/health-history-timeout
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_insights.TestInsights.test_health_history
+      error: 'AssertionError: datetime.datetime(2026, 6, 9, 4, 12, 27, 283715) not greater than datetime.datetime(2026, 6, 9, 4, 12, 59, 2223)'
+  '280624':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial183:y (4576), after 304.67 seconds
+      reporter: mds.c
+  '280648':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '280706':
+    tree: test/unittest/health-history-timeout
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_insights.TestInsights.test_health_history
+      error: 'AssertionError: datetime.datetime(2026, 6, 9, 5, 37, 16, 923435) not greater than datetime.datetime(2026, 6, 9, 5, 37, 48, 577428)'

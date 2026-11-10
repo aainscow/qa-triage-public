@@ -1,0 +1,10 @@
+run: skanta-2026-09-09_04:52:39-rados-wip-bharath11-testing-20260908.131148-squid-distro-default-trial
+jobs:
+  '545077':
+    problem: '80616'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 6 jobs in 80616, this one among them, and no record names it yet: the tool placed them in 80616, by the memory of what people answered alone, no known problem. A record for it should place them all; others are skanta-2026-09-18_01:01:10-rados-wip-bharath20-testing-20260917.152243-tentacle-distro-default-trial/565493, skanta-2026-09-23_00:46:01-rados-wip-bharath19-testing-20260922.090258-tentacle-distro-default-trial/575916, skanta-2026-09-25_04:43:26-rados-wip-bharath28-testing-20260924.103245-tentacle-distro-default-trial/581850, skanta-2026-10-15_23:32:33-rados-wip-bharath22-testing-20261015.065836-tentacle-distro-default-trial/643601, yuriw-2026-10-16_15:50:03-rados-tentacle-release-distro-default-trial/646860.'
+    summary: TEST_bluestore_expand_with_allocmap_recovery passes the unsupported --auth-supported=none to ceph-mon --mkfs, so run_mon fails before any daemon starts (tracker 80616); the tool wrongly called it new.
+    status: fail
+    description: rados/standalone/{supported-random-distro$/{centos_latest} workloads/osd}
+    reason: 'Command failed (workunit test osd/osd-bluefs-volume-ops.sh) on trial179 with status 1: ''cd -- /home/ubuntu/cephtest/mnt.0/client.0/tmp && CEPH_CLI_TEST_DUP_COMMAND=1 CEPH_REF=82fd8b718b17b5b7bcf776784a5028ac404ebf4a TESTDIR="/home/ubuntu/cephtest" CEPH_CLIENT_ID=0 CEPH_ARGS="--cluster=ceph" CEPH_ID="0" PATH=$PATH:/usr/sbin CEPH_BASE=/home/ubuntu/cephtest/clone.client.0 CEPH_ROOT=/home/ubuntu/cephtest/clone.client.0 CEPH_MNT=/home/ubuntu/cephtest/mnt.0 adjust-ulimits ceph-coverage /home/ubuntu/cephtest/archive/coverage timeout 3h /home/ubuntu/cephtest/clone.client.0/qa/standalone/osd/osd-bluefs-volume-ops.sh'''

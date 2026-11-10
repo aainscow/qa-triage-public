@@ -1,0 +1,19 @@
+# Models behind OpenAI-compatible APIs: OpenAI itself, or a server of your own
+# (vLLM, llama.cpp's llama-server, LM Studio), or a gateway (LiteLLM, OpenRouter).
+judge: local
+analyst: openrouter
+agents:
+  local:                      # vllm serve google/gemma-4-31b-it
+    provider: openai
+    url: http://localhost:8000/v1
+    model: google/gemma-4-31b-it
+    api_key_env: ''
+  openrouter:                 # export OPENROUTER_API_KEY
+    provider: openai
+    url: https://openrouter.ai/api/v1
+    model: anthropic/claude-sonnet-4.5
+    api_key_env: OPENROUTER_API_KEY
+    price: {input: 3, output: 15}   # dollars per million tokens; check yours
+  openai:                     # export OPENAI_API_KEY
+    provider: openai
+    model: gpt-5

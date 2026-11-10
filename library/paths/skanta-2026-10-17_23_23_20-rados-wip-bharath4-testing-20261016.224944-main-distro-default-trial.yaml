@@ -1,0 +1,9 @@
+run: skanta-2026-10-17_23:23:20-rados-wip-bharath4-testing-20261016.224944-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '650737':
+    tree: test/unittest/disable-stretch-mode-replay
+    facts:
+      task: cephfs_test_runner
+      test: tasks.stretch_mode_disable_enable.TestStretchMode.test_disable_stretch_mode
+      error: 'AssertionError: 0 != 22'

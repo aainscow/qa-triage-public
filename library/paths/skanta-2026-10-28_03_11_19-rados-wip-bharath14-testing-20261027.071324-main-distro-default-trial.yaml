@@ -1,0 +1,9 @@
+run: skanta-2026-10-28_03:11:19-rados-wip-bharath14-testing-20261027.071324-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '684984':
+    tree: workunit/unexplained/osdmap-pruned-epoch-wrong-bytes
+    facts:
+      workunit: mon/test_mon_osdmap_prune.sh
+      task: workunit
+      script: mon/test_mon_osdmap_prune.sh

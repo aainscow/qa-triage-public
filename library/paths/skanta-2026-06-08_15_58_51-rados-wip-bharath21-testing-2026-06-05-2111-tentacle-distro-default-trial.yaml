@@ -1,0 +1,22 @@
+run: skanta-2026-06-08_15:58:51-rados-wip-bharath21-testing-2026-06-05-2111-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '278289':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph tell mon.d sync_force --yes-i-really-mean-it
+  '278298':
+    tree: test/unittest/health-history-timeout
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.test_insights.TestInsights.test_health_history
+      error: 'AssertionError: datetime.datetime(2026, 6, 8, 16, 55, 14, 604712) not greater than datetime.datetime(2026, 6, 8, 16, 55, 40, 792507)'
+  '278317':
+    tree: cluster-log/message/mgr-session-evicted
+    facts:
+      task: ''
+      level: WRN
+      message: evicting unresponsive client trial197:y (4585), after 302.978 seconds
+      reporter: mds.b

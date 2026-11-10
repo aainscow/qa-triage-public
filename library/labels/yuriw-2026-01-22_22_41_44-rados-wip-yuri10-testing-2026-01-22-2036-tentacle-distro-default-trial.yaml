@@ -1,0 +1,10 @@
+run: yuriw-2026-01-22_22:41:44-rados-wip-yuri10-testing-2026-01-22-2036-tentacle-distro-default-trial
+jobs:
+  '13615':
+    problem: '71344'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: People placed 2 jobs that the tool placed in no known problem in 71344, this one among them.
+    summary: MON_NETSPLIT warning occurred during mon restarts in mon_recovery due to slow reconnect (tracker 71344)
+    status: fail
+    description: rados/multimon/{clusters/21 mon_election/connectivity msgr-failures/many msgr/async-v1only no_pools objectstore/{bluestore/{alloc$/{hybrid} base mem$/{normal-1} onode-segment$/{none} write$/{v1/{compr$/{yes$/{zlib}} v1}}}} rados supported-random-distro$/{ubuntu_latest} tasks/mon_recovery}
+    reason: '"2026-01-23T01:09:01.801911+0000 mon.k (mon.10) 214 : cluster [WRN] Health check failed: 1 network partition detected (MON_NETSPLIT)" in cluster log'

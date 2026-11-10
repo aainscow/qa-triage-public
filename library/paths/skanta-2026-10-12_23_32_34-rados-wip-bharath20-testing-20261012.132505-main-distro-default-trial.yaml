@@ -1,0 +1,105 @@
+run: skanta-2026-10-12_23:32:34-rados-wip-bharath20-testing-20261012.132505-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '631076':
+    tree: command/error/jerasure-invalid-technique
+    facts:
+      task: print
+      error: 'Error ENOENT: technique=cauchy is not a valid coding technique. Choose one of the following: reed_sol_van, reed_sol_r6_op, cauchy_orig, cauchy_good, liberation, blaum_roth, liber8tion'
+      command: ceph osd erasure-code-profile set jerasure42profile crush-failure-domain=host crush-num-failure-domains=3 crush-osds-per-failure-domain=2
+      status: '2'
+      host: trial045
+      technique: cauchy
+  '631086':
+    tree: workunit/gtest/shard-bounced-direct-read
+    facts:
+      workunit: rados/test.sh
+      task: workunit
+      test: LibRadosIoECPPParamCombination/LibRadosIoECPP.ZeroAndTruncateSameRequest/3,
+      script: rados/test.sh
+  '631092':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '631151':
+    tree: valgrind/Leak_StillReachable/openssl-evp-cipher-fetch
+    facts:
+      task: workunit
+      kind: Leak_StillReachable
+      frames: malloc CRYPTO_malloc
+      daemons: ''
+  '631182':
+    tree: timeout/admin-socket/osd-init-deadlock
+    facts:
+      task: ceph.healthy
+      wait: wait_for_all_osds_up
+  '631199':
+    tree: workunit/set-e
+    facts:
+      workunit: mon/mon-stretch-mode-5-mons-8-osds.sh
+      task: workunit
+      script: mon/mon-stretch-mode-5-mons-8-osds.sh
+      command: ceph mon enable_stretch_mode e stretch_rule datacenter
+      error: 'Error EINVAL: stretch mode is already engaged'
+  '631204':
+    tree: workunit/set-e
+    facts:
+      intended_crash: osd.0
+      workunit: rados/test_crash.sh
+      task: workunit
+      script: rados/test_crash.sh
+      command: '[ 0 = 4 ]'
+  '631208':
+    tree: valgrind/Leak_StillReachable/openssl-evp-cipher-fetch
+    facts:
+      task: sequential
+      kind: Leak_StillReachable
+      frames: malloc CRYPTO_malloc
+      daemons: ''
+  '631238':
+    tree: crash/client/ceph_test_rados/dispatch-delay-op-timeout
+    facts:
+      task: print
+      program: ceph_test_rados
+      error: '-110'
+  '631262':
+    tree: test/unittest/dashboard-port-reset
+    facts:
+      task: cephfs_test_runner
+      test: tasks.mgr.dashboard.test_mgr_module.MgrModuleTest.test_list_enabled_module
+      error: 'ConnectionRefusedError: [Errno 111] Connection refused'
+  '631299':
+    tree: workunit/standalone
+    facts:
+      workunit: mon/mon-bind.sh
+      task: workunit
+      test: TEST_mon_client_connect
+      check: mon-bind.sh:83
+      script: mon/mon-bind.sh
+  '631306':
+    tree: command/error/authtool-type2-key
+    facts:
+      task: workunit
+      error: error reading file /etc/ceph/ceph.keyring
+      command: ceph-authtool /etc/ceph/ceph.keyring --import-keyring /etc/ceph/ceph.client.2.keyring
+      status: '1'
+      host: trial153
+  '631307':
+    tree: cluster-log/health/discard-queue-overload
+    facts:
+      task: ''
+      level: WRN
+      check: BLOCK_DEVICE_DISCARD_QUEUE
+      message: 'Health check failed: 1 OSD(s) experiencing slow discard operations (BLOCK_DEVICE_DISCARD_QUEUE)'
+      reporter: mon.a
+      osd: osd.4
+      device: BLOCK
+  '631318':
+    tree: valgrind/Leak_StillReachable/openssl-evp-cipher-fetch
+    facts:
+      task: mon_recovery
+      kind: Leak_StillReachable
+      frames: malloc CRYPTO_malloc
+      daemons: ''

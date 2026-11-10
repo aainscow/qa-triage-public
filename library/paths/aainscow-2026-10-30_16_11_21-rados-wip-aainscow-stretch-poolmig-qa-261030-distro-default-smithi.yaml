@@ -1,0 +1,22 @@
+run: aainscow-2026-10-30_16:11:21-rados-wip-aainscow-stretch-poolmig-qa-261030-distro-default-smithi
+code: afbb20a06ddc
+jobs:
+  '696394':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: print
+      wait: wait_for_recovery
+  '696475':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: workunit
+      command: ceph config set global mon_health_to_clog false
+  '696582':
+    tree: workunit/standalone
+    facts:
+      workunit: mon-stretch/mon-stretch-leader-zone-down.sh
+      task: workunit
+      test: TEST_lose_leader_zone_after_its_osds
+      check: mon-stretch-leader-zone-down.sh:23
+      script: mon-stretch/mon-stretch-leader-zone-down.sh

@@ -1,0 +1,57 @@
+id: "70669"
+tracker: https://tracker.ceph.com/issues/70669
+title: "ERROR: test_list_enabled_module: cephfs resource temporarily unavailable"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/67728
+    branch: main
+match:
+  reason: 'test_list_enabled_module'
+confirm:
+  - file: teuthology.log
+    pattern: "HTTPSConnectionPool\\(host='[^']+', port=77\\d\\d\\): Max retries exceeded with url: /api/mgr/module"
+notes: |
+  The cause: CephTestCase.tearDown() runs "ceph config reset <conf_epoch>" after
+  every test (conf_epoch is 1 in these jobs), which deletes the per-mgr dashboard
+  ports (config/mgr/mgr/dashboard/{x,y,z}/ssl_server_port = 7789/7790/7791) that
+  MgrTestCase.setup_mgrs() wrote later (mon.a logs "encode_pending_to_kvmon rm
+  config/mgr/mgr/dashboard/x/ssl_server_port"). The running dashboard keeps its port,
+  so the earlier tests pass. test_list_enabled_module then runs "ceph mgr module
+  enable iostat", which respawns all the mgrs; each finds no ssl_server_port ("[x/]
+  ssl_server_port not found") and starts the dashboard on the default 8443. The test
+  keeps requesting its assigned port (7789..7791), is refused, and its retries run
+  out. Where two mgrs share a host, one cannot bind 8443: it logs "Port 8443 not free
+  on ::", and sometimes the mon raises "Module 'dashboard' has failed: Port 8443 not
+  free" (MGR_MODULE_ERROR). This is the original issue's "iostat module enabled ->
+  mgr respawned -> dashboard restart (attempts to bind to 8443) -> Port 8443
+  unavailable", which PR 67728 is to fix.
+  Three trackers have this one failure, and people place its jobs in any of them:
+  this one; #75358 ("Health check failed: Module 'dashboard' has failed: Port 8443 not
+  free", the MGR_MODULE_ERROR symptom, fixed by the same PR); and #81857 (filed
+  2026-10-18, with the cause above). They were three records, told apart only by
+  the health-error line and by the dates of the log lines (before or after October
+  2026), which put the same failure in different trackers by when it ran; they are
+  one record now, with the others under also, so that a job placed here is right for
+  any of them. Older #62972 has the same test and symptom, from a cause its merged
+  fixes (PRs 59530, 60511, 61744: retries and a longer wait) dealt with; people still
+  place these jobs there (e.g. job 127724), so it is under also too.
+examples:
+  - skanta-2026-09-20_02:51:43-rados-wip-bharath22-testing-20260920.002814-main-distro-default-trial/570130
+  - skanta-2026-06-14_23:24:50-rados-wip-bharath11-testing-2026-06-12-0509-distro-default-trial/293708
+  - lflores-2026-07-17_23:28:16-rados-wip-lflores-testing-3-2026-07-17-1417-distro-default-trial/374651
+  - skanta-2026-03-31_12:00:11-rados-wip-bharath12-testing-2026-03-30-1431-distro-default-trial/127724
+  - jayaprakash-2026-03-06_10:20:34-rados-wip-jaya-bs-testing-06-03-2025-distro-default-trial/90378
+  - skanta-2026-09-16_04:01:33-rados-wip-bharath19-testing-20260915.234926-main-distro-default-trial/558377
+  - skanta-2026-07-12_00:12:33-rados-wip-bharath10-testing-2026-07-11-1405-distro-default-trial/356674
+  - skanta-2026-10-12_23:32:34-rados-wip-bharath20-testing-20261012.132505-main-distro-default-trial/631092
+  - skanta-2026-10-12_23:32:34-rados-wip-bharath20-testing-20261012.132505-main-distro-default-trial/631262
+  - skanta-2026-10-18_00:07:27-rados-wip-bharath19-testing-20261016.230223-main-distro-default-trial/651293
+  - skanta-2026-10-03_03:26:16-rados-wip-bharath19-testing-20261002.123021-main-distro-default-trial/603525
+  - jayaprakash-2026-10-08_14:59:53-rados-wip-bs-reshuffle-nlc-08-10-2026-distro-default-trial/620038
+  - skanta-2026-09-30_21:49:09-rados-wip-bharath8-testing-20260930.133801-main-distro-default-trial/597540
+also:
+  - "75358"
+  - "81857"
+  - "62972"
+learned:
+- "2026-11-10 by hand: 70669, 75358 and 81857 made one record, as their notes said they should be; no checks of dates"

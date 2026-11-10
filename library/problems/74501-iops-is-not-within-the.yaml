@@ -1,0 +1,39 @@
+id: "74501"
+tracker: https://tracker.ceph.com/issues/74501
+title: "\"IOPS is not within the threshold limit\" errors"
+kind: test
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/67058
+    branch: main
+    fixed_in: v20.3.0-4944-g84d5b442ed
+tree: cluster-log/message
+facts:
+  message: '^OSD bench result of \S+ IOPS is not within the threshold limit range'
+  reporter: '^osd\.'
+confirm:
+  - file: teuthology.log
+    pattern: 'cluster \[WRN\] OSD bench result of \S+ IOPS is not within the threshold limit range of \S+ IOPS and \S+ IOPS for osd\.\d+\. IOPS capacity is unchanged'
+notes: |
+  Not a functional bug: a QA configuration problem. At start-up each OSD that uses the
+  mclock scheduler runs a short benchmark (OSD::maybe_override_max_osd_capacity_for_qos in
+  src/osd/OSD.cc). On fast test hosts the measured rate (e.g. 82000 to 125000 IOPS) is
+  above the upper threshold of 80000 IOPS (osd_mclock_iops_capacity_threshold_ssd), so the
+  OSD keeps the default capacity and logs
+  '[WRN] OSD bench result of N IOPS is not within the threshold limit range of 1000 IOPS
+  and 80000 IOPS for osd.X. IOPS capacity is unchanged at 21500 IOPS ...' to the cluster
+  log. The job's log-ignorelist does not cover it, so the end-of-run cluster-log scan fails
+  the job although the cluster is healthy. Seen across rados, orch/cephadm and fs
+  (fs/cephadm/multivolume) suites and branches (main, squid, tentacle, reef).
+  PR 67058 (qa: Disable OSD benchmark from running for tests) sets
+  osd_mclock_skip_benchmark in the qa configs (rados.yaml overrides, ceph.conf.template,
+  cephadm.conf); it is a workaround, the tracker follows up on the threshold itself.
+  Backports are tracked in 74535, 74536 and 74537. Builds without the change, such as the
+  squid build f4ef35d9be5 whose qa/tasks/cephadm.conf has no osd_mclock_skip_benchmark,
+  still fail. The standalone mclock-config.sh failure in 74678 has this warning in its OSD
+  log too but is a different, product, cause and is reached through the workunit path.
+examples:
+  - jcollin-2026-02-18_03:11:55-fs-wip-jcollin-testing-20260218.004834-squid-distro-default-trial/55394
+  - jcollin-2026-02-18_03:11:55-fs-wip-jcollin-testing-20260218.004834-squid-distro-default-trial/55511
+  - lflores-2026-01-21_20:56:39-rados-main-distro-default-trial/11813
+learned:
+- "2026-10-30 bob-analyst, from jcollin-2026-02-18_03:11:55-fs-wip-jcollin-testing-20260218.004834-squid-distro-default-trial/55394, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

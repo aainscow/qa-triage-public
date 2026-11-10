@@ -1,0 +1,23 @@
+run: skanta-2026-10-17_23:46:38-rados-wip-bharath17-testing-20261016.230103-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '650895':
+    tree: crash/client/unexplained/gtest-failure-did-bind
+    facts:
+      task: exec
+      program: ceph_test_msgr
+      test: Messenger/MessengerTest.ReconnectRaceTest/0
+      source_line: '876'
+  '650944':
+    tree: workunit/unexplained/iscsi-gwcli-host-not-found
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+  '650981':
+    tree: other/osd-recovery-incomplete-assert
+  '651179':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery

@@ -1,0 +1,19 @@
+run: lflores-2026-06-25_15:37:19-rados-wip-lflores-testing-4-2026-06-24-1644-umbrella-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '316911':
+    tree: hung/test/rados-api-tests-valgrind-slowdown
+    facts:
+      task: ''
+      test: io
+      hung_task: workunit
+  '317038':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: cephadm.shell
+      command: ceph cephadm osd activate $HOST; while ! ceph orch ps | grep $OSD | grep running ; do sleep 5 ; done
+  '317066':
+    tree: other/injected-leak-suppressed
+    facts:
+      daemon: osd.0

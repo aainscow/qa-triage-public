@@ -1,0 +1,21 @@
+run: nmordech-2026-03-18_09:51:02-rados-wip-rocky10-branch-of-the-day-2026-03-18-1773820469-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '107259':
+    tree: timeout/unexplained/osds-not-deployed
+    facts:
+      task: cephadm
+      wait: MaxWhileTries
+  '107361':
+    tree: workunit/set-e
+    facts:
+      workunit: cephadm/test_iscsi_setup.sh
+      task: workunit
+      script: cephadm/test_iscsi_setup.sh
+      command: set -e
+  '107441':
+    tree: workunit/unexplained/ganesha-nfsv3-udp-register
+    facts:
+      workunit: cephadm/test_cephadm.sh
+      task: workunit
+      script: cephadm/test_cephadm.sh

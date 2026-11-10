@@ -1,0 +1,28 @@
+run: skanta-2026-09-18_23:45:18-rados-wip-bharath3-testing-20260918.154843-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '567985':
+    tree: workunit/gtest/external-error-inject
+    facts:
+      workunit: rados/test.sh
+      task: workunit
+      test: LibRadosIoECPPParamCombination/LibRadosIoECPP.ZeroAndTruncateSameRequest/3,
+      script: rados/test.sh
+      injection: ms inject socket failures
+      check: AssertOperateWithSplitOp
+  '568120':
+    tree: crash/abort/specific
+    facts:
+      task: ''
+      source: osd/ReplicatedBackend.cc
+      line: '994'
+      message: ceph_abort_msg("Out of space (failsafe) processing push request")
+      function: void ReplicatedBackend::_do_push(OpRequestRef)
+      daemon: osd.0
+      daemon_type: osd
+      host: trial074
+  '568204':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery

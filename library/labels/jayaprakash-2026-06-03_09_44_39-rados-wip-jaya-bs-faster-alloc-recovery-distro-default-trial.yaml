@@ -1,0 +1,10 @@
+run: jayaprakash-2026-06-03_09:44:39-rados-wip-jaya-bs-faster-alloc-recovery-distro-default-trial
+jobs:
+  '258807':
+    problem: '70697'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 2 jobs in 70697, this one among them, and no record names it yet: the tool placed them in no known problem. A record for it should place them all; others are jayaprakash-2026-06-05_10:50:12-rados-wip-jaya-bs-testing-03-06-2026-distro-default-trial/268181.'
+    summary: 'OSD aborted on "out of order op" during manifest/dedup recovery on a replicated pool; tracker #70697 had no record at crash/abort/specific'
+    status: fail
+    description: rados/thrash/{0-size-min-size-overrides/2-size-2-min-size 1-pg-log-overrides/normal_pg_log 2-recovery-overrides/{more-async-recovery} 3-scrub-overrides/{max-simultaneous-scrubs-1} backoff/peering ceph clusters/{fixed-4} crc-failures/bad_map_crc_failure d-balancer/upmap-read mon_election/classic msgr-failures/osd-dispatch-delay msgr/async-v1only objectstore/{bluestore/{alloc$/{hybrid} base mem$/{low} onode-segment$/{512K} write$/{v1/{compr$/{no$/{no}} v1}}}} rados supported-random-distro/{ubuntu_22.04} thrashers/pggrow_host thrashosds-health workloads/dedup-io-snaps}
+    reason: The WatchDog barked due to Daemon ceph.osd.14 has failed

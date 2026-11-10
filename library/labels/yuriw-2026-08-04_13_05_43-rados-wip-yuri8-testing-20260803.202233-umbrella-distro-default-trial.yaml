@@ -1,0 +1,10 @@
+run: yuriw-2026-08-04_13:05:43-rados-wip-yuri8-testing-20260803.202233-umbrella-distro-default-trial
+jobs:
+  '429256':
+    problem: '79379'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 3 jobs in 79379, this one among them, and no record names it yet: the tool placed them in no known problem. A record for it should place them all; others are yuriw-2026-08-04_13:05:43-rados-wip-yuri8-testing-20260803.202233-umbrella-distro-default-trial/429300, yuriw-2026-08-04_13:05:43-rados-wip-yuri8-testing-20260803.202233-umbrella-distro-default-trial/429393.'
+    summary: The kernel task hung because apt-get update on trial090 (mon.b) never finished; the tree blamed the last command on another host, and no record covered it.
+    status: dead
+    description: rados/multimon/{ceph clusters/9 mon_election/classic msgr-failures/few msgr/async-v2only no_pools objectstore/{bluestore/{alloc$/{btree} base mem$/{low} onode-segment$/{1M} write$/{random/{compr$/{no$/{no}} random}}}} rados supported-random-distro/{ubuntu_22.04} tasks/mon_clock_with_skews}
+    reason: hit max job timeout

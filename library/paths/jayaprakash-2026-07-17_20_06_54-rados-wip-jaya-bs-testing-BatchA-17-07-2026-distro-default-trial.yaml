@@ -1,0 +1,7 @@
+run: jayaprakash-2026-07-17_20:06:54-rados-wip-jaya-bs-testing-BatchA-17-07-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '374344':
+    tree: infra/other
+    facts:
+      task: ansible.cephlab

@@ -1,0 +1,14 @@
+run: jayaprakash-2026-04-22_20:27:56-rados-wip-jaya-testing-22-04-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '169667':
+    tree: crash/assert/specific
+    facts:
+      task: rados
+      source: osd/osd_types.h
+      line: '5250'
+      message: FAILED ceph_assert(it->second == oid)
+      function: void pg_missing_set<TrackChanges>::add(const hobject_t&, eversion_t, eversion_t, bool) [with bool TrackChanges = false]
+      daemon: osd.0
+      daemon_type: osd
+      host: trial035

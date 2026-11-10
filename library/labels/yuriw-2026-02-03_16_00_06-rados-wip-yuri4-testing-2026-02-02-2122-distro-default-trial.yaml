@@ -1,0 +1,10 @@
+run: yuriw-2026-02-03_16:00:06-rados-wip-yuri4-testing-2026-02-02-2122-distro-default-trial
+jobs:
+  '32061':
+    problem: '74800'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: People placed 4 jobs that the tool placed in no known problem in 74800, this one among them.
+    summary: 'osd/divergent-priors.sh failed in teardown due to ceph-osd coredumps from OSDService::maybe_share_map abort (tracker #74800)'
+    status: fail
+    description: rados/standalone/{supported-random-distro$/{ubuntu_latest} workloads/osd}
+    reason: 'Command failed (workunit test osd/divergent-priors.sh) on trial123 with status 1: ''mkdir -p -- /home/ubuntu/cephtest/mnt.0/client.0/tmp && cd -- /home/ubuntu/cephtest/mnt.0/client.0/tmp && CEPH_CLI_TEST_DUP_COMMAND=1 CEPH_REF=a571dd8d0bdb552694c2945239dc14a34ddab9ce TESTDIR="/home/ubuntu/cephtest" CEPH_ARGS="--cluster ceph" CEPH_ID="0" PATH=$PATH:/usr/sbin CEPH_BASE=/home/ubuntu/cephtest/clone.client.0 CEPH_ROOT=/home/ubuntu/cephtest/clone.client.0 CEPH_MNT=/home/ubuntu/cephtest/mnt.0 adjust-ulimits ceph-coverage /home/ubuntu/cephtest/archive/coverage timeout 3h /home/ubuntu/cephtest/clone.client.0/qa/standalone/osd/divergent-priors.sh'''

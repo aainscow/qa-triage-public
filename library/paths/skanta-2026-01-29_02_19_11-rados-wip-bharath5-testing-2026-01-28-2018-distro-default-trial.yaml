@@ -1,0 +1,9 @@
+run: skanta-2026-01-29_02:19:11-rados-wip-bharath5-testing-2026-01-28-2018-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '24678':
+    tree: hung/command/dispatch-delay-queued-for-pg
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph --admin-daemon /var/run/ceph/ceph-osd.14.asok dump_historic_ops

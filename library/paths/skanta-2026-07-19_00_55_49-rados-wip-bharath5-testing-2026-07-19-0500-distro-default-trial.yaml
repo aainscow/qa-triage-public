@@ -1,0 +1,26 @@
+run: skanta-2026-07-19_00:55:49-rados-wip-bharath5-testing-2026-07-19-0500-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '376260':
+    tree: hung/command/ceph-daemon-config-set-hang
+    facts:
+      task: ''
+      hung_task: exec
+      command: sudo TESTDIR=/home/ubuntu/cephtest bash -c 'for f in 0 1 2 3 ; do sudo ceph daemon osd.$f config set osd_recovery_sleep 0 ; sudo ceph daemon osd.$f config set osd_recovery_max_active 20 ; done'
+  '376264':
+    tree: timeout/slow-ops/no-recovery-progress
+    facts:
+      task: rados
+      wait: wait_for_recovery
+  '376388':
+    tree: valgrind/InvalidRead
+    facts:
+      task: mon_recovery
+      kind: InvalidRead
+      frames: UnknownInlinedFun UnknownInlinedFun AsyncConnection::mark_down()
+      daemons: ''
+  '376404':
+    tree: timeout/unexplained
+    facts:
+      task: cephadm
+      wait: wait_until_healthy

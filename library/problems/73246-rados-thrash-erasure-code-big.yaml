@@ -1,0 +1,29 @@
+id: "73246"
+tracker: https://tracker.ceph.com/issues/73246
+title: "rados/thrash-erasure-code-big: Segmentation fault with cauchy technique"
+kind: product
+fixes:
+  - pr: https://github.com/ceph/ceph/pull/67498
+    branch: main
+    fixed_in: v21.0.0-204-g85598659a7
+tree: crash/signal/backtrace
+facts:
+  frames: '^ErasureCodeJerasureCauchyGood::prepare\(\)'
+notes: |
+  An OSD segfaults in cauchy_good_general_coding_matrix() (Jerasure), called from
+  ErasureCodeJerasureCauchyGood::prepare() < ErasureCodeJerasure::init <
+  ErasureCodePluginJerasure::factory, in thread tp_osd_tp. The function initializes the
+  global tables cbest_init/cbest_all lazily with no locking. When an OSD that was out
+  comes back in, several PG-creating threads call the plugin factory at once, one sets
+  cbest_init = 1 while another reads cbest_all before it is filled, and the OSD
+  segfaults. The profile is fine (k=4, m=2, w=8, technique=cauchy_good). The daemon
+  watchdog then barks with "Daemon ceph.osd.7 has failed". The Cauchy EC workloads were
+  added by PR 64554, which exposed this existing bug. PR 67498 adds a static mutex around
+  prepare() during init. The fix is not in builds before v21.0.0-204-g85598659a7.
+examples:
+  - lflores-2026-01-26_23:21:06-rados-wip-yuri12-testing-2026-01-22-2045-distro-default-trial/19099
+  - nmordech-2026-02-23_13:43:25-rados-wip-rocky10-branch-of-the-day-2026-02-23-1771833711-distro-default-trial/66555
+  - skanta-2026-01-26_08:54:40-rados-wip-bharath4-testing-2026-01-26-1300-distro-default-trial/17788
+  - yuriw-2026-01-22_22:40:58-rados-wip-yuri12-testing-2026-01-22-2045-distro-default-trial/13388
+learned:
+- "2026-10-30 bob-analyst, from lflores-2026-01-26_23:21:06-rados-wip-yuri12-testing-2026-01-22-2045-distro-default-trial/19099, as the QA reviewers and the tracker, via qa_triage (bob-analyst) said"

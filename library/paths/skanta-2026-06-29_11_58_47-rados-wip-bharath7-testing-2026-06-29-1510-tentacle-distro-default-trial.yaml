@@ -1,0 +1,9 @@
+run: skanta-2026-06-29_11:58:47-rados-wip-bharath7-testing-2026-06-29-1510-tentacle-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '325067':
+    tree: hung/command
+    facts:
+      task: ''
+      hung_task: rados
+      command: ceph tell mon.h sync_force --yes-i-really-mean-it

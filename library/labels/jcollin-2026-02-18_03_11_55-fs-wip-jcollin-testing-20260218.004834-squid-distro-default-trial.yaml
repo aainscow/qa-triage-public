@@ -1,0 +1,10 @@
+run: jcollin-2026-02-18_03:11:55-fs-wip-jcollin-testing-20260218.004834-squid-distro-default-trial
+jobs:
+  '55394':
+    problem: '74501'
+    by: the QA reviewers and the tracker, via qa_triage (bob-analyst)
+    why: 'People placed 3 jobs in 74501, this one among them, and no record names it yet: the tool placed them in no known problem. A record for it should place them all; others are jcollin-2026-02-18_03:11:55-fs-wip-jcollin-testing-20260218.004834-squid-distro-default-trial/55511, lflores-2026-01-21_20:56:39-rados-main-distro-default-trial/11813.'
+    summary: Job failed on the known 74501 OSD bench IOPS warning in the cluster log, which no record covered; adding a record on cluster-log/message.
+    status: fail
+    description: fs/cephadm/multivolume/{0-start 1-mount 2-workload/dbench conf/{client mds mgr mon osd} distro/single-container-host overrides/{ignorelist_health pg_health}}
+    reason: '"2026-02-20T02:26:02.961531+0000 osd.0 (osd.0) 3 : cluster [WRN] OSD bench result of 91875.290441 IOPS is not within the threshold limit range of 1000.000000 IOPS and 80000.000000 IOPS for osd.0. IOPS capacity is unchanged at 21500.000000 IOPS. The recommendation is to establish the osd''s IOPS capacity using other benchmark tools (e.g. Fio) and then override osd_mclock_max_capacity_iops_[hdd|ssd]." in cluster log'

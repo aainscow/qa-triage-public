@@ -1,0 +1,10 @@
+run: jayaprakash-2026-04-15_11:49:14-rados-wip-jaya-bs-testing-14-04-2026-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '153577':
+    tree: cluster-log/message
+    facts:
+      task: ''
+      level: ERR
+      message: '3.1s0 soid 3:84cd1092:::trial11722595-29:f1 : object info version incorrect auth_oi=3:84cd1092:::trial11722595-29:f1(621''587 client.4658.0:4700 dirty|data_digest s 7700480 uv 486 dd 6d7e5100 alloc_hint [0 0 0] shard_versions={1: 558''517, 2: 558''517, 3: 558''517, 4: 558''517, 5: 558''517, 6: 558''517, 7: 558''517, 8: 558''517, 9: 558''517}) candidate_oi=3:84cd1092:::trial11722595-29:f1(592''553 client.4658.0:4700 dirty|data_digest s 7700480 uv 486 dd 6d7e5100 alloc_hint [0 0 0] shard_versions={1: 558''517, 2: 558''517, 3: 558''517, 4: 558''517, 5: 558''517, 6: 558''517, 7: 558''517, 8: 558''517, 9: 558''517})'
+      reporter: osd.4

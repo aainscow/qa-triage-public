@@ -1,0 +1,22 @@
+run: skanta-2026-11-03_00:24:17-rados-wip-bharath27-testing-20261102.042152-main-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '705808':
+    tree: crash/assert/specific
+    facts:
+      task: print
+      source: osd/OSDMap.cc
+      line: '6550'
+      message: FAILED ceph_assert(osd_weight.count(oid))
+      function: float OSDMap::calc_deviations(ceph::common::CephContext*, const std::map<int, std::set<pg_t> >&, const std::map<int, float>&, float, std::map<int, float>&, std::multimap<float, int>&, double&)
+      daemon: mgr.x
+      daemon_type: mgr
+      host: trial118
+  '705951':
+    tree: workunit/standalone
+    facts:
+      workunit: mon-stretch/mon-stretch-device-class.sh
+      task: workunit
+      test: TEST_stretch_mode_rejects_device_class_rule
+      check: mon-stretch-device-class.sh:36
+      script: mon-stretch/mon-stretch-device-class.sh

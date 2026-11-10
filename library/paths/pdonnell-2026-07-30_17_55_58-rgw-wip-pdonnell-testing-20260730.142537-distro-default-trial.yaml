@@ -1,0 +1,10 @@
+run: pdonnell-2026-07-30_17:55:58-rgw-wip-pdonnell-testing-20260730.142537-distro-default-trial
+code: afbb20a06ddc
+jobs:
+  '414223':
+    tree: infra/other/dpkg-file-conflict
+    facts:
+      task: install
+      package: radosgw
+      owner: ceph-common
+      overwritten: /usr/bin/ceph-diff-sorted
