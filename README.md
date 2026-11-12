@@ -1,5 +1,9 @@
 # qa_triage
 
+The original idea for this tool is Gordon's ([hutchig](https://github.com/hutchig)): a
+decision tree that explains how each job failed, with records of the known problems
+laid out at its leaves.
+
 > This is a read-only snapshot of qa_triage, as it was on 2026-11-10, published for
 > reading. The repository it is developed in, with the library its users share and
 > add to, is private: the quick start below is for its collaborators.
